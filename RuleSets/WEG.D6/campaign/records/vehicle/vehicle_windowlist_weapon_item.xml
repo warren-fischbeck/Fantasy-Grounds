@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!--
+  Please see the license.html file included with this distribution for
+  attribution and copyright information.
+-->
+
+<root>
+	<windowclass name="vehicle_windowlist_weapon_item">
+		<script>
+			function onInit()
+				self.onLockModeChanged(WindowManager.getWindowReadOnlyState(self));
+			end
+
+			function onLockModeChanged(bReadOnly)
+				local tFields = { "weaponname", 
+					"weaponfirearc",
+					"weaponspecialization",
+					"sfirecontrol",
+					"weaponrange",
+					"sweapondamage",
+					"weaponskill", };
+				WindowManager.callSafeControlsSetLockMode(self, tFields, bReadOnly);
+				divider2.setVisible(WindowManager.getAnyControlVisible(self, { "type", }));
+				divider3.setVisible(WindowManager.getAnyControlVisible(self, { "notes", }));
+			end
+			function firecontrol()
+				local nodeFireControl = getDatabaseNode();
+				Debug.console("firecontrol node: ",nodeFireControl);
+				local sLabel = label_weaponfirecontrol.getValue();
+				local aDice = DB.getValue(nodeFireControl, "dfirecontrol", 0); 
+				local nMod = DB.getValue(nodeFireControl, "nfirecontrol", 0);
+
+				local rRoll = { sType = "dice", sDesc = sLabel, aDice = aDice, nMod = nMod };
+				ActionsManager.performAction(draginfo, nil, rRoll);
+				return true;
+			end
+
+			function weapondamage()
+				local nodeWeaponDamage = getDatabaseNode();
+				local sLabel = label_weapondamage.getValue();
+				local aDice = DB.getValue(nodeWeaponDamage, "dweapondamage", 0);
+				local nMod = DB.getValue(nodeWeaponDamage, "nweapondamage", 0);
+				
+				local rRoll = { sType = "dice", sDesc = sLabel, aDice = aDice, nMod = nMod };
+				ActionsManager.performAction(draginfo, nil, rRoll);
+				return true;
+			end
+			
+		</script>
+		<sheetdata>
+			<stringcontrol name="label_weaponname">
+				<anchored>
+					<top offset="5" />
+					<left offset="25" />
+				</anchored>
+				<font>sheetlabel</font>
+				<static textres="vehicle_label_weaponname" />
+			</stringcontrol>
+			<stringfield name="weaponname">
+				<anchored>
+					<top offset="5" />
+					<left offset="120" />
+					<right offset="-90" />
+				</anchored>
+				<stateframe>
+					<keyedit name="fieldfocus" offset="7,5,7,5" />
+					<hover name="fieldfocus" offset="7,5,7,5" hidereadonly="true" />
+					<drophilight name="fieldfocus" offset="7,5,7,5" hidereadonly="true" />
+				</stateframe>
+				<multilinespacing>20</multilinespacing>
+				<left />
+			</stringfield>
+
+			<stringcontrol name="label_weapaonfirearc">
+				<anchored>
+					<top offset="25" />
+					<left offset="35" />
+				</anchored>
+				<font>sheetlabel</font>
+				<static textres="vehicle_label_weaponfirearc" />
+			</stringcontrol>
+			<stringfield name="weaponfirearc">
+				<anchored>
+					<top offset="25" />
+					<left offset="120" />
+					<right offset="-90" />
+				</anchored>
+				<stateframe>
+					<keyedit name="fieldfocus" offset="7,5,7,5" />
+					<hover name="fieldfocus" offset="7,5,7,5" hidereadonly="true" />
+					<drophilight name="fieldfocus" offset="7,5,7,5" hidereadonly="true" />
+				</stateframe>
+				<multilinespacing>20</multilinespacing>
+				<left />
+			</stringfield>
+
+			<stringcontrol name="label_weaponskill">
+				<anchored>
+					<top offset="45" />
+					<left offset="35" />
+				</anchored>
+				<font>sheetlabel</font>
+				<static textres="vehicle_label_weaponskill" />
+			</stringcontrol>
+			<stringfield name="weaponskill">
+				<anchored>
+					<top offset="45" />
+					<left offset="120" />
+					<right offset="-90" />
+				</anchored>
+				<stateframe>
+					<keyedit name="fieldfocus" offset="7,5,7,5" />
+					<hover name="fieldfocus" offset="7,5,7,5" hidereadonly="true" />
+					<drophilight name="fieldfocus" offset="7,5,7,5" hidereadonly="true" />
+				</stateframe>
+				<multilinespacing>20</multilinespacing>
+				<left />
+			</stringfield>
+
+			<stringcontrol name="label_weaponspecialization">
+				<anchored>
+					<top offset="65" />
+					<left offset="35" />
+				</anchored>
+				<font>sheetlabel</font>
+				<static textres="vehicle_label_weaponspecialization" />
+			</stringcontrol>
+			<stringfield name="weaponspecialization">
+				<anchored>
+					<top offset="65" />
+					<left offset="120" />
+					<right offset="-90" />
+				</anchored>
+				<stateframe>
+					<keyedit name="fieldfocus" offset="7,5,7,5" />
+					<hover name="fieldfocus" offset="7,5,7,5" hidereadonly="true" />
+					<drophilight name="fieldfocus" offset="7,5,7,5" hidereadonly="true" />
+				</stateframe>
+				<multilinespacing>20</multilinespacing>
+				<left />
+			</stringfield>			
+
+			<stringcontrol name="label_weaponfirecontrol">
+				<anchored>
+					<top offset="85" />
+					<left offset="35" />
+				</anchored>
+				<font>sheetlabel</font>
+				<static textres="vehicle_label_weaponfirecontrol" />
+			</stringcontrol>
+			<stringfield name="sfirecontrol">
+				<anchored>
+					<top offset="85" />
+					<left offset="120" />
+					<right offset="-90" />
+				</anchored>
+				<stateframe>
+					<keyedit name="fieldfocus" offset="7,5,7,5" />
+					<hover name="fieldfocus" offset="7,5,7,5" hidereadonly="true" />
+					<drophilight name="fieldfocus" offset="7,5,7,5" hidereadonly="true" />
+				</stateframe>
+				<multilinespacing>20</multilinespacing>
+				<left />
+			</stringfield>
+			<button_weaponfirecontrol name="button_firecontrol">
+				<anchored to="label_weaponfirecontrol">
+					<top parent="label_weaponfirecontrol" offset="-20" />
+					<left parent="label_weaponfirecontrol" anchor="left" offset="-30" />
+					<right parent="label_weaponfirecontrol" anchor="left" offset="-5" />
+				</anchored>
+				<icon normal="button_roll" pressed="button_roll_down" />
+				<script>
+					function onDragStart(button, x, y, draginfo)
+						return window.action(draginfo);
+					end
+					function onButtonPress()
+						return window.firecontrol();
+					end
+				</script>
+			</button_weaponfirecontrol>
+
+			<stringcontrol name="label_weaponrange">
+				<anchored>
+					<top offset="105" />
+					<left offset="35" />
+				</anchored>
+				<font>sheetlabel</font>
+				<static textres="vehicle_label_weaponrange" />
+			</stringcontrol>
+			<stringfield name="weaponrange">
+				<anchored>
+					<top offset="105" />
+					<left offset="120" />
+					<right offset="-30" />
+				</anchored>
+				<stateframe>
+					<keyedit name="fieldfocus" offset="7,5,7,5" />
+					<hover name="fieldfocus" offset="7,5,7,5" hidereadonly="true" />
+					<drophilight name="fieldfocus" offset="7,5,7,5" hidereadonly="true" />
+				</stateframe>
+				<multilinespacing>20</multilinespacing>
+				<left />
+			</stringfield>
+
+			<stringcontrol name="label_weapondamage">
+				<anchored>
+					<top offset="125" />
+					<left offset="35" />
+				</anchored>
+				<font>sheetlabel</font>
+				<static textres="vehicle_label_weapondamage" />
+			</stringcontrol>
+			<stringfield name="sweapondamage">
+				<anchored>
+					<top offset="125" />
+					<left offset="120" />
+					<right offset="-90" />
+				</anchored>
+				<stateframe>
+					<keyedit name="fieldfocus" offset="7,5,7,5" />
+					<hover name="fieldfocus" offset="7,5,7,5" hidereadonly="true" />
+					<drophilight name="fieldfocus" offset="7,5,7,5" hidereadonly="true" />
+				</stateframe>
+				<multilinespacing>20</multilinespacing>
+				<left />
+			</stringfield>
+			<button_weapondamage name="button_damage">
+				<anchored to="label_weapondamage">
+					<top parent="label_weapondamage" offset="-20" />
+					<left parent="label_weapondamage" anchor="left" offset="-30" />
+					<right parent="label_weapondamage" anchor="left" offset="-5" />
+				</anchored>
+				<icon normal="button_weapon" pressed="button_weapon_down" />
+				<script>
+					function onDragStart(button, x, y, draginfo)
+						return window.action(draginfo);
+					end
+					function onButtonPress()
+						return window.weapondamage();
+					end
+				</script>
+			</button_weapondamage>
+		</sheetdata>
+	</windowclass>
+</root>

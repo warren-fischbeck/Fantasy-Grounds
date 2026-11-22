@@ -1,0 +1,812 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  Please see the license.html file included with this distribution for
+  attribution and copyright information.
+-->
+<root>
+	<item>
+		<id-00001>
+			<cost type="string">50 Credits</cost>
+			<itemammo type="number">0</itemammo>
+			<itemavailability type="string">1</itemavailability>
+			<itemdescription type="string">Breath masks are portable atmosphere-filtering systems that provide life-sustaining gases for limited periods of time. While breath masks are highly useful in many situations, they are by no means foolproof life-support gear; they offer no protection from extremes in temperature or the vacuum of space. Breath masks cover the majority of the wearer’s face, and more expensive models come equipped with eye protection as well as an air supply. Most breath masks are effective for one hour of continuous usage before the filters are spent. Replacement filters can be purchased relatively inexpensively and replacing them only takes a few minutes.</itemdescription>
+			<itemfirerate type="number">0</itemfirerate>
+			<itemscale type="string">Character</itemscale>
+			<itemtype type="string">Equipment</itemtype>
+			<locked type="number">1</locked>
+			<name type="string">Breath Mask</name>
+			<nonid_name type="string">Breath Mask</nonid_name>
+			<nonidentified type="string">Breath Mask</nonidentified>
+			<notes type="formattedtext">
+				<p>
+					<b>Description: </b>Breath masks are portable atmosphere-filtering systems that provide life-sustaining gases for limited periods of time. While breath masks are highly useful in many situations, they are by no means foolproof life-support gear; they offer no protection from extremes in temperature or the vacuum of space. Breath masks cover the majority of the wearer&#8217;s face, and more expensive models come equipped with eye protection as well as an air supply. Most breath masks are effective for one hour of continuous usage before the filters are spent. Replacement filters can be purchased relatively inexpensively and replacing them only takes a few minutes.
+				</p>
+			</notes>
+			<weight type="number">0.5</weight>
+		</id-00001>
+		<id-00002>
+			<cost type="string">100 Credits</cost>
+			<itemammo type="number">0</itemammo>
+			<itemavailability type="string">2,R</itemavailability>
+			<itemdescription type="string">Comlinks are portable communication devices that are suitable for short-range transmissions. Personal devices have a range of about 50 kilometers (often up to low orbit in clear weather); most vehicular comlinks can transmit up to 200 kilometers. Comlinks can be adjusted to broadcast on countless different frequencies, and there are literally thousands of encryption modules available to ensure secure communications. More expensive comlinks can be purchased with encrypting routines built in. There are also Standard Clear Frequencies (SCFs) which can be used for any public communications, such as when a ship wishes to hail a spaceport or other ship, or when local government needs to make a broadcast that should be picked up by all comlinks within a specified area. Most comlinks can be set up to monitor one specific frequency and SCFs simultaneously; more advanced comlinks can be set up to monitor several frequencies at once.</itemdescription>
+			<itemfirerate type="number">0</itemfirerate>
+			<itemscale type="string">Character</itemscale>
+			<itemtype type="string">Equipment</itemtype>
+			<locked type="number">0</locked>
+			<name type="string">Comlink (Military)</name>
+			<nonid_name type="string">Military Comlink</nonid_name>
+			<nonidentified type="string">Military Comlink</nonidentified>
+			<notes type="formattedtext">
+				<p>
+					<b>Description: </b>Comlinks are portable communication devices suitable for short-range transmissions. Military models are more rugged and often encrypted for battlefield use.
+				</p>
+			</notes>
+			<weight type="number">0.5</weight>
+		</id-00002>
+		<id-00003>
+			<cost type="string">100 Credits</cost>
+			<itemammo type="number">0</itemammo>
+			<itemavailability type="string">1</itemavailability>
+			<itemdescription type="string">Datapads are electronic information storage devices noted for their small size and portability. Datapads can store relevant personal data, encyclopedic entries and other basic information, though the microprocessors in such units generally cannot perform higher-level computing. Datapads are available in a wide range of configurations — less expensive models are often dedicated to the storage and collation of a single type of data. Smaller, more expensive units can be customized to handle a variety of information types. Some high-priced datapads contain a small holographic projector which gives the user a heads-up display rather than the standard flat screen common on lower-end units.</itemdescription>
+			<itemfirerate type="number">0</itemfirerate>
+			<itemscale type="string">Character</itemscale>
+			<itemtype type="string">Equipment</itemtype>
+			<locked type="number">1</locked>
+			<name type="string">Datapad</name>
+			<nonid_name type="string">Datapad</nonid_name>
+			<nonidentified type="string">Datapad</nonidentified>
+			<notes type="formattedtext">
+				<p>
+					<b>Description: </b>A compact, handheld computer used for data storage, display, and simple processing tasks.
+				</p>
+			</notes>
+			<weight type="number">0.5</weight>
+		</id-00003>
+		<id-00004>
+			<cost type="string">1,800, 150 (power pack recharge), 150 (portable carrying case)</cost>
+			<itemammo type="number">0</itemammo>
+			<itemavailability type="string">3,F or R</itemavailability>
+			<itemdescription type="string">Jet packs are an unusual form of conveyance that is more commonly seen in use with military forces or fringe groups (although a number of commercial jet packs are available). A jet pack is simply a propulsion system that a pilot can strap on, allowing flight over short distances. Arm and wrist controls are often employed for maneuvering, and many civilian packs have limited sound baffles to conform with local noise ordinances; while these baffles reduce noise, they also reduce the unit's speed as well.</itemdescription>
+			<itemfirerate type="number">0</itemfirerate>
+			<itemscale type="string">Character</itemscale>
+			<itemskill type="string">Jet Pack Operation</itemskill>
+			<itemtype type="string">Equipment</itemtype>
+			<locked type="number">1</locked>
+			<name type="string">Aerodynes, Inc. Hush-About</name>
+			<nonid_name type="string">Hush-About Jet Pack</nonid_name>
+			<nonidentified type="string">Hush-About Jet Pack</nonidentified>
+			<notes type="formattedtext">
+				<p>
+					<b>Description: </b>The Arakyd Hush-About AJP-400 can lift up to 300 kilograms (total). It moves vertically 200 meters per charge, horizontally up to 500 meters per charge. A fully charged unit has 10 charges and can be run on continuous charge-feed.
+				</p>
+				<p>
+					<b>Performance: </b>During normal operation this unit produces very little noise. Any attempt to locate a Hush-About using auditory pickups requires a successful search roll at a +10 penalty to the difficulty.
+				</p>
+			</notes>
+			<weight type="number">0.5</weight>
+		</id-00004>
+		<id-00005>
+			<cost type="string">100 Credits</cost>
+			<itemammo type="number">0</itemammo>
+			<itemavailability type="string">1</itemavailability>
+			<itemdescription type="string">Medpacs are compact medical kits containing supplies and drugs used to treat injuries and stabilize wounded characters.</itemdescription>
+			<itemfirerate type="number">0</itemfirerate>
+			<itemscale type="string">Character</itemscale>
+			<itemtype type="string">Equipment</itemtype>
+			<locked type="number">1</locked>
+			<name type="string">Medpac</name>
+			<nonid_name type="string">Medpac</nonid_name>
+			<nonidentified type="string">Medpac</nonidentified>
+			<notes type="formattedtext">
+				<p>
+					<b>Description: </b>A portable medical kit used to treat injuries and stabilize patients in the field.
+				</p>
+			</notes>
+			<weight type="number">1</weight>
+		</id-00005>
+		<id-00006>
+			<cost type="string">400 Credits</cost>
+			<itemammo type="number">0</itemammo>
+			<itemavailability type="string">2,R</itemavailability>
+			<itemdescription type="string">Rocket packs are compact propulsion units or launch systems used for short-range rocket-assisted movement or specialized tactical applications.</itemdescription>
+			<itemfirerate type="number">0</itemfirerate>
+			<itemscale type="string">Character</itemscale>
+			<itemtype type="string">Equipment</itemtype>
+			<locked type="number">1</locked>
+			<name type="string">Rocket Pack</name>
+			<nonid_name type="string">Rocket Pack</nonid_name>
+			<nonidentified type="string">Rocket Pack</nonidentified>
+			<notes type="formattedtext">
+				<p>
+					<b>Description: </b>A specialized pack used to launch or assist movement with small rockets; often military or paramilitary gear.
+				</p>
+			</notes>
+			<weight type="number">0.5</weight>
+		</id-00006>
+		<id-00007>
+			<cost type="string">650 Credits</cost>
+			<itemammo type="number">0</itemammo>
+			<itemavailability type="string">2,R</itemavailability>
+			<itemdescription type="string">The NeuroSaav 8932/D sensor pack detects life forms or comm signals and provides a +1D bonus to Sensors.</itemdescription>
+			<itemfirerate type="number">0</itemfirerate>
+			<itemscale type="string">Character</itemscale>
+			<itemtype type="string">Equipment</itemtype>
+			<locked type="number">1</locked>
+			<name type="string">Sensor Pack</name>
+			<nonid_name type="string">Sensor Pack</nonid_name>
+			<nonidentified type="string">Sensor Pack</nonidentified>
+			<notes type="formattedtext">
+				<p>
+					<b>Description: </b>Portable scanning device capable of detecting life forms or comm signals.
+				</p>
+			</notes>
+			<weight type="number">3</weight>
+		</id-00007>
+		<id-00008>
+			<cost type="string">2,200 Credits</cost>
+			<itemammo type="number">0</itemammo>
+			<itemavailability type="string">2,F</itemavailability>
+			<itemdescription type="string">Space suits and vacuum suits are required equipment for starfighter pilots. Space suits allow an individual to enter the vacuum of space for limited periods of time without harm. Vacuum suits — which are favored by most "fighter jocks" — perform a similar function. Space suits are bulky, sealed uniforms that possess an independent atmosphere supply, as well as temperature regulators and waste recyclers, allowing survival in space for periods of up to one week. Higher-priced space suits often contain interior food supplies (dispensed through a tube in the helmet) that can extend the survival period. Vacuum suits are also self-contained environments, though they dispense with most of the amenities provided by space suits. Most vacuum suits do not contain suit heaters and generally hold enough atmosphere to last a few hours. Many pilots trade the extra atmosphere a space suit provides for the greater mobility and reaction time a vacuum suit allows in combat.</itemdescription>
+			<itemfirerate type="number">0</itemfirerate>
+			<itemscale type="string">Character</itemscale>
+			<itemtype type="string">Equipment</itemtype>
+			<locked type="number">1</locked>
+			<name type="string">LifeLine Technologies Model 11 Space Suit</name>
+			<nonid_name type="string">Space Suit</nonid_name>
+			<nonidentified type="string">Space Suit</nonidentified>
+			<notes type="formattedtext">
+				<p>
+					<b>Description: </b>The LifeLine Model 11 contains a heating unit, waste recycling unit, and onboard food supply. The suit's power supply, atmosphere, and food supply will support a character in space for 10 standard days.
+				</p>
+				<p>
+					<b>Game Notes: </b>While wearing the suit the wearer suffers a -2D penalty to all Dexterity attribute and skill checks due to bulk and insulation.
+				</p>
+			</notes>
+			<weight type="number">12</weight>
+		</id-00008>
+		<id-00009>
+			<cost type="string">1,000 Credits</cost>
+			<itemammo type="number">0</itemammo>
+			<itemavailability type="string">1</itemavailability>
+			<itemdescription type="string">Space suits and vacuum suits are required equipment for starfighter pilots. Space suits allow an individual to enter the vacuum of space for limited periods of time without harm. Vacuum suits — which are favored by most "fighter jocks" — perform a similar function. Space suits are bulky, sealed uniforms that possess an independent atmosphere supply, as well as temperature regulators and waste recyclers, allowing survival in space for periods of up to one week. Higher-priced space suits often contain interior food supplies (dispensed through a tube in the helmet) that can extend the survival period. Vacuum suits are also self-contained environments, though they dispense with most of the amenities provided by space suits. Most vacuum suits do not contain suit heaters and generally hold enough atmosphere to last a few hours. Many pilots trade the extra atmosphere a space suit provides for the greater mobility and reaction time a vacuum suit allows in combat.</itemdescription>
+			<itemfirerate type="number">0</itemfirerate>
+			<itemscale type="string">Character</itemscale>
+			<itemtype type="string">Personal Vacuum Suit</itemtype>
+			<locked type="number">1</locked>
+			<name type="string">Incom Military Vacuum Suit</name>
+			<nonid_name type="string">Vacuum Suit</nonid_name>
+			<nonidentified type="string">Vacuum Suit</nonidentified>
+			<notes type="formattedtext">
+				<p>
+					<b>Description: </b>Incom developed this version of the military flight suit decades ago; it is in common usage throughout the galaxy. The Incom vacuum suit contains 10 hours&#8217; worth of atmosphere.
+				</p>
+				<p>
+					<b>Game Notes: </b>A player character in space must make a Moderate Stamina or Strength check every hour he or she is exposed to vacuum or suffer a wound caused by the freezing cold of space.
+				</p>
+			</notes>
+			<weight type="number">10</weight>
+		</id-00009>
+		<id-00010>
+			<cost type="string">25 Credits</cost>
+			<itemammo type="number">0</itemammo>
+			<itemavailability type="string">1</itemavailability>
+			<itemdamagedie type="string">STR+1D (maximum: 6D)</itemdamagedie>
+			<itemdescription type="string">Knives In an age of powered, long-range energy weapons, the main advantage of a knife is that it is easy and cheap to manufacture, concealable, requires no power source beyond sheer physical strength, and possession is rarely regulated by planetary governments. Some throwing knives can also be used as short-range weapons.</itemdescription>
+			<itemdifficulty type="string">Very Easy</itemdifficulty>
+			<itemfirerate type="number">1</itemfirerate>
+			<itemscale type="string">Character</itemscale>
+			<itemskill type="string">Melee Combat</itemskill>
+			<itemskillspeciality type="string">Melee Combat (Knife)</itemskillspeciality>
+			<itemtype type="string">Melee Weapon</itemtype>
+			<locked type="number">1</locked>
+			<name type="string">Standard Knife</name>
+			<nonid_name type="string">Typical Knife</nonid_name>
+			<nonidentified type="string">Typical Knife</nonidentified>
+			<notes type="formattedtext" />
+			<weight type="number">0.5</weight>
+		</id-00010>
+		<id-00011>
+			<cost type="string">35 Credits</cost>
+			<itemammo type="number">1</itemammo>
+			<itemavailability type="string">1</itemavailability>
+			<itemdamagedie type="string">STR+1D (maximum: 6D)</itemdamagedie>
+			<itemdescription type="string">Knives In an age of powered, long-range energy weapons, the main advantage of a knife is that it is easy and cheap to manufacture, concealable, requires no power source beyond sheer physical strength, and possession is rarely regulated by planetary governments. Some throwing knives can also be used as short-range weapons.</itemdescription>
+			<itemdifficulty type="string">Very Easy</itemdifficulty>
+			<itemfirerate type="number">1</itemfirerate>
+			<itemrange type="string">2-3/5/10</itemrange>
+			<itemscale type="string">Character</itemscale>
+			<itemskill type="string">Thrown Weapons</itemskill>
+			<itemskillspeciality type="string">Thrown Weapons (Knife)</itemskillspeciality>
+			<itemtype type="string">Melee Weapon</itemtype>
+			<locked type="number">1</locked>
+			<name type="string">Standard Throwing Knife</name>
+			<nonid_name type="string">Typical Throwing Knife</nonid_name>
+			<nonidentified type="string">Typical Throwing Knife</nonidentified>
+			<notes type="formattedtext">
+				<p>May be used as a normal knife in melee combat.</p>
+			</notes>
+			<weight type="number">0.5</weight>
+		</id-00011>
+		<id-00012>
+			<cost type="string">500 Credits</cost>
+			<itemammo type="number">0</itemammo>
+			<itemavailability type="string">2,R</itemavailability>
+			<itemdamagedie type="string">STR+3D+1 (maximum: 7D)</itemdamagedie>
+			<itemdescription type="string">Vibroweapons come in a variety of forms, from vibroknives to vibro-axes. While vibroweapons appear similar to other melee weapons, this similarity is cosmetic only. A standard vibroknife, for example, is constructed with a miniature power cell and a specially seated blade. When activated, the power cell transmits thousands of microscopic vibrations along the blade edge, allowing the weapon to cut through extremely hard surfaces with only slight pressure. The vibro-ax and other vibroweapons operate along the same principle.</itemdescription>
+			<itemdifficulty type="string">Moderate</itemdifficulty>
+			<itemfirerate type="number">1</itemfirerate>
+			<itemscale type="string">Character</itemscale>
+			<itemskill type="string">Melee Combat</itemskill>
+			<itemskillspeciality type="string">Melee Combat (Vibro-Ax)</itemskillspeciality>
+			<itemtype type="string">Melee Weapon</itemtype>
+			<locked type="number">1</locked>
+			<name type="string">Standard Vibro-Ax</name>
+			<nonid_name type="string">Vibro-Ax</nonid_name>
+			<nonidentified type="string">Vibro-Ax</nonidentified>
+			<notes type="formattedtext" />
+			<weight type="number">2</weight>
+		</id-00012>
+		<id-00013>
+			<cost type="string">250 Credits</cost>
+			<itemammo type="number">0</itemammo>
+			<itemavailability type="string">2,F</itemavailability>
+			<itemdamagedie type="string">STR+3D (maximum: 6D)</itemdamagedie>
+			<itemdescription type="string">Vibroweapons come in a variety of forms, from vibroknives to vibro-axes. While vibroweapons appear similar to other melee weapons, this similarity is cosmetic only. A standard vibroknife, for example, is constructed with a miniature power cell and a specially seated blade. When activated, the power cell transmits thousands of microscopic vibrations along the blade edge, allowing the weapon to cut through extremely hard surfaces with only slight pressure. The vibro-ax and other vibroweapons operate along the same principle.</itemdescription>
+			<itemdifficulty type="string">Moderate</itemdifficulty>
+			<itemfirerate type="number">1</itemfirerate>
+			<itemscale type="string">Character</itemscale>
+			<itemskill type="string">Melee Combat</itemskill>
+			<itemskillspeciality type="string">Melee Combat (Vibroblade)</itemskillspeciality>
+			<itemtype type="string">Melee Weapon</itemtype>
+			<locked type="number">1</locked>
+			<name type="string">Standard Vibroblade</name>
+			<nonid_name type="string">Vibroblade</nonid_name>
+			<nonidentified type="string">Vibroblade</nonidentified>
+			<notes type="formattedtext" />
+			<weight type="number">1</weight>
+		</id-00013>
+		<id-00014>
+			<cost type="string">Unavailable</cost>
+			<itemammo type="number">0</itemammo>
+			<itemavailability type="string">4,X</itemavailability>
+			<itemdamagedie type="string">5D</itemdamagedie>
+			<itemdescription type="string">Lightsabers — the rare and highly-prized weapons of the Jedi Knights — are small, hand-held weapons that project an energy blade capable of cutting through the densest of materials. Each weapon was custom-made by a Jedi and no two are alike. Because the energy blade produces no resistance and has virtually no weight, it is very dangerous for beginners to use, and those without any formal training are as dangerous to themselves as to their opponents. In the hands of a Jedi Knight, these weapons are truly formidable, capable of deflecting blaster bolts in addition to their formidable melee combat capabilities. The weapons are extremely rare artifacts — they are very rarely found for sale and possession of a lightsaber was highly illegal in the Empire.</itemdescription>
+			<itemdifficulty type="string">Difficult</itemdifficulty>
+			<itemfirerate type="number">1</itemfirerate>
+			<itemscale type="string">Character</itemscale>
+			<itemskill type="string">Lightsaber</itemskill>
+			<itemtype type="string">Melee Weapon</itemtype>
+			<locked type="number">1</locked>
+			<name type="string">Lightsaber</name>
+			<nonid_name type="string">Lightsaber</nonid_name>
+			<nonidentified type="string">Lightsaber</nonidentified>
+			<notes type="formattedtext">
+				<p>In an attacking character missing the difficulty number by more than 10 points (the base difficulty; not their opponent's parry total), the character has injured himself with the lightsaber blade. Apply normal damage to the character wielding the lightsaber.</p>
+			</notes>
+			<weight type="number">1</weight>
+		</id-00014>
+		<id-00015>
+			<cost type="string">300 Credits</cost>
+			<itemammo type="number">16</itemammo>
+			<itemavailability type="string">2,F</itemavailability>
+			<itemdamagedie type="string">3D</itemdamagedie>
+			<itemdescription type="string">These primitive projectile weapons are almost never used by most military forces due to their ineffectiveness against modern armor, and their tendency to run out of ammunition quickly. Slugthrowers are most often found on primitive settlements or in pre-spaceflight cultures; occasionally a Rebel unit will find them useful for shock value (they are extremely loud). Conversely, some Rebel units prefer the use of slugthrowers; it is possible to silence a projectile weapon but not a blaster.</itemdescription>
+			<itemfirerate type="number">1</itemfirerate>
+			<itemrange type="string">3-10/30/60</itemrange>
+			<itemscale type="string">Character</itemscale>
+			<itemskill type="string">Firearms</itemskill>
+			<itemskillspeciality type="string">Firearms (Slugthrower Pistol)</itemskillspeciality>
+			<itemtype type="string">Slugthrower</itemtype>
+			<locked type="number">1</locked>
+			<name type="string">Coruschal WeaponsWorks "Dagger" Combat Pistol</name>
+			<nonid_name type="string">Slugthrower</nonid_name>
+			<nonidentified type="string">Slugthrower</nonidentified>
+			<notes type="formattedtext">
+				<p>-1D damage when used on a target with body armor.</p>
+				<p>Coruschal WeaponsWorks was a prominent munitions manufacturer until the planet Coruschal fell into civil disarray. Currently, the planet is a decaying urban sprawl, filled with street fighting between warring factions. Coruschal WeaponsWorks firearms are generally regarded as high quality among those who still use such weapons, though contact with the planet has been cut off by fighting.</p>
+			</notes>
+			<weight type="number">0</weight>
+		</id-00015>
+		<id-00016>
+			<cost type="string">275 Credits (power packs: 25)</cost>
+			<itemammo type="number">6</itemammo>
+			<itemavailability type="string">2,R/X</itemavailability>
+			<itemdamagedie type="string">3D</itemdamagedie>
+			<itemdescription type="string">Small enough to be hidden in the hand of a human, hold-out blasters are common in urban areas with strict weapon controls and among undercover agents. Hold-out blasters require custom-designed power packs and only hold enough blaster gas for a few shots. They are illegal or closely regulated in most systems. Many systems, however, look on them as a "self-defense" alternative to the more powerful types of personal weapons available.</itemdescription>
+			<itemfirerate type="number">1</itemfirerate>
+			<itemrange type="string">3-4/8/12</itemrange>
+			<itemscale type="string">Character</itemscale>
+			<itemskill type="string">Blaster: Hold-Out Blaster</itemskill>
+			<itemskillspeciality type="string">Blaster (Hold-Out Blaster)</itemskillspeciality>
+			<itemtype type="string">Blaster</itemtype>
+			<locked type="number">1</locked>
+			<name type="string">Merr-Sonn Munitions Q2 Hold-Out Blaster</name>
+			<nonid_name type="string">Hold-Out Blaster</nonid_name>
+			<nonidentified type="string">Hold-Out Blaster</nonidentified>
+			<notes type="formattedtext">
+				<p>
+					<b>Description: </b>Small enough to be hidden in the hand of a human, hold-out blasters are common in urban areas with strict weapon controls and among undercover agents. Hold-out blasters require custom-designed power packs and only hold enough blaster gas for a few shots. They are illegal or closely regulated in most systems.
+				</p>
+				<p>
+					<b>Hold-Out: </b>It&#8217;s an important lesson: learn what your enemy can and can&#8217;t do and learn dwell. Not knowing the odds can be fatal.
+				</p>
+			</notes>
+			<weight type="number">0</weight>
+		</id-00016>
+		<id-00017>
+			<cost type="string">350 Credits (power packs: 25)</cost>
+			<itemammo type="number">50</itemammo>
+			<itemavailability type="string">1,F</itemavailability>
+			<itemdamagedie type="string">3D+1</itemdamagedie>
+			<itemdescription type="string">A small, short blaster, often used for small-game hunting or personal defense. Sometimes used for dueling. This is the smallest weapon to use standard power packs. (Princess used a sporting blaster in Star Wars: A New Hope.)</itemdescription>
+			<itemfirerate type="number">1</itemfirerate>
+			<itemrange type="string">3-10/30/60</itemrange>
+			<itemscale type="string">Character</itemscale>
+			<itemskill type="string">Blaster</itemskill>
+			<itemskillspeciality type="string">Blaster (Sporting Blaster)</itemskillspeciality>
+			<itemtype type="string">Blaster</itemtype>
+			<locked type="number">1</locked>
+			<name type="string">Drearian Defense Conglomerate Defender</name>
+			<nonid_name type="string">Sporting Blaster</nonid_name>
+			<nonidentified type="string">Sporting Blaster</nonidentified>
+			<notes type="formattedtext" />
+			<weight type="number">0</weight>
+		</id-00017>
+		<id-00018>
+			<cost type="string">500 Credits (power packs: 25)</cost>
+			<itemammo type="number">100</itemammo>
+			<itemavailability type="string">1,F,R/X</itemavailability>
+			<itemdamagedie type="string">4D</itemdamagedie>
+			<itemdescription type="string">This is the most common weapon in the galaxy. It is popular with urban police forces, traders and anyone else who needs to pack respectable firepower in a compact package. Ownership of these weapons is restricted in many systems.</itemdescription>
+			<itemfirerate type="number">1</itemfirerate>
+			<itemrange type="string">3-10/30/120</itemrange>
+			<itemscale type="string">Character</itemscale>
+			<itemskill type="string">Blaster</itemskill>
+			<itemskillspeciality type="string">Blaster (Blaster Pistol)</itemskillspeciality>
+			<itemtype type="string">Blaster</itemtype>
+			<locked type="number">1</locked>
+			<name type="string">BlasTech DL-18 Blaster Pistol</name>
+			<nonid_name type="string">Blaster Pistol</nonid_name>
+			<nonidentified type="string">Blaster Pistol</nonidentified>
+			<notes type="formattedtext" />
+			<weight type="number">0</weight>
+		</id-00018>
+		<id-00019>
+			<cost type="string">750 Credits (power packs: 25)</cost>
+			<itemammo type="number">25</itemammo>
+			<itemavailability type="string">1,F,R/X</itemavailability>
+			<itemdamagedie type="string">5D</itemdamagedie>
+			<itemdescription type="string">A blaster pistol is a compromise: it gives the user a lot more firepower, but with a very limited range — this is accomplished by draining a lot of energy from the power pack, at the expense of ammo. A heavy blaster pistol is crammed into a standard pistol frame, making it easy to disguise if necessary. These weapons are illegal or heavily restricted in many systems. Han Solo's favorite weapon is a modified BlasTech DL-44 heavy blaster pistol.</itemdescription>
+			<itemfirerate type="number">1</itemfirerate>
+			<itemrange type="string">3-7/25/50</itemrange>
+			<itemscale type="string">Character</itemscale>
+			<itemskill type="string">Blaster</itemskill>
+			<itemskillspeciality type="string">Blaster (Heavy Blaster Pistol)</itemskillspeciality>
+			<itemtype type="string">Blaster</itemtype>
+			<locked type="number">1</locked>
+			<name type="string">BlasTech DL-44 Heavy Blaster Pistol</name>
+			<nonid_name type="string">Thrown Weapons: Knife</nonid_name>
+			<nonidentified type="string">Heavy Blaster Pistol</nonidentified>
+			<notes type="formattedtext" />
+			<weight type="number">0</weight>
+		</id-00019>
+		<id-00020>
+			<cost type="string">900 Credits (power packs: 25)</cost>
+			<itemammo type="number">100</itemammo>
+			<itemavailability type="string">2, F, R or X</itemavailability>
+			<itemdamagedie type="string">5D</itemdamagedie>
+			<itemdescription type="string">These weapons are shorter and less accurate than blaster rifles, the weapons they are based upon. However, they are rugged and reliable and malfunctions are very rare. These weapons are less advanced than blaster rifles, and older models can often be found at greatly discounted prices.</itemdescription>
+			<itemfirerate type="number">1</itemfirerate>
+			<itemrange type="string">3-25/50/250</itemrange>
+			<itemscale type="string">Character</itemscale>
+			<itemskill type="string">Blaster</itemskill>
+			<itemskillspeciality type="string">Blaster (Blaster Carbine)</itemskillspeciality>
+			<itemtype type="string">Blaster</itemtype>
+			<locked type="number">1</locked>
+			<name type="string">SoroSuub QuickSnap 36T</name>
+			<nonid_name type="string">Blaster Carbine</nonid_name>
+			<nonidentified type="string">Blaster Carbine</nonidentified>
+			<notes type="formattedtext">
+				<p>
+					<b>Game Notes: </b>At long range, increase difficulty by +5.
+				</p>
+			</notes>
+			<weight type="number">0</weight>
+		</id-00020>
+		<id-00021>
+			<cost type="string">1,000 Credits (power packs: 25)</cost>
+			<itemammo type="number">100</itemammo>
+			<itemavailability type="string">2,X</itemavailability>
+			<itemdamagedie type="string">5D</itemdamagedie>
+			<itemdescription type="string">Among the most popular personal weapons in the galaxy, blaster rifles are in common use throughout the Imperial and New Republic forces. They have a retractable stock and sight. In most systems, ownership is restricted to military organizations. Imperial stormtroopers favor blaster rifles.</itemdescription>
+			<itemfirerate type="number">1</itemfirerate>
+			<itemrange type="string">3-30/100/300</itemrange>
+			<itemscale type="string">Character</itemscale>
+			<itemskill type="string">Blaster</itemskill>
+			<itemskillspeciality type="string">Blaster (Blaster Rifle)</itemskillspeciality>
+			<itemtype type="string">Blaster</itemtype>
+			<locked type="number">1</locked>
+			<name type="string">SoroSuub Stormtrooper One Blaster Rifle</name>
+			<nonid_name type="string">Blaster Rifle</nonid_name>
+			<nonidentified type="string">Blaster Rifle</nonidentified>
+			<notes type="formattedtext">
+				<p>
+					<b>Game Notes: </b>If the retractable stock and scope are used for one round of aiming, the character receives an additional +1D to blaster.
+				</p>
+			</notes>
+			<weight type="number">0</weight>
+		</id-00021>
+		<id-00022>
+			<cost type="string">900 Credits (power packs: 25)</cost>
+			<itemammo type="number">100</itemammo>
+			<itemavailability type="string">1,F</itemavailability>
+			<itemdamagedie type="string">4D+1</itemdamagedie>
+			<itemdescription type="string">Built to circumvent standard restrictions on the blaster rifle, the "sport rifle" is merely a smaller version of its more lethal cousin. It was introduced early in the days of the Empire by groups that worried over the new centralization of power. In general, it is just as restricted in use as the blaster rifle.</itemdescription>
+			<itemfirerate type="number">1</itemfirerate>
+			<itemrange type="string">3-40/120/350</itemrange>
+			<itemscale type="string">Character</itemscale>
+			<itemskill type="string">Blaster</itemskill>
+			<itemskillspeciality type="string">Blaster (Blaster Rifle)</itemskillspeciality>
+			<itemtype type="string">Blaster</itemtype>
+			<locked type="number">1</locked>
+			<name type="string">Drearian Defense Conglomerate "Light Sport" Hunter</name>
+			<nonid_name type="string">Sporting Blaster Rifle</nonid_name>
+			<nonidentified type="string">Sporting Blaster Rifle</nonidentified>
+			<notes type="formattedtext">
+				<p>
+					<b>Game Notes: </b>If the retractable stock and scope are used for one round of aiming, the character receives an additional +1D to blaster.
+				</p>
+			</notes>
+			<weight type="number">0</weight>
+		</id-00022>
+		<id-00023>
+			<cost type="string">2,000 Credits (power packs: 25)</cost>
+			<itemammo type="number">25</itemammo>
+			<itemavailability type="string">2,X</itemavailability>
+			<itemdamagedie type="string">6D</itemdamagedie>
+			<itemdescription type="string">Longer and more powerful than blaster rifles, these weapons are for large-scale actions, often supplementing ground squads and providing cover for artillery gunners while their weapons are being set up. These weapons are normally about one to one-and-a-half meters long and can be run off power packs or attached to generators for unlimited fire power. They are normally available only to the military.</itemdescription>
+			<itemfirerate type="number">0</itemfirerate>
+			<itemrange type="string">3-50/120/300</itemrange>
+			<itemscale type="string">Character</itemscale>
+			<itemskill type="string">Blaster</itemskill>
+			<itemskillspeciality type="string">Blaster (Repeating Blaster)</itemskillspeciality>
+			<itemtype type="string">Blaster</itemtype>
+			<locked type="number">1</locked>
+			<name type="string">BlasTech T-21</name>
+			<nonid_name type="string">Light Repeating Blaster</nonid_name>
+			<nonidentified type="string">Light Repeating Blaster</nonidentified>
+			<notes type="formattedtext" />
+			<picture type="token"></picture>
+			<weight type="number">0</weight>
+		</id-00023>
+		<id-00024>
+			<cost type="string">5,000 Credits</cost>
+			<itemammo type="string">Power generator only</itemammo>
+			<itemavailability type="string">2,X</itemavailability>
+			<itemdamagedie type="string">8D</itemdamagedie>
+			<itemdescription type="string">The E-Web is at the limit of "portable" blaster weapon technology — troops can carry it, but they certainly can't fire it without tripod mounting. It is normally allotted as an infantry support weapon, and the crew is expected to keep the weapon moving with the troops for backup when needed. Imperial snowtroopers on Hoth used E-Webs.</itemdescription>
+			<itemfirerate type="number">0</itemfirerate>
+			<itemrange type="string">3-75/200/500</itemrange>
+			<itemscale type="string">Character</itemscale>
+			<itemskill type="string">Blaster</itemskill>
+			<itemskillspeciality type="string">Blaster (Repeating Blaster)</itemskillspeciality>
+			<itemtype type="string">Blaster</itemtype>
+			<locked type="number">1</locked>
+			<name type="string">BlasTech E-Web Repeating Blaster</name>
+			<nonid_name type="string">E-Web Repeating Blaster</nonid_name>
+			<nonidentified type="string">E-Web Repeating Blaster</nonidentified>
+			<notes type="formattedtext">
+				<p>
+					<b>Model: </b>BlasTech E-Web Repeating Blaster
+				</p>
+				<p>
+					<b>Crew: </b>Two-man (tripod-mounted; crew expected to move with weapon)
+				</p>
+				<p>
+					<b>Game Notes: </b>At the limit of portable blaster technology; requires tripod mounting to fire effectively; normally used as infantry support.
+				</p>
+			</notes>
+			<weight type="number">0</weight>
+		</id-00024>
+		<id-00025>
+			<cost type="string">Not sold to non-Wookiees</cost>
+			<itemammo type="number">6</itemammo>
+			<itemavailability type="string">3,R</itemavailability>
+			<itemdamagedie type="string">4D</itemdamagedie>
+			<itemdescription type="string">A weapon unique to the arboreal Wookiees of Kashyyyk, the bowcaster (also called a laser crossbow) is an ancient and curious combination of energy and projectile weapon. The weapon requires great physical strength to cock and load. The weapon fires explosive quarrels wrapped in an energy cocoon, giving the explosive the appearance of an elongated blaster bolt. The weapons are only available on Kashyyyk.</itemdescription>
+			<itemfirerate type="number">1</itemfirerate>
+			<itemrange type="string">3-10/30/50</itemrange>
+			<itemscale type="string">Character</itemscale>
+			<itemskill type="string">Bowcaster</itemskill>
+			<itemtype type="string">Weapon</itemtype>
+			<locked type="number">1</locked>
+			<name type="string">Wookiee Bowcaster</name>
+			<nonid_name type="string">Bowcaster</nonid_name>
+			<nonidentified type="string">Bowcaster</nonidentified>
+			<notes type="formattedtext">
+				<p>
+					<b>Ammo: </b>6 quarrels (power packs can make ~50 shots before replacement)
+				</p>
+				<p>
+					<b>Game Notes: </b>If a character wants to fire the weapon more than once in a round, they must make an Easy Strength roll to be able to aim the weapon (this is a free action). Reloading the weapon with new quarrels requires a Moderate Strength roll.
+				</p>
+			</notes>
+			<weight type="number">0</weight>
+		</id-00025>
+		<id-00026>
+			<cost type="string">10,000 Credits (new); 2,000 Credits (used)</cost>
+			<itemammo type="number">0</itemammo>
+			<itemavailability type="string">2,R/X</itemavailability>
+			<itemdamagedie type="string">2D+2</itemdamagedie>
+			<itemdescription type="string">The Atgar 1.4 FD P-Tower is the Rebel Alliance's most common anti-vehicle field-artillery weapon. Underpowered and difficult to move, but readily available. Requires a crew of four.</itemdescription>
+			<itemfirerate type="number">0.5</itemfirerate>
+			<itemrange type="string">10-500/2,000/10,000</itemrange>
+			<itemscale type="string">Speeder</itemscale>
+			<itemtype type="string">Weapon</itemtype>
+			<locked type="number">1</locked>
+			<name type="string">Anti-Vehicle Laser Cannon (Atgar 1.4 FD P-Tower)</name>
+			<nonid_name type="string">Anti-Vehicle Laser Cannon</nonid_name>
+			<nonidentified type="string">Anti-Vehicle Laser Cannon</nonidentified>
+			<notes type="formattedtext">
+				<p>
+					<b>Model: </b>Atgar 1.4 FD P-Tower
+				</p>
+				<p>
+					<b>Crew: </b>4 (skeleton: 2/+1D)
+				</p>
+				<p>
+					<b>Body: </b>2D
+				</p>
+				<p>
+					<b>Fire Control: </b>1D
+				</p>
+				<p>
+					<b>Description: </b>Light anti-vehicle laser cannon used by Rebel forces. Readily available but underpowered.
+				</p>
+			</notes>
+			<weight type="number">0</weight>
+		</id-00026>
+		<id-00027>
+			<cost type="string">500,000 Credits (new); 100,000 Credits (used)</cost>
+			<itemammo type="number">0</itemammo>
+			<itemavailability type="string">3,X</itemavailability>
+			<itemdamagedie type="string">12D (ionization)</itemdamagedie>
+			<itemdescription type="string">The KDY v-150 Planet Defender is a heavy ion cannon designed for planetary defense against low-orbit assault. Critical for base defense until shields reach full power.</itemdescription>
+			<itemfirerate type="number">1</itemfirerate>
+			<itemrange type="string">Atmosphere / Low Orbit (1*) / High Orbit (3*)</itemrange>
+			<itemscale type="string">Capital</itemscale>
+			<itemtype type="string">Weapon</itemtype>
+			<locked type="number">1</locked>
+			<name type="string">Heavy Ion Cannon (KDY v-150 Planet Defender)</name>
+			<nonid_name type="string">Heavy Ion Cannon</nonid_name>
+			<nonidentified type="string">Heavy Ion Cannon</nonidentified>
+			<notes type="formattedtext">
+				<p>
+					<b>Model: </b>KDY v-150 Planet Defender
+				</p>
+				<p>
+					<b>Crew: </b>27 (skeleton: 12/+10)
+				</p>
+				<p>
+					<b>Cover: </b>Full
+				</p>
+				<p>
+					<b>Ammo: </b>Unlimited (power generator)
+				</p>
+				<p>
+					<b>Body: </b>5D
+				</p>
+				<p>
+					<b>Fire Control: </b>5D
+				</p>
+				<p>
+					<b>Notes: </b>Range units refer to planetary distance increments used in space combat.
+				</p>
+			</notes>
+			<weight type="number">0</weight>
+		</id-00027>
+		<id-00028>
+			<cost type="string">200 Credits</cost>
+			<itemammo type="number">1</itemammo>
+			<itemavailability type="string">1,R</itemavailability>
+			<itemdamagedie type="string">5D/4D/3D/2D</itemdamagedie>
+			<itemdescription type="string">Grenades come in a variety of sizes and forms, and can be simple explosives, or may eject noxious gases or smoke or any other number of payloads, depending upon the specific needs of the purchaser.</itemdescription>
+			<itemfirerate type="number">1</itemfirerate>
+			<itemrange type="string">3-7/20/40</itemrange>
+			<itemscale type="string">Character</itemscale>
+			<itemskill type="string">Grenade</itemskill>
+			<itemtype type="string">Explosive</itemtype>
+			<locked type="number">1</locked>
+			<name type="string">Standard Fragmentation Grenade</name>
+			<nonid_name type="string">Fragmentation Grenade</nonid_name>
+			<nonidentified type="string">Fragmentation Grenade</nonidentified>
+			<notes type="formattedtext">
+				<p>
+					<b>Blast Radius: </b>0-2/4/6/10
+				</p>
+			</notes>
+			<weight type="number">0</weight>
+		</id-00028>
+		<id-00029>
+			<cost type="string">2,000 Credits</cost>
+			<itemammo type="number">1</itemammo>
+			<itemavailability type="string">2,X</itemavailability>
+			<itemdamagedie type="string">10D/8D/5D/2D</itemdamagedie>
+			<itemdescription type="string">The thermal detonator is a highly effective weapon of terror and destruction. It is fist sized yet packs an explosive charge capable of destroying everything within a small building.</itemdescription>
+			<itemfirerate type="number">1</itemfirerate>
+			<itemrange type="string">3-4/7/12</itemrange>
+			<itemscale type="string">Character</itemscale>
+			<itemskill type="string">Grenade</itemskill>
+			<itemtype type="string">Explosive</itemtype>
+			<locked type="number">1</locked>
+			<name type="string">Standard Thermal Detonator</name>
+			<nonid_name type="string">Thermal Detonator</nonid_name>
+			<nonidentified type="string">Thermal Detonator</nonidentified>
+			<notes type="formattedtext">
+				<p>
+					<b>Blast Radius: </b>0-2/8/12/20
+				</p>
+				<p>
+					<b>Description: </b>One of the most destructive handheld explosives in the galaxy; highly restricted and extremely dangerous.
+				</p>
+			</notes>
+			<weight type="number">0</weight>
+		</id-00029>
+		<id-00030>
+			<cost type="string">750 Credits</cost>
+			<itemammo type="number">1</itemammo>
+			<itemavailability type="string">2,X</itemavailability>
+			<itemdamagedie type="string">5D/4D/3D/2D</itemdamagedie>
+			<itemdescription type="string">Mines are used to eliminate incoming troops and vehicles. Most are triggered by physical pressure (such as moving ground troops) or the presence of repulsor fields (generated by incoming vehicles). The demolitions skill roll of the character setting the mine is equal to the hide value of the mine (in case someone is searching for it) and the "to hit" roll of the weapon. When the mine is triggered, the character must use his normal dodge to get out of the immediate blast radius of the explosion — if his normal dodge is higher than the demolitions roll, then he gets to the next higher range of the radius. A successful full dodge will get the character out of the entire blast radius.</itemdescription>
+			<itemfirerate type="number">1</itemfirerate>
+			<itemscale type="string">Speeder</itemscale>
+			<itemskill type="string">Demolitions</itemskill>
+			<itemtype type="string">Explosive</itemtype>
+			<locked type="number">1</locked>
+			<name type="string">Standard Anti-Vehicle Mine</name>
+			<nonid_name type="string">Mine</nonid_name>
+			<nonidentified type="string">Mine</nonidentified>
+			<notes type="formattedtext">
+				<p>
+					<b>Blast Radius: </b>0-2/4/6/10
+				</p>
+				<p>
+					<b>Game Notes: </b>The character's Demolitions roll when setting the mine equals the mine's hide value and its &#34;to hit&#34; roll. When triggered, use the character's normal Dodge to escape the immediate blast radius; if Dodge exceeds the Demolitions roll, the character moves to the next higher radius band. A successful full Dodge removes the character from the entire blast radius.
+				</p>
+			</notes>
+			<weight type="number">0</weight>
+		</id-00030>
+		<id-00031>
+			<cost type="string">300 Credits</cost>
+			<itemammo type="number">0</itemammo>
+			<itemarmorcoverage type="string">head</itemarmorcoverage>
+			<itemarmorreduction type="string">+1D physical; +1 energy</itemarmorreduction>
+			<itemavailability type="string">1</itemavailability>
+			<itemdescription type="string">Common among the forces of the Rebel Alliance, blast helmets provide troops with valuable protection from fragments and shrapnel, although they are almost useless against blaster bolts.</itemdescription>
+			<itemfirerate type="number">0</itemfirerate>
+			<itemscale type="string">Character</itemscale>
+			<itemtype type="string">Armor</itemtype>
+			<locked type="number">1</locked>
+			<name type="string">Typical Blast Helmet</name>
+			<nonid_name type="string">Blast Helmet</nonid_name>
+			<nonidentified type="string">Blast Helmet</nonidentified>
+			<notes type="formattedtext">
+				<p>
+					<b>Description: </b>Provides protection from fragments and shrapnel; limited protection against energy weapons.
+				</p>
+			</notes>
+			<weight type="number">0</weight>
+		</id-00031>
+		<id-00032>
+			<cost type="string">300 Credits</cost>
+			<itemammo type="number">0</itemammo>
+			<itemarmorcoverage type="string">torso</itemarmorcoverage>
+			<itemarmorreduction type="string">+1D physical; +1 energy</itemarmorreduction>
+			<itemavailability type="string">1</itemavailability>
+			<itemdescription type="string">Like blast helmets, vests are very useful against physical attacks, such as grenade shrapnel and bullets, but they provide little protection from blaster bolts.</itemdescription>
+			<itemfirerate type="number">0</itemfirerate>
+			<itemscale type="string">Character</itemscale>
+			<itemtype type="string">Armor</itemtype>
+			<locked type="number">1</locked>
+			<name type="string">Typical Blast Vest</name>
+			<nonid_name type="string">Blast Vest</nonid_name>
+			<nonidentified type="string">Blast Vest</nonidentified>
+			<notes type="formattedtext">
+				<p>
+					<b>Description: </b>Useful against fragmentation and ballistic threats; limited effectiveness versus energy weapons.
+				</p>
+			</notes>
+			<weight type="number">0</weight>
+		</id-00032>
+		<id-00033>
+			<cost type="string">2,500 Credits</cost>
+			<itemammo type="number">0</itemammo>
+			<itemarmorcoverage type="string">head; torso; left leg; right leg; left arm; right arm</itemarmorcoverage>
+			<itemarmorreduction type="string">+2D physical; +2D energy</itemarmorreduction>
+			<itemavailability type="string">2,R</itemavailability>
+			<itemdescription type="string">Several bounty hunters utilize a variety of personal armors for protection during the course of their duties. A favored set of armor is the Corellian PowerSuit, which not only provides protection, but enhances the user's Strength in personal combat. These battlesuits are often greatly modified by their owner. Typical modifications include the permanent addition of weapons, advanced sensors in helmets, emergency survival equipment storage belts, harsh environment shielding and several other items. These suits are restricted in many systems and may be illegal to purchase or possess.</itemdescription>
+			<itemfirerate type="number">0</itemfirerate>
+			<itemscale type="string">Character</itemscale>
+			<itemskill type="string">Powersuit Operation</itemskill>
+			<itemtype type="string">Armor</itemtype>
+			<locked type="number">1</locked>
+			<name type="string">Corellian PowerSuit</name>
+			<nonid_name type="string">Bounty Hunter Armor</nonid_name>
+			<nonidentified type="string">Bounty Hunter Armor</nonidentified>
+			<notes type="formattedtext">
+				<p>
+					<b>Description: </b>Powered battlesuit favored by bounty hunters; often customized with weapons, sensors, and survival gear.
+				</p>
+			</notes>
+			<weight type="number">0</weight>
+		</id-00033>
+		<id-00034>
+			<cost type="string">Not available for sale</cost>
+			<itemammo type="number">0</itemammo>
+			<itemarmorcoverage type="string">head; torso; left leg; right leg; left arm; right arm</itemarmorcoverage>
+			<itemarmorreduction type="string">+2D physical; +1D energy</itemarmorreduction>
+			<itemavailability type="string">3,X</itemavailability>
+			<itemdescription type="string">Stormtroopers are the elite shock troops of the Empire, and their stark white protective armor is unmistakable. The armor is an 18-piece cocoon which surrounds the soldier. Ownership of Stormtrooper armor by non-stormtroopers is a serious offense in all Empire systems — and inherently dangerous in non-Empire systems.</itemdescription>
+			<itemfirerate type="number">0</itemfirerate>
+			<itemscale type="string">Character</itemscale>
+			<itemtype type="string">Armor</itemtype>
+			<locked type="number">1</locked>
+			<name type="string">Standard Stormtrooper Armor</name>
+			<nonid_name type="string">Stormtrooper Armor</nonid_name>
+			<nonidentified type="string">Stormtrooper Armor</nonidentified>
+			<notes type="formattedtext">
+				<p>
+					<b>Game Notes: </b>-1D penalty to all Dexterity attribute and skill checks.
+				</p>
+				<p>Helmet contains a tongue-activated comlink.</p>
+				<p>
+					<b>MFTAS: </b>Multi-Frequency Targeting and Acquisition System grants +2D to Perception checks in low-visibility situations and +2D to ranged weapon skill uses against targets moving more than 11 meters per round.
+				</p>
+				<p>Climate-controlled body glove allows operation in moderately warm or cold climates.</p>
+			</notes>
+			<weight type="number">0</weight>
+		</id-00034>
+		<id-00035>
+			<itemammo type="number">0</itemammo>
+			<itemdescription type="string">Glow rods are portable illumination devices that derive their power from long-lasting energy cells or chemical reactants. Personal glow rods are generally small, hand-held units that project a beam of light up to 50 meters (although more expensive models can have much longer ranges). Some higher-priced glow-rods are considerably larger and heavier, but are capable of generating a considerably brighter beam. These larger units are often equipped with sturdy legs, and a programmable swivel mount, allowing the device to act as a limited searchlight or signaling device.</itemdescription>
+			<itemfirerate type="number">0</itemfirerate>
+			<itemrange type="string">Up to 50 meters</itemrange>
+			<itemscale type="string">Character</itemscale>
+			<itemtype type="string">Equipment</itemtype>
+			<locked type="number">1</locked>
+			<name type="string">Glow Rod</name>
+			<nonid_name type="string">Glow Rod</nonid_name>
+			<nonidentified type="string">Glow Rod</nonidentified>
+			<notes type="formattedtext">
+				<p>
+					<b>Description: </b>Glow rods are portable illumination devices that derive their power from long-lasting energy cells or chemical reactants. Personal glow rods are generally small, hand-held units that project a beam of light up to 50 meters (although more expensive models can have much longer ranges).
+				</p>
+				<p>
+					<b>Variants: </b>Larger units may include legs and a programmable swivel mount for use as a limited searchlight or signaling device.
+				</p>
+			</notes>
+			<weight type="number">0</weight>
+		</id-00035>
+		<id-00036>
+			<cost type="string">25 Credits</cost>
+			<count type="number">1</count>
+			<itemammo type="number">0</itemammo>
+			<itemavailability type="string">2,R</itemavailability>
+			<itemdescription type="string">Comlinks are portable communication devices that are suitable for short-range transmissions. Personal devices have a range of about 50 kilometers (often up to low orbit in clear weather); most vehicular comlinks can transmit up to 200 kilometers. Comlinks can be adjusted to broadcast on countless different frequencies, and there are literally thousands of encryption modules available to ensure secure communications. More expensive comlinks can be purchased with encrypting routines built in. There are also Standard Clear Frequencies (SCFs) which can be used for any public communications, such as when a ship wishes to hail a spaceport or other ship, or when local government needs to make a broadcast that should be picked up by all comlinks within a specified area. Most comlinks can be set up to monitor one specific frequency and SCFs simultaneously; more advanced comlinks can be set up to monitor several frequencies at once.</itemdescription>
+			<itemfirerate type="number">0</itemfirerate>
+			<itemscale type="string">Character</itemscale>
+			<itemtype type="string">Equipment</itemtype>
+			<locked type="number">1</locked>
+			<name type="string">Comlink (Standard)</name>
+			<nonid_name type="string">Standard Comlink</nonid_name>
+			<nonidentified type="string">Standard Comlink</nonidentified>
+			<notes type="formattedtext">
+				<p>
+					<b>Description: </b>Comlinks are portable communication devices suitable for short-range transmissions.
+				</p>
+			</notes>
+			<weight type="number">0.5</weight>
+		</id-00036>
+	</item>
+</root>

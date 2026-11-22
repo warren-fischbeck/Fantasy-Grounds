@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!--
+  Please see the license.html file included with this distribution for
+  attribution and copyright information.
+-->
+
+<root version="3.0" release="7" logo="logo.png">
+	<announcement text="WEG D6 ruleset (2026-06-15)\rCopyright 2026 Fischbeck Enterprises, LLC" font="emotefont" icon="rulesetlogo_CoreRPG" />
+
+	<!-- Attributes -->
+	<description>
+		<displayname>WEG D6 RPG</displayname>
+		<author>Fischbeck Enterprises, LLC</author>
+	</description>
+	
+	<!-- [ruleset] [inheritance] -->
+	<importruleset source="CoreRPG" />
+	
+	<!-- [ruleset] [overrides] -->
+	<script name="LibraryData" file="scripts/data_library.lua" />
+
+	<includefile source="gameelements.xml" />
+	
+	<!-- [script] [engine] -->
+	<script name="DiceEngine" file="scripts/Engine/Dice_Engine.lua" />
+	<script name="CharacterEngine" file="scripts/Engine/Character_Engine.lua" />
+	<script name="AttackEngine" file="/scripts/engine/Attack_Engine.lua" />
+	
+	<!-- [primitive] [control] -->
+	<includefile source="common/d6_primitive_anchor.xml" />
+	<includefile source="common/d6_primitive_button.xml" />
+	<includefile source="common/d6_primitive_dice.xml" />
+	<includefile source="common/d6_primitive_listitem.xml" />
+	<includefile source="common/d6_primitive_string.xml" />
+	<includefile source="common/d6_primitive_windowlist.xml" />
+	
+	<!-- [record] [charsheet] -->
+	<includefile source="campaign/records/charsheet/charsheet.xml" />
+	<includefile source="campaign/records/charsheet/charsheet_overview.xml" />
+	
+	<!-- [record] [charsheet] [tab] [main] -->
+	<includefile source="campaign/records/charsheet/tab/main/charsheet_main.xml" />
+	<includefile source="campaign/records/charsheet/tab/main/charsheet_main_attributes.xml" />
+	
+	<!-- [record] [charsheet] [tab] [force] -->
+	<includefile source="campaign/records/charsheet/tab/force/charsheet_force.xml" />
+	<includefile source="campaign/records/charsheet/tab/force/charsheet_force_main.xml" />
+	<includefile source="campaign/records/charsheet/tab/force/force_advanced_abilities.xml" />
+	<includefile source="campaign/records/charsheet/tab/force/force_advanced_abilities_header.xml" />
+	<includefile source="campaign/records/charsheet/tab/force/force_advanced_skill.xml" />
+	<includefile source="campaign/records/charsheet/tab/force/force_core_abilities.xml" />
+	<includefile source="campaign/records/charsheet/tab/force/force_core_abilities_header.xml" />
+	<includefile source="campaign/records/charsheet/tab/force/force_core_skill.xml" />
+	
+	<!-- [record] [charsheet] [tab] [combat] -->
+	<includefile source="campaign/records/charsheet/tab/combat/charsheet_combat.xml" />
+	<includefile source="campaign/records/charsheet/tab/combat/charsheet_combat_main.xml" />
+	<includefile source="campaign/records/charsheet/tab/combat/charsheet_combat_offense.xml" />
+	<includefile source="campaign/records/charsheet/tab/combat/charsheet_combat_weapon_item.xml" />
+	<includefile source="campaign/records/charsheet/tab/combat/charsheet_combat_wound.xml" />
+
+	<!-- [records] [vehicle] [tab] [base] [xml] -->
+	<includefile source="campaign/records/vehicle/vehicle_base.xml" />
+	<includefile source="campaign/records/vehicle/vehicle_main.xml" />
+	<includefile source="campaign/records/vehicle/vehicle_windowlist_weapon_item.xml" />
+	
+	<!-- [record] [starship] [tab] [main] -->
+	<includefile source="campaign/records/starship/starship_base.xml" />
+	<includefile source="campaign/records/starship/starship_main.xml" />
+
+	<!-- [record] [starship] [tab] [weapons] -->
+	<includefile source="campaign/records/starship/tab/starship_weapons.xml" />
+	<includefile source="campaign/records/starship/tab/starship_windowlist_weapon_item.xml" />
+
+	<!-- [records] [item] [tab] [main] -->
+	<includefile source="campaign/records/item/item_main_standard.xml" />
+	
+	<!-- [record] [skill] [tab] [main] -->
+	<includefile source="campaign/records/skill/skill_main.xml" />
+	
+	<!-- [string] -->
+	<includefile source="strings/string_character_main.xml" />
+	<includefile source="strings/string_combat_main.xml" />
+	<includefile source="strings/string_force_main.xml" />
+	<includefile source="strings/string_item_main.xml" />
+	<includefile source="strings/string_skill_main.xml" />
+	<includefile source="strings/string_starship_main.xml" />
+	<includefile source="strings/string_vehicle_main.xml" />
+
+	<!-- [icons] [starship] -->
+	<icon name="sidebar_icon_recordtype_starship" file="graphics/sidebar/sidebar_icon_starship.png" />
+	<icon name="button_link_starship" file="graphics/links/button_link_starship.png" />
+	<icon name="image_link_starship" file="graphics/image/image_link_starship.png" />
+</root>

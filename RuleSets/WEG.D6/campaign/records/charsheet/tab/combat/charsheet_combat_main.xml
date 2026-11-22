@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!--
+  Please see the license.html file included with this distribution for
+  attribution and copyright information.
+-->
+<root>
+	<windowclass name="charsheet_combat_main">
+		<margins control="0,0,0,2" />
+		<sheetdata>
+			<anchor_left name="leftanchor"/>
+			<frame_char name="combatframe">
+				<bounds>1,1,-1,-1</bounds>
+			</frame_char>
+			<label_frametop>
+				<anchored to="combatframe" />
+				<static textres="combat_label_header_combat" />
+			</label_frametop>
+
+			<frame_char name="woundframe">
+				<bounds>10,40,135,140</bounds>
+			</frame_char>
+			<label_frametop name="woundlabel">
+				<anchored to="woundframe" />
+				<static textres="combat_label_header_wound" />
+			</label_frametop>
+			<subwindow name="wound">
+				<anchored to="woundframe">
+					<top parent="woundframe" offset="5" />
+					<left parent="woundframe" offset="5" />
+				</anchored>
+				<class>charsheet_combat_wound</class>
+				<fastinit />
+				<activate />
+			</subwindow>
+
+			<frame_char name="offenseframe">
+				<bounds>145,40,-10,-208</bounds>
+			</frame_char>
+			<label_frametop name="offenselabel">
+				<anchored to="offenseframe" />
+				<static textres="combat_label_header_offense" />
+			</label_frametop>
+			<subwindow name="offense">
+				<anchored to="offenseframe">
+					<top parent="offenselabel" offset="0"/>
+					<left parent="offenseframe" offset="0" />
+				</anchored>
+				<class>charsheet_combat_offense</class>
+				<fastinit />
+				<activate />
+			</subwindow>
+			<frame_char name="defenseframe">
+				<bounds>10,-209,-10,-10</bounds>
+			</frame_char>
+			<label_frametop>
+				<anchored to="defenseframe" />
+				<static textres="combat_label_header_defence" />
+			</label_frametop>
+		</sheetdata>
+	</windowclass>
+</root>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!--
+  Please see the license.html file included with this distribution for
+  attribution and copyright information.
+-->
+<root>
+	<string name="vehicle_label_scale">Scale</string>
+	<string name="vehicle_label_length">Length (meter)</string>
+	<string name="vehicle_label_crew">Crew</string>
+	<string name="vehicle_label_crew_skill">Skill</string>
+	<string name="vehicle_label_crew_skill_specialty">Skill Specialty</string>
+	<string name="vehicle_label_crew_skill_ability">Crew Skill</string>
+	<string name="vehicle_label_passengers">Passengers</string>
+	<string name="vehicle_label_cargo">Cargo Cap. (kg)</string>
+	<string name="vehicle_label_cover">Crew Cover</string>
+	<string name="vehicle_label_altitude">Altitude Range</string>
+	<string name="vehicle_label_body_strength">Body Strength</string>
+	<string name="vehicle_label_maneuverability">Maneuverability</string>
+	<string name="vehicle_label_weapons">Weapons</string>
+	<string name="vehicle_label_weaponname">Name</string>
+	<string name="vehicle_label_weaponskill">Skill</string>
+	<string name="vehicle_label_weaponfirearc">Fire Arc</string>
+	<string name="vehicle_label_weapondamage">Damage</string>
+	<string name="vehicle_label_weaponfirecontrol">Fire Control</string>
+	<string name="vehicle_label_weaponrange">Range</string>
+	<string name="vehicle_label_weaponspecialization">Specialization</string>
+</root>

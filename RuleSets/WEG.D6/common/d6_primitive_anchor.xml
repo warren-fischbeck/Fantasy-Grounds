@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!--
+  Please see the license.html file included with this distribution for
+  attribution and copyright information.
+-->
+<root>
+	
+	<template name="d6_primitive_anchor">
+		<genericcontrol name="baseanchor">
+			<anchored position="insidetop">
+				<left offset="0" />
+				<top offset="0" />				
+				<right offset="0" />
+				<bottom offset="0" />
+			</anchored>
+			<disabled />
+			<invisible />
+		</genericcontrol>
+	</template>
+	
+	<template name="d6_primitive_anchor_left">
+		<d6_primitive_anchor>
+			<anchored position="insidetopleft">
+				<left offset="0" />
+				<top offset="5" />
+				<right offset="0" />
+				<bottom offset="0" />
+			</anchored>
+		</d6_primitive_anchor>
+	</template>
+	
+	<template name="d6_primitive_anchor_right">
+		<d6_primitive_anchor>
+			<anchored position="insidetopright">
+				<left offset="0" />
+				<top offset="5" />
+				<right offset="0" />
+				<bottom offset="0" />
+			</anchored>
+		</d6_primitive_anchor>
+	</template>
+	
+	<template name="anchor_column">
+		<d6_primitive_anchor>
+			<anchored position="insidetop" offset="0,5"/>
+		</d6_primitive_anchor>
+	</template>
+
+	<template name="anchor_left">
+		<d6_primitive_anchor_left />
+	</template>
+	
+	<template name="anchor_right">
+		<d6_primitive_anchor_right />
+	</template>
+
+</root>

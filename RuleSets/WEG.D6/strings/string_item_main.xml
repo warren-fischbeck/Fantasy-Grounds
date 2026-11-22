@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!--
+  Please see the license.html file included with this distribution for
+  attribution and copyright information.
+-->
+<root>
+	<string name="item_label_type">Type</string>
+	<string name="item_label_description">Description</string>
+	<string name="item_label_damage">Damage</string>
+	<string name="item_label_skill">Skill</string>
+	<string name="item_label_skill_speciality">Skill Speciality</string>
+	<string name="item_label_armor_coverage">Coverage</string>
+	<string name="item_label_armor_damage_reduction">DMG Reduction</string>
+	<string name="item_label_availability">Availability</string>
+	<string name="item_label_scale">Scale</string>
+	<string name="item_label_range">Range</string>
+	<string name="item_label_ammo">Ammo</string>
+	<string name="item_label_fire_rate">Fire Rate</string>
+	<string name="item_label_difficulty">Difficulty</string>
+</root>

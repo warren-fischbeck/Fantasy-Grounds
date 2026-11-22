@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!--
+  Please see the license.html file included with this distribution for
+  attribution and copyright information.
+-->
+<root>
+	<!-- char_main_category_header -->
+	<windowclass name="force_advanced_abilities_header">
+		<margins control="0,0,0,5" />
+		<backcolor>1A40301E</backcolor>
+		<sheetdata>
+			<stringfield name="name">
+				<anchored>
+					<top offset="5" />
+					<left offset="30" />
+					<right offset="-30" />
+				</anchored>
+				<stateframe>
+					<keyedit name="fieldfocus" offset="7,5,7,5" />
+					<hover name="fieldfocus" offset="7,5,7,5" hidereadonly="true" />
+					<drophilight name="fieldfocus" offset="7,5,7,5" hidereadonly="true" />
+				</stateframe>
+				<font>reference-b-large</font>
+				<multilinespacing>20</multilinespacing>
+				<center />
+			</stringfield>
+		</sheetdata>
+	</windowclass>
+</root>

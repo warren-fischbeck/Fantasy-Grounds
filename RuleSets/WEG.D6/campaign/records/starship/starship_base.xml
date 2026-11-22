@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!--
+  Please see the license.html file included with this distribution for
+  attribution and copyright information.
+-->
+
+<root>
+	<windowclass name="starship" copy="record_window_tabbed">
+		<minimize>minimized_item</minimize>
+		<tab>
+			<name>main</name>
+			<resource>tab_main</resource>
+			<class>starship_main</class>
+			<embed />
+		</tab>
+		<tab merge="add">
+			<name>weapons</name>
+			<resource>tab_weapons</resource>
+			<class>starship_weapons</class>
+			<embed />
+		</tab>
+		<tab merge="add">
+			<name>pictures</name>
+			<resource>tab_pictures</resource>
+			<class>record_content_pictures</class>
+			<embed />
+		</tab>
+	</windowclass>
+	<windowclass name="starship_header" copy="record_header" />
+</root>

@@ -1,0 +1,837 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!--
+  Please see the license.html file included with this distribution for
+  attribution and copyright information.
+-->
+
+<root>
+	<windowclass name="starship_main">
+		<margins control="0,0,0,2" />
+		<script>
+			function onInit()
+				self.onLockModeChanged(WindowManager.getWindowReadOnlyState(self));
+				onDiceChanged();
+			end
+
+			function onLockModeChanged(bReadOnly)
+				local tFields = { "craft",
+					"type",
+					"scale",
+					"length",
+					"skill",
+					"skillspecialty",
+					"crew",
+					"crewskill",
+					"cargo",
+					"consumables",
+					"cost",
+					"hyperdrive",
+					"hyperdrivebackup",
+					"navcomputer",
+					"maneuverability",
+					"space",
+					"atmosphere",
+					"hull",
+					"shields",
+					"sensorpassive",
+					"sensorscan",
+					"sensorsearch",
+					"sensorfocus",
+					"weaponscale",
+					"weaponcrew",
+					"notes", };
+				WindowManager.callSafeControlsSetLockMode(self, tFields, bReadOnly);
+				divider2.setVisible(WindowManager.getAnyControlVisible(self, { "type", }));
+				divider3.setVisible(WindowManager.getAnyControlVisible(self, { "notes", }));
+			end
+
+			function onDiceChanged()
+				local bMShow = not mdice.isEmpty();
+				mdice.setVisible(bMShow);
+				mbutton_roll.setVisible(bMShow);
+
+				local bHShow = not hdice.isEmpty();
+				hdice.setVisible(bHShow);
+				hbutton_roll.setVisible(bHShow);
+
+				local bSShow = not sdice.isEmpty();
+				sdice.setVisible(bSShow);
+				sbutton_roll.setVisible(bSShow);
+
+				local bSensorPassiveShow = not spdice.isEmpty();
+				spdice.setVisible(bSensorPassiveShow);
+				spbutton_roll.setVisible(bSensorPassiveShow);
+
+				local bSensorScanShow = not ssdice.isEmpty();
+				ssdice.setVisible(bSensorScanShow);
+				ssbutton_roll.setVisible(bSensorScanShow);
+
+				local bSensorSearchShow = not srdice.isEmpty();
+				srdice.setVisible(bSensorSearchShow);
+				srbutton_roll.setVisible(bSensorSearchShow);
+
+				local bSensorFocusShow = not sfdice.isEmpty();
+				sfdice.setVisible(bSensorFocusShow);
+				sfbutton_roll.setVisible(bSensorFocusShow);			
+			end
+
+			function onDrop(x, y, draginfo)
+				local sDragType = draginfo.getType();
+				if sDragType == "dice" then
+					local aDropDice = draginfo.getDiceData();
+					sDropDesc = draginfo.getDescription();
+					for _,vDie in ipairs(aDropDice) do
+						if sDropDesc:find("maneuverability") then
+							Debug.console("adding maneuverability");
+							mdice.addDie(vDie.type);
+						elseif sDropDesc:find("hull") then
+							Debug.console("adding hull");
+							hdice.addDie(vDie.type);
+						elseif sDropDesc:find("shields") then
+							Debug.console("adding shields");
+							sdice.addDie(vDie.type);
+						elseif sDropDesc:find("passive") then
+							Debug.console("adding sensor passive");
+							spdice.addDie(vDie.type);
+						elseif sDropDesc:find("scan") then
+							Debug.console("adding sensor scan");
+							ssdice.addDie(vDie.type);
+						elseif sDropDesc:find("search") then
+							Debug.console("adding sensor search");
+							srdice.addDie(vDie.type);
+						elseif sDropDesc:find("focus") then
+							Debug.console("adding sensor focus");
+							sfdice.addDie(vDie.type);
+						end
+					end
+					return true;
+				end
+			end
+			
+			function action(draginfo)
+				local sLabel = maneuverability_label.getValue();
+				local aDice = mdice.getDice();
+				local nMod = mbonus.getValue();
+				
+				if mdice.isEmpty() then
+					if draginfo then
+						draginfo.setType("number");
+						draginfo.setDescription(sLabel);
+						draginfo.setStringData(sLabel);
+						draginfo.setNumberData(nMod);
+					else
+						ModifierStack.addSlot(sLabel, nMod);
+					end
+				else
+					local rRoll = { sType = "dice", sDesc = sLabel, aDice = aDice, nMod = nMod };
+					ActionsManager.performAction(draginfo, nil, rRoll);
+				end
+				return true;
+			end
+						
+			function haction(draginfo)
+				local sLabel = hull_label.getValue();
+				local aDice = hdice.getDice();
+				local nMod = hbonus.getValue();
+				
+				if hdice.isEmpty() then
+					if draginfo then
+						draginfo.setType("number");
+						draginfo.setDescription(sLabel);
+						draginfo.setStringData(sLabel);
+						draginfo.setNumberData(nMod);
+					else
+						ModifierStack.addSlot(sLabel, nMod);
+					end
+				else
+					local rRoll = { sType = "dice", sDesc = sLabel, aDice = aDice, nMod = nMod };
+					ActionsManager.performAction(draginfo, nil, rRoll);
+				end
+				return true;
+			end	
+			
+			function saction(draginfo)
+				local sLabel = shield_label.getValue();
+				local aDice = sdice.getDice();
+				local nMod = sbonus.getValue();
+				
+				if sdice.isEmpty() then
+					if draginfo then
+						draginfo.setType("number");
+						draginfo.setDescription(sLabel);
+						draginfo.setStringData(sLabel);
+						draginfo.setNumberData(nMod);
+					else
+						ModifierStack.addSlot(sLabel, nMod);
+					end
+				else
+					local rRoll = { sType = "dice", sDesc = sLabel, aDice = aDice, nMod = nMod };
+					ActionsManager.performAction(draginfo, nil, rRoll);
+				end
+				return true;
+			end
+			
+			function sensorPassiveAction(draginfo)
+				local sLabel = sensorpassive_label.getValue();
+				local aDice = spdice.getDice();
+				local nMod = spbounus.getValue();
+				
+				if spdice.isEmpty() then
+					if draginfo then
+						draginfo.setType("number");
+						draginfo.setDescription(sLabel);
+						draginfo.setStringData(sLabel);
+						draginfo.setNumberData(nMod);
+					else
+						ModifierStack.addSlot(slabel, nMod);
+					end
+				else
+					local rRoll = { sType = "dice", sDesc = sLabel, aDice = aDice, nMod = nMod };
+					ActionsManager.performAction(draginfo, nil, rRoll);
+				end
+				return true;
+			end
+			
+			function sensorScanAction(draginfo)
+				local sLabel = sensorscan_label.getValue();
+				local aDice = ssdice.getDice();
+				local nMod = ssbonus.getValue();
+				
+				if ssdice.isEmpty() then
+					if draginfo then
+						draginfo.setType("number");
+						draginfo.setDescription(sLabel);
+						draginfo.setStringData(sLabel);
+						draginfo.setNumberData(nMod);
+					else
+						ModifierStack.addSlot(slabel, nMod);
+					end
+				else
+					local rRoll = { sType = "dice", sDesc = sLabel, aDice = aDice, nMod = nMod };
+					ActionsManager.performAction(draginfo, nil, rRoll);
+				end
+				return true;
+			end		
+			
+			function sensorSearchAction(draginfo)
+				local sLabel = sensorsearch_label.getValue();
+				local aDice = srdice.getDice();
+				local nMod = srbonus.getValue();
+				
+				if srdice.isEmpty() then
+					if draginfo then
+						draginfo.setType("number");
+						draginfo.setDescription(sLabel);
+						draginfo.setStringData(sLabel);
+						draginfo.setNumberData(nMod);
+					else
+						ModifierStack.addSlot(slabel, nMod);
+					end
+				else
+					local rRoll = { sType = "dice", sDesc = sLabel, aDice = aDice, nMod = nMod };
+					ActionsManager.performAction(draginfo, nil, rRoll);
+				end
+				return true;
+			end
+
+			function sensorFocusAction(draginfo)
+				local sLabel = sensorfocus_label.getValue();
+				local aDice = sfdice.getDice();
+				local nMod = sfbonus.getValue();
+				
+				if sfdice.isEmpty() then
+					if draginfo then
+						draginfo.setType("number");
+						draginfo.setDescription(sLabel);
+						draginfo.setStringData(sLabel);
+						draginfo.setNumberData(nMod);
+					else
+						ModifierStack.addSlot(slabel, nMod);
+					end
+				else
+					local rRoll = { sType = "dice", sDesc = sLabel, aDice = aDice, nMod = nMod };
+					ActionsManager.performAction(draginfo, nil, rRoll);
+				end
+					return true;
+			end
+		</script>
+		<sheetdata>
+			<anchor_column name="columnanchor" />
+
+			<label_column name="craft_label">
+				<static textres="starship_label_craft" />
+			</label_column>
+			<string_columnh name="craft">
+				<delaykeyupdate />
+			</string_columnh>
+			
+			<label_column name="type_label">
+				<static textres="starship_label_type" />
+			</label_column>
+			<string_columnh name="type">
+				<delaykeyupdate />
+			</string_columnh>
+
+			<label_column name="scale_label">
+				<static textres="starship_label_scale" />
+			</label_column>
+			<string_columnh name="scale">
+				<delaykeyupdate />
+			</string_columnh>
+
+			<line_column name="divider2" />
+
+			<label_column name="length_label">
+				<static textres="starship_label_length" />
+			</label_column>
+			<number_column name="length">
+				<default>1</default>
+			</number_column>
+
+			<label_column name="skill_label">
+				<static textres="starship_label_skill" />
+			</label_column>
+			<string_columnh name="skill">
+				<delaykeyupdate />
+			</string_columnh>
+
+			<label_column name="specialty_label">
+				<static textres="starship_label_specialty" />
+			</label_column>
+			<string_columnh name="skillspecialty">
+				<delaykeyupdate />
+			</string_columnh>
+			
+			<label_column name="crew_label">
+				<static textres="starship_label_crew" />
+			</label_column>
+			<number_column name="crew">
+				<default>1</default>
+			</number_column>
+
+			<label_column name="crew_skill_label">
+				<static textres="starship_label_crew_skill" />
+			</label_column>
+			<string_columnh name="crewskill">
+				<delaykeyupdate />
+			</string_columnh>
+			
+			<label_column name="passengers_label">
+				<static textres="starship_label_passengers" />
+			</label_column>
+			<number_column name="passengers">
+				<default>1</default>
+			</number_column>
+
+			<label_column name="cargo_label">
+				<static textres="starship_label_cargo" />
+			</label_column>
+			<number_column name="cargo">
+				<anchored width="100" />
+					<left offset="200" />
+				<default>1</default>
+			</number_column>
+			
+			<label_column name="consumables_label">
+				<static textres="starship_label_consumables" />
+			</label_column>
+			<string_columnh name="consumables">
+				<delaykeyupdate />
+			</string_columnh>
+
+			<label_column name="cost_label">
+				<static textres="vehicle_label_cost" />
+			</label_column>
+			<string_columnh name="cost">
+				<delaykeyupdate />
+			</string_columnh>
+			
+			<label_column name="hyperdrive_label">
+				<static textres="starship_label_hyperdrive" />
+			</label_column>
+			<string_columnh name="hyperdrive">
+				<delaykeyupdate />
+			</string_columnh>
+
+			<label_column name="hyperdrive_backup_label">
+				<static textres="starship_label_hyperdrive_backup" />
+			</label_column>
+			<string_columnh name="hyperdrivebackup">
+				<delaykeyupdate />
+			</string_columnh>
+
+			<label_column name="nav_computer_label">
+				<static textres="starship_label_nav_computer" />
+			</label_column>
+			<string_columnh name="navcomputer">
+				<delaykeyupdate />
+			</string_columnh>
+
+			<label_column name="maneuverability_label">
+				<static textres="starship_label_manuverability" />
+			</label_column>
+			<string_columnh name="maneuverability">
+				<anchored>
+					<left offset="200" />
+					<right />
+				</anchored>
+				<script>
+					function onDrop(x, y, draginfo)
+						local odraginfo = draginfo;
+						odraginfo.setDescription("maneuverability");
+						return window.onDrop(x, y, odraginfo);
+					end
+				</script>
+			</string_columnh>			
+			<number_listitem_right name="mbonus">
+				<anchored>
+					<top parent="maneuverability" />
+					<left parent="maneuverability" anchor="left" offset="-25" />
+					<right parent="maneuverability" anchor="left" offset="-5" />
+				</anchored>
+				<script>
+					function onDragStart(button, x, y, draginfo)
+						return window.action(draginfo);
+					end
+				</script>
+			</number_listitem_right>
+			<dice_listitem_right name="mdice">
+				<anchored>
+					<top parent="mbonus" />
+					<left parent="mbonus" anchor="left" offset="-45" />
+					<right parent="mbonus" anchor="left" offset="-5" />
+				</anchored>
+				<script>
+					function onValueChanged()
+						return window.onDiceChanged();
+					end
+					function onDragStart(button, x, y, draginfo)
+						draginfo.setDescription("manuverability");
+						return window.action(draginfo);
+					end
+				</script>
+			</dice_listitem_right>
+			<button_listitem_roll_right name="mbutton_roll">
+				<anchored>
+					<top parent="mdice" />
+					<left parent="mdice" anchor="left"  offset="-25" />
+					<right parent="mdice" anchor="left"  offset="-5" />
+				</anchored>
+				<script>
+					function onDragStart(button, x, y, draginfo)
+						return window.action(draginfo);
+					end
+					function onButtonPress()
+						return window.action();
+					end
+				</script>
+			</button_listitem_roll_right>
+
+			<label_column name="space_movement_label">
+				<static textres="starship_label_space_movement" />
+			</label_column>
+			<string_columnh name="space">
+				<delaykeyupdate />
+			</string_columnh>
+
+			<label_column name="atmosphere_movement_label">
+				<static textres="starship_label_atmosphere_movement" />
+			</label_column>
+			<string_columnh name="atmosphere">
+				<delaykeyupdate />
+			</string_columnh>
+
+			<label_column name="hull_label">
+				<static textres="starship_label_hull" />
+			</label_column>
+			<string_columnh name="hull">
+				<anchored>
+					<left offset="200" />
+					<right />
+				</anchored>
+				<script>
+					function onDrop(x, y, draginfo)
+						local odraginfo = draginfo;
+						odraginfo.setDescription("hull");
+						return window.onDrop(x, y, odraginfo);
+					end
+				</script>
+			</string_columnh>
+			<number_listitem_right name="hbonus">
+				<anchored>
+					<top parent="hull" />
+					<left parent="hull" anchor="left"  offset="-25" />
+					<right parent="hull" anchor="left"  offset="-5" />
+				</anchored>
+				<script>
+					function onDragStart(button, x, y, draginfo)
+						return window.haction(draginfo);
+					end
+				</script>
+			</number_listitem_right>
+			<dice_listitem_right name="hdice">
+				<anchored>
+					<top parent="hbonus" />
+					<left parent="hbonus" anchor="left" offset="-45" />
+					<right parent="hbonus" anchor="left" offset="-5" />
+				</anchored>
+				<script>
+					function onValueChanged()
+						return window.onDiceChanged();
+					end
+					function onDragStart(button, x, y, draginfo)
+						draginfo.setDescription("hull");
+						return window.haction(draginfo);
+					end
+				</script>
+			</dice_listitem_right>
+			<button_listitem_roll_right name="hbutton_roll">
+				<anchored>
+					<top parent="hdice" />
+					<left parent="hdice" anchor="left" offset="-25" />
+					<right parent="hdice" anchor="left" offset="-5" />
+				</anchored>
+				<script>
+					function onDragStart(button, x, y, draginfo)
+						return window.haction(draginfo);
+					end
+					function onButtonPress()
+						return window.haction();
+					end
+				</script>
+			</button_listitem_roll_right>
+			
+			<label_column name="shield_label">
+				<static textres="starship_label_shields" />
+			</label_column>
+			<string_columnh name="shields">
+				<anchored>
+					<left offset="200" />
+					<right />
+				</anchored>
+				<script>
+					function onDrop(x, y, draginfo)
+						local odraginfo = draginfo;
+						odraginfo.setDescription("shields");
+						return window.onDrop(x, y, odraginfo);
+					end
+				</script>
+			</string_columnh>
+			<number_listitem_right name="sbonus">
+				<anchored>
+					<top parent="shields" />
+					<left parent="shields" anchor="left" offset="-25" />
+					<right parent="shields" anchor="left" offset="-5" />
+				</anchored>
+				<script>
+					function onDragStart(button, x, y, draginfo)
+						return window.saction(draginfo);
+					end
+				</script>
+			</number_listitem_right>
+			<dice_listitem_right name="sdice">
+				<anchored>
+					<top parent="sbonus" />
+					<left parent="sbonus" anchor="left" offset="-45" />
+					<right parent="sbonus" anchor="left" offset="-5" />
+				</anchored>
+				<script>
+					function onValueChanged()
+						return window.onDiceChanged();
+					end
+					function onDragStart(button, x, y, draginfo)
+						draginfo.setDescription("shield");
+						return window.saction(draginfo);
+					end
+				</script>
+			</dice_listitem_right>
+			<button_listitem_roll_right name="sbutton_roll">
+				<anchored>
+					<top parent="sdice" />
+					<left parent="sdice" anchor="left" offset="-25" />
+					<right parent="sdice" anchor="left" offset="-5" />
+				</anchored>
+				<script>
+					function onDragStart(button, x, y, draginfo)
+						return window.saction(draginfo);
+					end
+					function onButtonPress()
+						return window.saction();
+					end
+				</script>
+			</button_listitem_roll_right>
+
+			<stringcontrol>
+				<anchored to="columnanchor">
+					<top parent="columnanchor" anchor="bottom" relation="relative" offset="10" />
+					<left offset="0" />
+				</anchored>
+				<font>sheetlabel</font>
+				<static textres="starship_label_senor" />
+			</stringcontrol>
+			
+			<label_column name="sensorpassive_label">
+				<anchored>
+					<left offset="20" />
+				</anchored>
+				<static textres="starship_label_sensorpassive" />
+			</label_column>
+			<string_columnh name="sensorpassive">
+				<anchored>
+					<left offset="200" />
+				</anchored>
+				<delaykeyupdate />
+				<script>
+					function onDrop(x, y, draginfo)
+						local odraginfo = draginfo;
+						odraginfo.setDescription("passive");
+						return window.onDrop(x, y, odraginfo);
+					end
+				</script>
+			</string_columnh>
+			<number_listitem_right name="spbounus">
+				<anchored>
+					<top parent="sensorpassive" />
+					<left parent="sensorpassive" anchor="left" offset="-25" />
+					<right parent="sensorpassive" anchor="left" offset="-5" />
+				</anchored>
+				<script>
+					function onDragStart(button, x, y, draginfo)
+						return window.sensorPassiveAction(draginfo);
+					end
+				</script>
+			</number_listitem_right>
+			<dice_listitem_right name="spdice">
+				<anchored>
+					<top parent="spbounus" />
+					<left parent="spbounus" anchor="left" offset="-45" />
+					<right parent="spbounus" anchor="left" offset="-5" />
+				</anchored>
+				<script>
+					function onValueChanged()
+						return window.onDiceChanged();
+					end
+					function onDragStart(button, x, y, draginfo)
+						draginfo.setDescription("sensor passive");
+						return window.sensorPassiveAction(draginfo);
+					end
+				</script>
+			</dice_listitem_right>
+			<button_listitem_roll_right name="spbutton_roll">
+				<anchored>
+					<top parent="spdice" />
+					<left parent="spdice" anchor="left" offset="-25" />
+					<right parent="spdice" anchor="left" offset="-5" />
+				</anchored>
+				<script>
+					function onDragStart(button, x, y, draginfo)
+						return window.sensorPassiveAction(draginfo);
+					end
+					function onButtonPress()
+						return window.sensorPassiveAction();
+					end
+				</script>
+			</button_listitem_roll_right>
+			
+			<label_column name="sensorscan_label">
+				<anchored>
+					<left offset="20" />
+				</anchored>
+				<static textres="starship_label_sensorscan" />
+			</label_column>
+			<string_columnh name="sensorscan">
+				<anchored>
+					<left offset="200" />
+				</anchored>
+				<delaykeyupdate />
+				<script>
+					function onDrop(x, y, draginfo)
+						local odraginfo = draginfo;
+						odraginfo.setDescription("scan");
+						return window.onDrop(x, y, odraginfo);
+					end
+				</script>
+			</string_columnh>
+			<number_listitem_right name="ssbonus">
+				<anchored>
+					<top parent="sensorscan" />
+					<left parent="sensorscan" anchor="left" offset="-25" />
+					<right parent="sensorscan" anchor="left" offset="-5" />
+				</anchored>
+				<script>
+					function onDragStart(button, x, y, draginfo)
+						return window.sensorScanAction(draginfo);
+					end
+				</script>
+			</number_listitem_right>
+			<dice_listitem_right name="ssdice">
+				<anchored>
+					<top parent="ssbonus" />
+					<left parent="ssbonus" anchor="left" offset="-45" />
+					<right parent="ssbonus" anchor="left" offset="-5" />
+				</anchored>
+				<script>
+					function onValueChanged()
+						return window.onDiceChanged();
+					end
+					function onDragStart(button, x, y, draginfo)
+						draginfo.setDescription("sensor scan");
+						return window.sensorScanAction(draginfo);
+					end
+				</script>
+			</dice_listitem_right>
+			<button_listitem_roll_right name="ssbutton_roll">
+				<anchored>
+					<top parent="ssdice" />
+					<left parent="ssdice" anchor="left" offset="-25" />
+					<right parent="ssdice" anchor="left" offset="-5" />
+				</anchored>
+				<script>
+					function onDragStart(button, x, y, draginfo)
+						return window.sensorScanAction(draginfo);
+					end
+					function onButtonPress()
+						return window.sensorScanAction();
+					end
+				</script>
+			</button_listitem_roll_right>
+
+			
+			<label_column name="sensorsearch_label">
+				<anchored>
+					<left offset="20" />
+				</anchored>
+				<static textres="starship_label_sensorsearch" />
+			</label_column>
+			<string_columnh name="sensorsearch">
+				<anchored>
+					<left offset="200" />
+				</anchored>
+				<delaykeyupdate />
+				<script>
+					function onDrop(x, y, draginfo)
+						local odraginfo = draginfo;
+						odraginfo.setDescription("search");
+						return window.onDrop(x, y, odraginfo);
+					end
+				</script>
+			</string_columnh>
+			<number_listitem_right name="srbonus">
+				<anchored>
+					<top parent="sensorsearch" />
+					<left parent="sensorsearch" anchor="left" offset="-25" />
+					<right parent="sensorsearch" anchor="left" offset="-5" />
+				</anchored>
+				<script>
+					function onDragStart(button, x, y, draginfo)
+						return window.sensorSearchAction(draginfo);
+					end
+				</script>
+			</number_listitem_right>
+			<dice_listitem_right name="srdice">
+				<anchored>
+					<top parent="srbonus" />
+					<left parent="srbonus" anchor="left" offset="-45" />
+					<right parent="srbonus" anchor="left" offset="-5" />
+				</anchored>
+				<script>
+					function onValueChanged()
+						return window.onDiceChanged();
+					end
+					function onDragStart(button, x, y, draginfo)
+						draginfo.setDescription("sensor search");
+						return window.sensorSearchAction(draginfo);
+					end
+				</script>
+			</dice_listitem_right>
+			<button_listitem_roll_right name="srbutton_roll">
+				<anchored>
+					<top parent="srdice" />
+					<left parent="srdice" anchor="left" offset="-25" />
+					<right parent="srdice" anchor="left" offset="-5" />
+				</anchored>
+				<script>
+					function onDragStart(button, x, y, draginfo)
+						return window.sensorSearchAction(draginfo);
+					end
+					function onButtonPress()
+						return window.sensorSearchAction();
+					end
+				</script>
+			</button_listitem_roll_right>
+
+			<label_column name="sensorfocus_label">
+				<anchored>
+					<left offset="20" />
+				</anchored>
+				<static textres="starship_label_sensorfocus" />
+			</label_column>
+			<string_columnh name="sensorfocus">
+				<anchored>
+					<left offset="200" />
+				</anchored>
+				<delaykeyupdate />
+				<script>
+					function onDrop(x, y, draginfo)
+						local odraginfo = draginfo;
+						odraginfo.setDescription("focus");
+						return window.onDrop(x, y, odraginfo);
+					end
+				</script>
+			</string_columnh>
+			<number_listitem_right name="sfbonus">
+				<anchored>
+					<top parent="sensorfocus" />
+					<left parent="sensorfocus" anchor="left" offset="-25" />
+					<right parent="sensorfocus" anchor="left" offset="-5" />
+				</anchored>
+				<script>
+					function onDragStart(button, x, y, draginfo)
+						return window.sensorFocusAction(draginfo);
+					end
+				</script>
+			</number_listitem_right>
+			<dice_listitem_right name="sfdice">
+				<anchored>
+					<top parent="sfbonus" />
+					<left parent="sfbonus" anchor="left" offset="-45" />
+					<right parent="sfbonus" anchor="left" offset="-5" />
+				</anchored>
+				<script>
+					function onValueChanged()
+						return window.onDiceChanged();
+					end
+					function onDragStart(button, x, y, draginfo)
+						draginfo.setDescription("sensor focus");
+						return window.sensorFocusAction(draginfo);
+					end
+				</script>
+			</dice_listitem_right>
+			<button_listitem_roll_right name="sfbutton_roll">
+				<anchored>
+					<top parent="sfdice" />
+					<left parent="sfdice" anchor="left" offset="-25" />
+					<right parent="sfdice" anchor="left" offset="-5" />
+				</anchored>
+				<script>
+					function onDragStart(button, x, y, draginfo)
+						return window.sensorFocusAction(draginfo);
+					end
+					function onButtonPress()
+						return window.sensorFocusAction();
+					end
+				</script>
+			</button_listitem_roll_right>
+			
+<!--
+			<label_column name="weapon_label">
+				<static textres="starship_label_weapons" />
+			</label_column>
+			<windowlist_starship_weapon name="weapon" />
+-->
+			<line_column name="divider3" />
+			<ft_columnh name="notes" />
+		</sheetdata>
+	</windowclass>
+</root>

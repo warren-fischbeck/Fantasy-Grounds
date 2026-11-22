@@ -1,0 +1,62 @@
+<root>
+	<template name="d6_primitive_windowlist">
+		<windowlist>
+			<class>d6_primitive_windowlist_item</class>
+			<columns>
+				<filldown>true</filldown>
+				<width>1800</width>
+				<dynamic>true</dynamic>
+			</columns>
+			<datasource>.d6_primitive_windowlist</datasource>
+			<script>
+				function onDrop(x, y, draginfo)
+					local sDragType = draginfo.getType();
+					if sDragType == "number" then
+						local w = createWindow(nil, true);
+						if w then
+							w.label.setValue(draginfo.getDescription());
+							w.bonus.setValue(draginfo.getNumberData());
+						end
+					return true;
+					elseif sDragType == "dice" then
+						local aDropDice = draginfo.getDiceData();
+						local w = getWindowAt(x,y);
+						if w then
+							for _,vDie in ipairs(aDropDice) do
+							Debug.console("adding die to weapon",w);
+						end
+					end
+					return true;
+					end
+				end
+			</script>
+			<sortby>
+				<field>name</field>
+			</sortby>
+		</windowlist>
+	</template>
+
+		<template name="alternating_windowlist">
+		<windowlist>
+			<child></child>
+			<child>
+				<backcolor>1A40301E</backcolor>
+			</child>
+		</windowlist>
+	</template>
+	
+	<template name="db_primitive_column_windowlist">
+		<d6_primitive_windowlist>
+			<anchored>
+				<top parent="columnanchor" anchor="bottom" relation="relative" offset="20" />
+			</anchored>
+		</d6_primitive_windowlist>
+	</template>
+
+	<windowclass name="d6_primitive_windowlist_item">
+		<sheetdata>
+			<stringfield name="name" />
+		</sheetdata>
+	</windowclass>
+	
+</root>

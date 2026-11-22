@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!--
+  Please see the license.html file included with this distribution for
+  attribution and copyright information.
+-->
+<root>
+	<windowclass name="charsheet_combat_wound">
+		<margins control="0,0,0,2" />
+		<sheetdata>
+			<anchor_left name="leftanchor"/>
+
+			<button_checkbox name="wound_stunned">
+				<anchored height="16" width="16">
+					<top offset="25" />
+					<left parent="leftanchor" offset="3" />
+				</anchored>
+				<tooltip text="Stunned: 0-3 points of damage" />
+			</button_checkbox>
+			<stringcontrol name="labelwoundstunned">
+				<anchored>
+					<top offset="25"/>
+					<left parent="wound_stunned" anchor="right" offset="21" />
+				</anchored>
+				<static textres="combat_label_wound_stunned" />
+			</stringcontrol>
+
+			<button_checkbox name="wound_wounded_1">
+				<anchored height="16" width="16">
+					<top parent="wound_stunned" anchor="below" />
+					<left parent="wound_stunned" anchor="left" />
+				</anchored>
+				<tooltip text="Wounded: 4-8 points of damage" />
+			</button_checkbox>
+			<button_checkbox name="wound_wounded_2">
+				<anchored height="16" width="16">
+					<top parent="wound_wounded_1" />
+					<left parent="wound_wounded_1" anchor="right" />
+				</anchored>
+				<tooltip text="Second wound: 4-8 points of damage." />
+			</button_checkbox>
+			<stringcontrol name="labelwoundwounded">
+				<anchored>
+					<top parent="wound_wounded_1" />
+					<left parent="wound_wounded_2" anchor="right" offset="5" />
+				</anchored>
+				<static textres="combat_label_wound_wounded" />
+			</stringcontrol>
+
+			<button_checkbox name="wound_incapacitated">
+				<anchored height="16" width="16">
+					<top parent="wound_wounded_1" anchor="below" />
+					<left parent="wound_wounded_1" anchor="left" />
+				</anchored>
+				<tooltip text="Incapacitated: 9-12 points of damage" />
+			</button_checkbox>
+			<stringcontrol name="labelwoundincapacitated">
+				<anchored>
+					<top parent="wound_incapacitated" />
+					<left parent="wound_incapacitated" anchor="right" offset="21" />
+				</anchored>
+				<static textres="combat_label_wound_incapacitated" />
+			</stringcontrol>
+
+			<button_checkbox name="wound_mortal">
+				<anchored height="16" width="16">
+					<top parent="wound_incapacitated" anchor="below" />
+					<left parent="wound_incapacitated" anchor="left" />
+				</anchored>
+				<tooltip text="Mortally Wounded: 13-15 points of damage." />
+			</button_checkbox>
+			<stringcontrol name="labelwoundmoratally">
+				<anchored>
+					<top parent="wound_mortal" />
+					<left parent="wound_mortal" anchor="right" offset="21" />
+				</anchored>
+				<static textres="combat_label_wound_mortal" />
+			</stringcontrol>
+		</sheetdata>
+	</windowclass>
+</root>

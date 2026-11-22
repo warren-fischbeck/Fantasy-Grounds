@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!--
+  Please see the license.html file included with this distribution for
+  attribution and copyright information.
+-->
+<root>
+	<windowclass name="charsheet_main_attributes">
+		<margins control="0,0,0,5" />
+		<sheetdata>
+			<subwindow name="header">
+				<anchored position="insidetop">
+					<top offset="0" />
+				</anchored>
+				<class>charsheet_main_attributes_header</class>				
+				<fastinit />
+				<activate />
+			</subwindow>
+
+			<d6_primitive_windowlist name="attributes_skills">
+				<allowdelete />
+				<anchored to="header" anchor="bottom">
+					<top parent="header" anchor="bottom" relation="relative" offset="5" />
+					<left offset="60" />
+					<right offset="-20" />
+				</anchored>
+				<class>charsheet_main_skill</class>
+				<columns>
+					<width>300</width>
+				</columns>
+				<datasource>.skills</datasource>
+				<sortby><field>name</field></sortby>
+			</d6_primitive_windowlist>
+
+			<button_iadd name="attributes_skills_iadd">
+				<anchored>
+					<top parent="header" anchor="left" offset="3" />
+					<right parent="header" anchor="right" offset="-10" />
+				</anchored>
+				<target>attributes_skills</target>
+			</button_iadd>
+			
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name ="charsheet_main_attributes_header">
+		<margins control="0,0,0,5" />
+		<script>
+			function onInit()
+				self.onDiceChanged();
+			end
+			function onDiceChanged()
+				local bShow = not dice.isEmpty();
+				dice.setVisible(bShow);
+				button_roll.setVisible(bShow);
+			end
+
+			function action(draginfo)
+				local sLabel = name.getValue();
+				local aDice = dice.getDice();
+				local nMod = bonus.getValue();
+
+				if dice.isEmpty() then
+					if draginfo then
+						draginfo.setType("number");
+						draginfo.setDescription(sLabel);
+						draginfo.setStringData(sLabel);
+						draginfo.setNumberData(nMod);
+					else
+						ModifierStack.addSlot(sLabel, nMod);
+					end
+				else
+						local rRoll = { sType = "dice", sDesc = name.getValue(), aDice = dice.getDice(), nMod = bonus.getValue() };
+						ActionsManager.performAction(draginfo, nil, rRoll);
+				end
+
+				return true;
+			end
+			
+			function onDrop(x, y, draginfo)
+				local sDragType = draginfo.getType();
+				if sDragType == "dice" then
+					local aDropDice = draginfo.getDiceData();
+					for _,vDie in ipairs(aDropDice) do
+						dice.addDie(vDie.type);
+					end
+					return true;
+				end
+			end
+		</script>
+		<sheetdata>
+			<anchor_listitem_left_sm />
+			<anchor_listitem_right_sm />
+			
+			<button_idelete name="idelete">
+				<anchored position="insidetopleft" offset="15,5" />
+				<editmode>char_attributes_iedit</editmode>
+			</button_idelete>
+
+			<button_level_up name="skill_level_up">
+				<anchored>
+					<top parent="idelete" anchor="left" relation="relative" offset="-10" />
+					<left parent="idelete" anchor="right" relation="relative" offset="5" />
+				</anchored>
+				<script>
+					function onButtonPress()
+					return CharacterEngine.categoryIncrease(window);
+					end
+				</script>
+			</button_level_up>
+
+			<stringfield name="name">
+				<anchored>
+					<top offset="5" />
+					<left offset="65" />
+					<right offset="-45" />
+				</anchored>
+				<stateframe>
+					<keyedit name="fieldfocus" offset="7,5,7,5" />
+					<hover name="fieldfocus" offset="7,5,7,5" hidereadonly="true" />
+					<drophilight name="fieldfocus" offset="7,5,7,5" hidereadonly="true" />
+				</stateframe>
+				<font>reference-b-large</font>
+				<multilinespacing>20</multilinespacing>
+				<left />
+			</stringfield>
+			
+			<number_listitem_right name="bonus">
+				<anchored width="30" >
+					<top offset="2" />
+					<right offset="-40" />
+				</anchored>
+				<tabtarget prev="label" />
+				<script>
+					function onDragStart(button, x, y, draginfo)
+						return window.action(draginfo);
+					end
+				</script>
+			</number_listitem_right>
+			
+			<dice_listitem_right name="dice">
+				<anchored width="30" >
+					<top offset="2" />
+				</anchored>
+				<script>
+					function onValueChanged()
+						window.onDiceChanged();
+					end
+					function onDragStart(button, x, y, draginfo)
+						return window.action(draginfo);
+					end
+				</script>
+			</dice_listitem_right>
+			
+			<button_listitem_roll_right name="button_roll">
+				<anchored width="30" >
+					<top offset="2" />
+				</anchored>
+				<script>
+					function onDragStart(button, x, y, draginfo)
+						return window.action(draginfo);
+					end
+					function onButtonPress()
+						return window.action();
+					end
+				</script>
+			</button_listitem_roll_right>
+			
+		</sheetdata>
+	</windowclass>
+	
+	<windowclass name="charsheet_main_skill" >
+		<margins control="0,0,0,2" />
+		<script>
+			function onInit()
+				self.onDiceChanged();
+			end
+			function onDiceChanged()
+				local bShow = not dice.isEmpty();
+				dice.setVisible(bShow);
+				button_roll.setVisible(bShow);
+			end
+			function action(draginfo)
+				if draginfo then
+					if name.isEmpty() and dice.isEmpty() and bonus.getValue() == 0 then
+						return nil;
+					end
+					if dice.isEmpty() then
+						draginfo.setType("number");
+						draginfo.setDescription(name.getValue());
+						draginfo.setStringData(name.getValue());
+						draginfo.setNumberData(bonus.getValue());
+					else
+						local rRoll = { sType = "dice", sDesc = name.getValue(), aDice = dice.getDice(), nMod = bonus.getValue() };
+						ActionsManager.performAction(draginfo, nil, rRoll);
+					end
+				else
+					if dice.isEmpty() then
+						ModifierStack.addSlot(name.getValue(), bonus.getValue());
+					else
+						local rRoll = { sType = "dice", sDesc = name.getValue(), aDice = dice.getDice(), nMod = bonus.getValue() };
+						ActionsManager.performAction(draginfo, nil, rRoll);
+					end
+				end
+				return true;
+			end
+			function onDrop(x, y, draginfo)
+				local sDragType = draginfo.getType();
+				if sDragType == "dice" then
+					local aDropDice = draginfo.getDiceData();
+					for _,vDie in ipairs(aDropDice) do
+						dice.addDie(vDie.type);
+					end
+					return true;
+				end
+			end
+		</script>
+		<sheetdata>
+			<anchor_listitem_left_sm />
+			<anchor_listitem_right_sm />
+
+			<button_listitem_idelete_left name="idelete">
+				<editmode>char_attributes_iedit</editmode>
+			</button_listitem_idelete_left>
+
+			<button_level_up name="skill_level_up">
+				<anchored to="leftanchor">
+					<top />
+					<left relation="relative" offset="2" postoffset="2" />
+				</anchored>	
+				<script>
+					function onButtonPress()
+						return CharacterEngine.attributeIncrease(window);
+					end
+				</script>				
+			</button_level_up>
+			
+			<number_listitem_right name="bonus">
+				<anchored width="30" />
+				<tabtarget prev="name" />
+				<script>
+					function onDragStart(button, x, y, draginfo)
+						return window.action(draginfo);
+					end
+				</script>
+			</number_listitem_right>
+			<dice_listitem_right name="dice">
+				<anchored width="30" />
+				<script>
+					function onValueChanged()
+						window.onDiceChanged();
+					end
+					function onDragStart(button, x, y, draginfo)
+						return window.action(draginfo);
+					end
+				</script>
+			</dice_listitem_right>
+			<button_listitem_roll_right name="button_roll">
+				<anchored width="30" />
+				<script>
+					function onDragStart(button, x, y, draginfo)
+						return window.action(draginfo);
+					end
+					function onButtonPress()
+						return window.action();
+					end
+				</script>
+			</button_listitem_roll_right>
+
+			<string_listitem_center_underline name="name">
+				<tabtarget next="bonus" />
+				<script>
+					function onDragStart(button, x, y, draginfo)
+						return window.action(draginfo);
+					end
+				</script>
+			</string_listitem_center_underline>
+		</sheetdata>
+	</windowclass>	
+</root>

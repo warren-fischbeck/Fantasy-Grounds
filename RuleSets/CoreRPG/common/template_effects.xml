@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!-- 
+  Please see the license.html file included with this distribution for 
+  attribution and copyright information.
+-->
+
+<root>
+	<template name="iconcycler_poweraction_targeting">
+		<button_iconcycler name="targeting">
+			<anchored position="righthigh" offset="5,5" width="30" height="10" />
+			<parameters>
+				<icons>button_toggle_self</icons>
+				<values>self</values>
+				<tooltipsres>effect_tooltip_targeting_self</tooltipsres>
+				<defaulticon>button_toggle_trgt</defaulticon>
+				<defaulttooltipres>effect_tooltip_targeting_normal</defaulttooltipres>
+			</parameters>
+		</button_iconcycler>
+	</template>
+	<template name="stringcycler_column_poweraction_targeting">
+		<button_stringcycler name="targeting">
+			<anchored width="100" height="20">
+				<top parent="columnanchor" anchor="bottom" relation="relative" offset="7" />
+				<left offset="97" />
+			</anchored>
+			<parameters>
+				<labelsres>power_label_targeting_self</labelsres>
+				<values>self</values>
+				<defaultlabelres>power_label_targeting_normal</defaultlabelres>
+			</parameters>
+		</button_stringcycler>
+	</template>
+	<template name="stringcycler_content_column_poweraction_targeting">
+		<button_stringcycler_content_column name="targeting">
+			<anchored width="100">
+				<right merge="delete" />
+			</anchored>
+			<parameters>
+				<labelsres>power_label_targeting_self</labelsres>
+				<values>self</values>
+				<defaultlabelres>power_label_targeting_normal</defaultlabelres>
+			</parameters>
+		</button_stringcycler_content_column>
+	</template>
+
+	<template name="iconcycler_poweraction_effect_targeting">
+		<button_iconcycler name="targeting">
+			<anchored position="righthigh" offset="5,5" width="30" height="10" />
+			<parameters>
+				<icons>button_toggle_self|button_toggle_trgt_self|button_toggle_self_trgt</icons>
+				<values>self|toself|totargets</values>
+				<tooltipsres>effect_tooltip_targeting_self|effect_tooltip_targeting_toself|effect_tooltip_targeting_totargets</tooltipsres>
+				<defaulticon>button_toggle_trgt</defaulticon>
+				<defaulttooltipres>effect_tooltip_targeting_normal</defaulttooltipres>
+			</parameters>
+		</button_iconcycler>
+	</template>
+	<template name="stringcycler_column_poweraction_effect_targeting">
+		<button_stringcycler name="targeting">
+			<anchored width="100" height="20">
+				<top parent="columnanchor" anchor="bottom" relation="relative" offset="7" />
+				<left offset="97" />
+			</anchored>
+			<parameters>
+				<labelsres>power_label_targeting_self|power_label_targeting_toself|power_label_targeting_totargets</labelsres>
+				<values>self|toself|totargets</values>
+				<defaultlabelres>power_label_targeting_normal</defaultlabelres>
+			</parameters>
+		</button_stringcycler>
+	</template>
+	<template name="stringcycler_content_column_poweraction_effect_targeting">
+		<button_stringcycler_content_column name="targeting">
+			<anchored width="100">
+				<right merge="delete" />
+			</anchored>
+			<parameters>
+				<labelsres>power_label_targeting_self|power_label_targeting_toself|power_label_targeting_totargets</labelsres>
+				<values>self|toself|totargets</values>
+				<defaultlabelres>power_label_targeting_normal</defaultlabelres>
+			</parameters>
+		</button_stringcycler_content_column>
+	</template>
+
+	<template name="button_effect_apply">
+		<button_iconcycler name="apply">
+			<anchored to="leftanchor" width="24" height="10">
+				<top offset="5" />
+				<left relation="relative" offset="2" postoffset="2" />
+			</anchored>
+			<parameters>
+				<icons>button_toggle_turn_once|button_toggle_round_once|button_toggle_round_twice|button_toggle_action|button_toggle_roll|button_toggle_single</icons>
+				<values>onceperturn|onceperround|twiceperround|action|roll|single</values>
+				<tooltipsres>effect_tooltip_apply_turn_once|effect_tooltip_apply_round_once|effect_tooltip_apply_round_twice|effect_tooltip_applyone|effect_tooltip_applyroll|effect_tooltip_applysingle</tooltipsres>
+				<defaulticon>button_toggle_all</defaulticon>
+				<defaulttooltipres>effect_tooltip_applyall</defaulttooltipres>
+			</parameters>
+		</button_iconcycler>
+	</template>
+	<template name="stringcycler_column_poweraction_effect_apply">
+		<button_stringcycler name="apply">
+			<anchored width="120" height="20">
+				<top parent="columnanchor" anchor="bottom" relation="relative" offset="7" />
+				<left offset="97" />
+			</anchored>
+			<parameters>
+				<defaultlabelres>power_label_effect_applyall</defaultlabelres>
+				<labelsres>power_label_effect_apply_turn_once|power_label_effect_apply_round_once|power_label_effect_apply_round_twice|power_label_effect_applyaction|power_label_effect_applyroll|power_label_effect_applysingle</labelsres>
+				<values>onceperturn|onceperround|twiceperround|action|roll|single</values>
+			</parameters>
+		</button_stringcycler>
+	</template>
+	<template name="stringcycler_content_column_poweraction_effect_apply">
+		<button_stringcycler_content_column name="apply">
+			<anchored width="120">
+				<right merge="delete" />
+			</anchored>
+			<parameters>
+				<defaultlabelres>power_label_effect_applyall</defaultlabelres>
+				<labelsres>power_label_effect_apply_turn_once|power_label_effect_apply_round_once|power_label_effect_apply_round_twice|power_label_effect_applyaction|power_label_effect_applyroll|power_label_effect_applysingle</labelsres>
+				<values>onceperturn|onceperround|twiceperround|action|roll|single</values>
+			</parameters>
+		</button_stringcycler_content_column>
+	</template>
+	
+	<template name="button_effect_units">
+		<button_stringcycler name="unit">
+			<anchored to="rightanchor" width="30">
+				<top />
+				<right anchor="left" relation="relative" offset="-5" postoffset="-5" />
+			</anchored>
+			<parameters>
+				<defaultlabelres>effect_label_durunitrnd</defaultlabelres>
+				<labelsres>effect_label_durunitmin|effect_label_durunithr|effect_label_durunitday</labelsres>
+				<values>minute|hour|day</values>
+			</parameters>
+			<script>
+				function onDragStart(button, x, y, draginfo)
+					return window.actionDrag(draginfo);
+				end
+			</script>
+		</button_stringcycler>
+	</template>
+	<template name="stringcycler_editor_poweraction_effect_units">
+		<button_stringcycler name="durunit">
+			<anchored to="durmod" position="righthigh" offset="10,0" width="40" height="20" />
+			<tooltip textres="power_label_duration_unit_tooltip" />
+			<parameters>
+				<defaultlabelres>effect_label_durunitrnd</defaultlabelres>
+				<labelsres>effect_label_durunitmin|effect_label_durunithr|effect_label_durunitday</labelsres>
+				<values>minute|hour|day</values>
+			</parameters>
+		</button_stringcycler>
+	</template>
+	
+	<template name="button_effect_expiration">
+		<button_iconcycler name="expiration">
+			<anchored to="rightanchor" width="24" height="10">
+				<top />
+				<right relation="relative" offset="-2" postoffset="-2" />
+			</anchored>
+			<parameters>
+				<icons>button_toggle_end|button_toggle_endnext|button_toggle_restshort|button_toggle_restlong</icons>
+				<values>end|endnext|restshort|restlong</values>
+				<tooltipsres>effect_tooltip_expiration_end|effect_tooltip_expiration_endnext|effect_tooltip_expiration_restshort|effect_tooltip_expiration_restlong</tooltipsres>
+				<defaulticon>button_toggle_start</defaulticon>
+				<defaulttooltipres>effect_tooltip_expiration_start</defaulttooltipres>
+			</parameters>
+		</button_iconcycler>
+	</template>
+	<template name="button_editor_poweraction_effect_expiration">
+		<button_effect_expiration>
+			<anchored to="durunit" width="24" height="10" merge="replace">
+				<top />
+				<left anchor="right" relation="absolute" offset="10" />
+			</anchored>
+			<script>
+				function onValueChanged()
+					if window.onExpirationChanged then
+						window.onExpirationChanged();
+					end
+				end
+			</script>
+		</button_effect_expiration>
+	</template>
+
+	<template name="button_effect_initsource">
+		<button_iconcycler name="initsource">
+			<anchored to="expiration" position="belowleft" offset="0,1" width="24" height="10" />
+			<parameters>
+				<icons>button_toggle_trgt|button_toggle_turn</icons>
+				<values>target|turn</values>
+				<tooltipsres>effect_tooltip_initsource_target|effect_tooltip_initsource_turn</tooltipsres>
+				<defaulticon>button_toggle_self</defaulticon>
+				<defaulttooltipres>effect_tooltip_initsource_self</defaulttooltipres>
+			</parameters>
+		</button_iconcycler>
+	</template>
+	<template name="button_editor_poweraction_effect_initsource">
+		<button_effect_initsource />
+	</template>
+	<template name="stringcycler_column_poweraction_effect_initsource">
+		<button_stringcycler name="initsource">
+			<anchored width="120" height="20">
+				<top parent="columnanchor" anchor="bottom" relation="relative" offset="7" />
+				<left offset="97" />
+			</anchored>
+			<parameters>
+				<defaultlabelres>power_label_effect_initsource_self</defaultlabelres>
+				<labelsres>power_label_effect_initsource_target|power_label_effect_initsource_turn</labelsres>
+				<values>target|turn</values>
+			</parameters>
+		</button_stringcycler>
+	</template>
+	<template name="stringcycler_content_column_poweraction_effect_initsource">
+		<button_stringcycler_content_column name="initsource">
+			<anchored width="120">
+				<right merge="delete" />
+			</anchored>
+			<parameters>
+				<defaultlabelres>power_label_effect_initsource_self</defaultlabelres>
+				<labelsres>power_label_effect_initsource_target|power_label_effect_initsource_turn</labelsres>
+				<values>target|turn</values>
+			</parameters>
+		</button_stringcycler_content_column>
+	</template>
+</root>

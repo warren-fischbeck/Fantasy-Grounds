@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\campaign",
+    "\\campaign\\records",
+    "\\campaign\\records\\charsheet",
+    "\\campaign\\records\\charsheet\\tab",
+    "\\campaign\\records\\charsheet\\tab\\combat",
+    "\\strings"
+  ],
+  "SelectedNode": "\\campaign\\records\\charsheet\\tab\\combat\\charsheet_combat_main.xml",
+  "PreviewInSolutionExplorer": false
+}

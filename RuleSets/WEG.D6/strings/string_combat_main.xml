@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!--
+  Please see the license.html file included with this distribution for
+  attribution and copyright information.
+-->
+<root>
+	<string name="combat_label_header_combat">Combat</string>
+	<string name="combat_label_header_offense">Weapons</string>
+	<string name="combat_label_header_defence">Armor</string>
+	<string name="combat_label_header_wound">Wounds</string>
+	<string name="combat_label_wound_stunned">Stunned</string>
+	<string name="combat_label_wound_wounded">Wounded</string>
+	<string name="combat_label_wound_incapacitated">Incapacitated</string>
+	<string name="combat_label_wound_mortal">Mortally</string>
+</root>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!--
+  Please see the license.html file included with this distribution for
+  attribution and copyright information.
+-->
+
+<root>
+	<windowclass name="ct_effects_global">
+		<frame>utilitybox</frame>
+		<sizelimits>
+			<minimum width="400" height="500" />
+			<dynamic />
+		</sizelimits>
+		<helplinkres>help_tool_effects</helplinkres>
+		<sheetdata>
+			<windowtitlebar_utilitybox name="title" />
+			<windowmenubar_utilitybox name="menubar" />
+
+			<anchor_content_utilitybox_top />
+			<anchor_content_utilitybox_bottom />
+
+			<area_list_content_controls />
+			<anchor_list_content_controls_right />
+			<button_iedit_list_content_controls />
+			<button_iadd_list_content_controls />
+
+			<list_content_framed_groupbox name="list">
+				<datasource>.effects</datasource>
+				<class>ct_effect</class>
+				<sortby><control>label</control></sortby>
+				<script file="ct/scripts/ct_effects_global_list.lua" />
+			</list_content_framed_groupbox>
+			<scrollbar_content_list />
+
+			<resize_utilitybox />
+		</sheetdata>
+	</windowclass>
+</root>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!--
+  Please see the license.html file included with this distribution for
+  attribution and copyright information.
+-->
+
+<root>
+	<icon name="button_link" file="graphics/links/button_link.png" />
+	<icon name="button_link_empty" file="graphics/links/button_link_empty.png" />
+	<icon name="button_link_share_overlay" file="graphics/links/button_link_share_overlay.png" />
+	<icon name="image_link" file="graphics/links/image/image_link.png" />
+	<icon name="image_link_share_overlay" file="graphics/links/image/image_link_share_overlay.png" />
+
+	<!-- CoreRPG -->
+	<icon name="button_link_battle" file="graphics/links/button_link_battle.png" />
+	<icon name="button_link_charsheet" file="graphics/links/button_link_charsheet.png" />
+	<icon name="button_link_image" file="graphics/links/button_link_image.png" />
+	<icon name="button_link_item" file="graphics/links/button_link_item.png" />
+	<icon name="button_link_location" file="graphics/links/button_link_location.png" />
+	<icon name="button_link_note" file="graphics/links/button_link_note.png" />
+	<icon name="button_link_npc" file="graphics/links/button_link_npc.png" />
+	<icon name="button_link_quest" file="graphics/links/button_link_quest.png" />
+	<icon name="button_link_soundset" file="graphics/links/button_link_soundset.png" />
+	<icon name="button_link_story" file="graphics/links/button_link_story.png" />
+	<icon name="button_link_table" file="graphics/links/button_link_table.png" />
+	<icon name="button_link_treasureparcel" file="graphics/links/button_link_treasureparcel.png" />
+	<icon name="button_link_vehicle" file="graphics/links/button_link_vehicle.png" />
+
+	<icon name="image_link_battle" file="graphics/links/image/image_link_battle.png" />
+	<icon name="image_link_charsheet" file="graphics/links/image/image_link_charsheet.png" />
+	<icon name="image_link_image" file="graphics/links/image/image_link_image.png" />
+	<icon name="image_link_item" file="graphics/links/image/image_link_item.png" />
+	<icon name="image_link_location" file="graphics/links/image/image_link_location.png" />
+	<icon name="image_link_note" file="graphics/links/image/image_link_note.png" />
+	<icon name="image_link_npc" file="graphics/links/image/image_link_npc.png" />
+	<icon name="image_link_quest" file="graphics/links/image/image_link_quest.png" />
+	<icon name="image_link_soundset" file="graphics/links/image/image_link_soundset.png" />
+	<icon name="image_link_story" file="graphics/links/image/image_link_story.png" />
+	<icon name="image_link_table" file="graphics/links/image/image_link_table.png" />
+	<icon name="image_link_treasureparcel" file="graphics/links/image/image_link_treasureparcel.png" />
+	<icon name="image_link_vehicle" file="graphics/links/image/image_link_vehicle.png" />
+
+	<!-- Common Ruleset -->
+	<icon name="button_link_background" file="graphics/links/button_link_background.png" />
+	<icon name="button_link_class" file="graphics/links/button_link_class.png" />
+	<icon name="button_link_feat" file="graphics/links/button_link_feat.png" />
+	<icon name="button_link_fire" file="graphics/links/button_link_fire.png" />
+	<icon name="button_link_race" file="graphics/links/button_link_race.png" />
+	<icon name="button_link_skill" file="graphics/links/button_link_skill.png" />
+	<icon name="button_link_spell" file="graphics/links/button_link_spell.png" />
+
+	<icon name="image_link_background" file="graphics/links/image/image_link_background.png" />
+	<icon name="image_link_class" file="graphics/links/image/image_link_class.png" />
+	<icon name="image_link_feat" file="graphics/links/image/image_link_feat.png" />
+	<icon name="image_link_fire" file="graphics/links/image/image_link_fire.png" />
+	<icon name="image_link_race" file="graphics/links/image/image_link_race.png" />
+	<icon name="image_link_skill" file="graphics/links/image/image_link_skill.png" />
+	<icon name="image_link_spell" file="graphics/links/image/image_link_spell.png" />
+
+	<!-- Extra Options -->
+	<icon name="button_link_bang" file="graphics/links/button_link_bang.png" />
+	<icon name="button_link_battle_2" file="graphics/links/button_link_battle_2.png" />
+	<icon name="button_link_battle_3" file="graphics/links/button_link_battle_3.png" />
+	<icon name="button_link_benefit" file="graphics/links/button_link_benefit.png" />
+	<icon name="button_link_cpu" file="graphics/links/button_link_cpu.png" />
+	<icon name="button_link_cthulhu" file="graphics/links/button_link_cthulhu.png" />
+	<icon name="button_link_charsheet_2" file="graphics/links/button_link_charsheet_2.png" />
+	<icon name="button_link_hindrance" file="graphics/links/button_link_hindrance.png" />
+	<icon name="button_link_item_2" file="graphics/links/button_link_item_2.png" />
+	<icon name="button_link_lightbulb" file="graphics/links/button_link_lightbulb.png" />
+	<icon name="button_link_planet" file="graphics/links/button_link_planet.png" />
+	<icon name="button_link_potion" file="graphics/links/button_link_potion.png" />
+	<icon name="button_link_race_2" file="graphics/links/button_link_race_2.png" />
+	<icon name="button_link_race_3" file="graphics/links/button_link_race_3.png" />
+	<icon name="button_link_spaceship" file="graphics/links/button_link_spaceship.png" />
+	<icon name="button_link_spaceship_2" file="graphics/links/button_link_spaceship_2.png" />
+	<icon name="button_link_spaceship_3" file="graphics/links/button_link_spaceship_3.png" />
+	<icon name="button_link_system" file="graphics/links/button_link_system.png" />
+	<icon name="button_link_system_2" file="graphics/links/button_link_system_2.png" />
+	<icon name="button_link_treasureparcel_2" file="graphics/links/button_link_treasureparcel_2.png" />
+	<icon name="button_link_vehicle_4" file="graphics/links/button_link_vehicle_4.png" />
+
+	<icon name="image_link_bang" file="graphics/links/image/image_link_bang.png" />
+	<icon name="image_link_battle_2" file="graphics/links/image/image_link_battle_2.png" />
+	<icon name="image_link_battle_3" file="graphics/links/image/image_link_battle_3.png" />
+	<icon name="image_link_benefit" file="graphics/links/image/image_link_benefit.png" />
+	<icon name="image_link_cpu" file="graphics/links/image/image_link_cpu.png" />
+	<icon name="image_link_cthulhu" file="graphics/links/image/image_link_cthulhu.png" />
+	<icon name="image_link_charsheet_2" file="graphics/links/image/image_link_charsheet_2.png" />
+	<icon name="image_link_hindrance" file="graphics/links/image/image_link_hindrance.png" />
+	<icon name="image_link_item_2" file="graphics/links/image/image_link_item_2.png" />
+	<icon name="image_link_lightbulb" file="graphics/links/image/image_link_lightbulb.png" />
+	<icon name="image_link_planet" file="graphics/links/image/image_link_planet.png" />
+	<icon name="image_link_potion" file="graphics/links/image/image_link_potion.png" />
+	<icon name="image_link_race_2" file="graphics/links/image/image_link_race_2.png" />
+	<icon name="image_link_race_3" file="graphics/links/image/image_link_race_3.png" />
+	<icon name="image_link_spaceship" file="graphics/links/image/image_link_spaceship.png" />
+	<icon name="image_link_spaceship_2" file="graphics/links/image/image_link_spaceship_2.png" />
+	<icon name="image_link_spaceship_3" file="graphics/links/image/image_link_spaceship_3.png" />
+	<icon name="image_link_system" file="graphics/links/image/image_link_system.png" />
+	<icon name="image_link_system_2" file="graphics/links/image/image_link_system_2.png" />
+	<icon name="image_link_treasureparcel_2" file="graphics/links/image/image_link_treasureparcel_2.png" />
+	<icon name="image_link_vehicle_4" file="graphics/links/image/image_link_vehicle_4.png" />
+</root>

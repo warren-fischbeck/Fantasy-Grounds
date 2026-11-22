@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!--
+  Please see the license.html file included with this distribution for
+  attribution and copyright information.
+-->
+
+<root>
+
+	<windowclass name="record_window_story" merge="join">
+		<script>
+			function onInit()
+				self.onLockModeChanged(WindowManager.getWindowReadOnlyState(self));
+			end
+
+			function onLockModeChanged(bReadOnly)
+				local tFields = { "attribute", };
+				WindowManager.callSafeControlsSetLockMode(self, tFields, bReadOnly);
+			end
+		</script>
+		<margins control="3,0,0,2" />
+		<sheetdata>
+			<sub_content_framed_groupbox name="frameattribute">
+				<anchored>
+					<top parent="header" anchor="below" offset="25" />
+					<left offset="14" />
+					<right offset="-15" />
+					<bottom parent="content" offset="-45" />
+				</anchored>
+			</sub_content_framed_groupbox>
+			
+			<stringcontrol name="label_attribute">
+				<anchored height="20">
+					<top parent="header" anchor="below" offset="35"/>
+					<left offset="45"  />
+				</anchored>
+				<font>reference-b-large</font>
+				<static textres="string_label_attribute" />
+			</stringcontrol>
+			<stringfield name="attribute">
+				<anchored height="30">
+					<top parent="header" anchor="below" offset="30" />
+					<left parent="label_attribute" anchor="right" offset="20" />
+					<right offset="-90" />
+				</anchored>
+				<frame mergerule="replace" name="fielddark" offset="10,5,10,5" hidereadonly="true" />
+				<stateframe>
+					<keyedit name="fieldfocus" offset="10,5,10,5" />
+					<hover name="fieldfocus" offset="10,5,10,5" hidereadonly="true" />
+					<drophilight name="fieldfocus" offset="10,5,10,5" hidereadonly="true" />
+				</stateframe>
+			</stringfield>
+			
+			<sub_content_framed_groupbox name="content">
+				<anchored>
+					<top offset="100" />
+				</anchored>
+				<class>record_content_story</class>
+			</sub_content_framed_groupbox>
+			<scrollbar_content />
+			
+		</sheetdata>
+	</windowclass>
+	
+	<windowclass name="record_window_story" merge="join">
+		<script file="campaign/scripts/story.lua" />
+	</windowclass>
+	
+	<windowclass name="skill" copy="record_window_story">
+		<sheetdata>
+		</sheetdata>
+	</windowclass>
+</root>

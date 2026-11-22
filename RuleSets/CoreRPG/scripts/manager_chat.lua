@@ -1,0 +1,636 @@
+--
+-- Please see the license.html file included with this distribution for
+-- attribution and copyright information.
+--
+
+OOB_MSGTYPE_CHAT = "chat";
+OOB_MSGTYPE_WHISPER = "whisper";
+
+--
+-- INITIALIZATION
+--
+
+function onInit()
+	OOBManager.registerOOBMsgHandler(ChatManager.OOB_MSGTYPE_CHAT, ChatManager.handleChat);
+
+	ChatManager.addStandardWhisperSupport();
+	ChatManager.addStandardModSupport();
+	ChatManager.addStandardImportExportSupport();
+end
+function onTabletopInit()
+	Comm.addKeyedEventHandler("onReceiveMessage", "", ChatManager.onReceiveMessage);
+end
+
+function addStandardWhisperSupport()
+	if Session.IsHost then
+		Comm.registerSlashHandler("w", ChatManager.processWhisper, "[charactername] [message]");
+	else
+		Comm.registerSlashHandler("w", ChatManager.processWhisper, "[charactername|GM] [message]");
+	end
+	Comm.registerSlashHandler("r", ChatManager.processReply, "[message]");
+	OOBManager.registerOOBMsgHandler(ChatManager.OOB_MSGTYPE_WHISPER, ChatManager.handleWhisper);
+end
+function addStandardModSupport()
+	Comm.registerSlashHandler("mod", ChatManager.processMod, "[number] <message>");
+end
+function addStandardImportExportSupport()
+	Comm.registerSlashHandler("exportchar", ChatManager.processExportPC);
+	if Session.IsHost then
+		Comm.registerSlashHandler("exportnpc", ChatManager.processExportNPC);
+		Comm.registerSlashHandler("flushdb", ChatManager.processFlush);
+		Comm.registerSlashHandler("importchar", ChatManager.processImportPC);
+		Comm.registerSlashHandler("importnpc", ChatManager.processImportNPC);
+	end
+end
+
+--
+-- HELPERS
+--
+
+function getChatWindow()
+	return Interface.findWindow("chat", "");
+end
+
+--
+-- EVENTS
+--
+
+local _tDeliverMessageCallbacks = {};
+function registerDeliverMessageCallback(fn)
+	UtilityManager.registerCallback(_tDeliverMessageCallbacks, fn);
+end
+function unregisterDeliverMessageCallback(fn)
+	UtilityManager.unregisterCallback(_tDeliverMessageCallbacks, fn);
+end
+function onDeliverMessage(msg, ...)
+	if (msg.type or "") == "" then
+		local rActor = ChatIdentityManager.getSpeechActor(msg.sender);
+		msg.sActorNode = ActorManager.getCreatureNodeName(rActor);
+	end
+	ChatIdentityManager.onDeliverMessage(msg);
+
+	if UtilityManager.performCallbacks(_tDeliverMessageCallbacks, msg, ...) then
+		return true;
+	end
+
+	if LanguageManager.onChatMessage(msg) then
+		return true;
+	end
+
+	if ChatManager.isBasicChatMessage(msg) then
+		msg.type = ChatManager.OOB_MSGTYPE_CHAT;
+		UtilityManager.simplifyEncode(msg, "assets");
+		Comm.deliverOOBMessage(msg);
+		return true;
+	end
+end
+function isBasicChatMessage(msg)
+	if not msg then
+		return false;
+	end
+	return ((msg.type or "") == "") and StringManager.contains({ "chat", "story", "emote", "act", "ooc", }, msg.mode);
+end
+
+function handleChat(msg)
+	msg.type = "";
+	UtilityManager.simplifyDecode(msg, "assets");
+
+	Comm.addChatMessage(msg);
+	ChatManager.onChatMessageNotify(msg);
+end
+function onChatMessageNotify(msg)
+	if (msg.mode or "") == "chat" then
+		ChatManager.onChatMessageNotifySpeech(msg);
+	elseif (msg.mode or "") == "story" then
+		ChatManager.onChatMessageNotifyStory(msg);
+	end
+end
+function onChatMessageNotifySpeech(msg)
+	local rActor = ActorManager.resolveActor(msg.sActorNode);
+	local tOverlayData = {};
+	if ((msg.language or "") ~= "") and ((msg.font or "") ~= "") then
+		if ((msg.translation or "") ~= "") then
+			tOverlayData.sText = string.format("<font name=\"%s\">%s\n</font>[%s]", msg.font, msg.text, msg.translation);
+		else
+			tOverlayData.sText = string.format("<font name=\"%s\">%s</font>", msg.font, msg.text);
+		end
+	else
+		tOverlayData.sText = msg.text;
+	end
+	OverlayManager.showActorSpeech(rActor, tOverlayData);
+end
+function onChatMessageNotifyStory(msg)
+	if OptionsManager.isOption("CHATMAP", "off") then
+		return;
+	end
+
+	local wImage = ChatManager.onChatMessageNotifyStoryGetWindow();
+	if not wImage then
+		return;
+	end
+
+	if not wImage.sub_narrator then
+		wImage.createControl("sub_notify_narrator_bottom", "sub_narrator");
+	end
+	wImage.sub_narrator.subwindow.addText(msg.text);
+end
+-- NOTE: Prioritization of narration display in image windows:
+--		1. Image containing token of active identity (Player = Active PC; GM = Active CT)
+--		2. Image containing any CT entry token (GM only)
+--		3. Top-most image window
+function onChatMessageNotifyStoryGetWindow()
+	-- Get image window containing the active Player/GM identity
+	local rActor = ActorManager.getActiveActor();
+	if rActor then
+		local cImage = ImageManager.getActiveImageFromToken(ActorManager.getToken(rActor));
+		if cImage then
+			return cImage.window;
+		end
+	end
+
+	-- If GM, get any image window containing a CT token
+	if Session.IsHost then
+		for _,v in pairs(CombatManager.getCombatantNodes()) do
+			local rActor = ActorManager.resolveActor(v);
+			if rActor then
+				local cImage = ImageManager.getActiveImageFromToken(ActorManager.getToken(rActor));
+				if cImage then
+					return cImage.window;
+				end
+			end
+		end
+	end
+
+	-- Otherwise, get the top-most image window
+	local tImageWindows = Interface.getWindows(RecordDataManager.getRecordTypeDisplayClass("image"));
+	if #tImageWindows > 0 then
+		return tImageWindows[#tImageWindows];
+	end
+
+	return nil;
+end
+
+local _tDiceLandedCallbacks = {};
+function registerDiceLandedCallback(fn)
+	UtilityManager.registerCallback(_tDiceLandedCallbacks, fn);
+end
+function unregisterDiceLandedCallback(fn)
+	UtilityManager.unregisterCallback(_tDiceLandedCallbacks, fn);
+end
+function onDiceLanded(...)
+	return UtilityManager.performCallbacks(_tDiceLandedCallbacks, ...);
+end
+
+local _tReceiveMessageCallbacks = {};
+function registerReceiveMessageCallback(fn)
+	UtilityManager.registerCallback(_tReceiveMessageCallbacks, fn);
+end
+function unregisterReceiveMessageCallback(fn)
+	UtilityManager.unregisterCallback(_tReceiveMessageCallbacks, fn);
+end
+function onReceiveMessage(...)
+	return UtilityManager.performCallbacks(_tReceiveMessageCallbacks, ...);
+end
+
+local _tDropCallbacks = {};
+function registerDropCallback(sDropType, fn)
+	UtilityManager.registerKeyCallback(_tDropCallbacks, sDropType, fn);
+end
+function unregisterDropCallback(sDropType, fn)
+	UtilityManager.unregisterKeyCallback(_tDropCallbacks, sDropType, fn);
+end
+function onDrop(draginfo)
+	return UtilityManager.performKeyCallbacks(_tDropCallbacks, draginfo.getType(), draginfo);
+end
+
+--
+-- AUTO-COMPLETE
+--
+
+function doUserAutoComplete(ctrl)
+	local buffer = ctrl.getValue();
+	if buffer == "" then
+		return ;
+	end
+
+	-- Parse the string, adding one chunk at a time, looking for the maximum possible match
+	local sReplacement = nil;
+	local nStart = 2;
+	while not sReplacement do
+		local nSpace = string.find(string.reverse(buffer), " ", nStart, true);
+
+		if nSpace then
+			local sSearch = string.sub(buffer, #buffer - nSpace + 2);
+
+			if not string.match(sSearch, "^%s$") then
+				local sIdentity = ChatManager.searchForIdentity(sSearch);
+				if sIdentity then
+					local sRemainder = string.sub(buffer, 1, #buffer - nSpace + 1);
+					sReplacement = sRemainder .. User.getIdentityLabel(sIdentity) .. " ";
+					break;
+				end
+			end
+		else
+			local sIdentity = ChatManager.searchForIdentity(buffer);
+			if sIdentity then
+				sReplacement = User.getIdentityLabel(sIdentity) .. " ";
+				break;
+			end
+
+			return;
+		end
+
+		nStart = nSpace + 1;
+	end
+
+	if sReplacement then
+		ctrl.setValue(sReplacement);
+		ctrl.setCursorPosition(#sReplacement + 1);
+		ctrl.setSelectionPosition(#sReplacement + 1);
+	end
+end
+function searchForIdentity(sSearch)
+	for _,sIdentity in ipairs(User.getAllActiveIdentities()) do
+		local sLabel = User.getIdentityLabel(sIdentity);
+		if string.find(string.lower(sLabel), string.lower(sSearch), 1, true) == 1 then
+			if User.getIdentityOwner(sIdentity) then
+				return sIdentity;
+			end
+		end
+	end
+	return nil;
+end
+
+--
+-- DICE AND MOD SLASH HANDLERS
+--
+
+function processMod(_, sParams)
+	local sMod, sDesc = string.match(sParams, "%s*(%S+)%s*(.*)");
+
+	local nMod = tonumber(sMod);
+	if not nMod then
+		ChatManager.SystemMessage("Usage: /mod [number] [description]");
+		return;
+	end
+
+	ModifierStack.addSlot(sDesc, nMod);
+end
+function processFlush()
+	local nodeRoot = DB.getRoot();
+
+	DB.removeAllHolders(nodeRoot, true);
+	DB.setPublic(nodeRoot, false);
+	StartupManager.registerPublicNodes();
+
+	ChatManager.SystemMessage(Interface.getString("message_slashflushsuccess"));
+end
+
+function processImportPC()
+	CampaignDataManager.importChar();
+end
+function processImportNPC()
+	CampaignDataManager.importNPC();
+end
+function processExportPC(_, sParams)
+	local nodeChar = nil;
+
+	local sFind = StringManager.trim(sParams);
+	if string.len(sFind) > 0 then
+		local sRootMapping = RecordDataManager.getDataPathRoot("charsheet");
+		for _,vNode in ipairs(DB.getChildList(sRootMapping)) do
+			local sName = DB.getValue(vNode, "name", "");
+			if string.len(sName) > 0 then
+				if string.lower(sFind) == string.lower(string.sub(sName, 1, string.len(sFind))) then
+					nodeChar = vNode;
+					break;
+				end
+			end
+		end
+		if not nodeChar then
+			ChatManager.SystemMessage(Interface.getString("error_slashexportrecordmissing") .. " (" .. sParams .. ")");
+			return;
+		end
+	end
+
+	CampaignDataManager.exportChar(nodeChar);
+end
+function processExportNPC(_, sParams)
+	local nodeNPC = nil;
+
+	local sFind = StringManager.trim(sParams);
+	if string.len(sFind) > 0 then
+		local sRootMapping = RecordDataManager.getDataPathRoot("npc");
+		for _,vNode in ipairs(DB.getChildList(sRootMapping)) do
+			local sName = DB.getValue(vNode, "name", "");
+			if string.len(sName) > 0 then
+				if string.lower(sFind) == string.lower(string.sub(sName, 1, string.len(sFind))) then
+					nodeNPC = vNode;
+					break;
+				end
+			end
+		end
+		if not nodeNPC then
+			ChatManager.SystemMessage(Interface.getString("error_slashexportrecordmissing") .. " (" .. sParams .. ")");
+			return;
+		end
+	end
+
+	CampaignDataManager.exportNPC(nodeNPC);
+end
+
+--
+-- MESSAGES
+--
+
+function createBaseMessage(rSource, sUser)
+	if rSource then
+		return {
+			font = "systemfont",
+			text = "",
+			sender = ChatIdentityManager.getSenderDisplayName(rSource, sUser),
+			assets = {
+				ChatIdentityManager.getActorAsset(rSource),
+			},
+		};
+	else
+		return {
+			font = "systemfont",
+			text = "",
+			sender = "",
+			assets = {
+				ChatIdentityManager.getDefaultAsset(),
+			},
+		};
+
+	end
+end
+
+function sendMessage(s, tData)
+	local msg;
+	if tData and (tData.rActor or tData.bPortrait) then
+		msg = ChatManager.createBaseMessage(tData.rActor);
+		msg.text = StringManager.append(msg.text, s, " ");
+	else
+		msg = { font = "systemfont", text = s };
+	end
+	if tData and tData.sIcon then
+		msg.icon = { tData.sIcon };
+	end
+	if tData and tData.bSecret then
+		msg.secret = true;
+		Comm.addChatMessage(msg);
+	else
+		Comm.deliverChatMessage(msg);
+	end
+end
+
+function Message(s, broadcast, rActor)
+	ChatManager.sendMessage(s, { bSecret = not broadcast, rActor = rActor, });
+end
+function SystemMessage(s)
+	ChatManager.sendMessage(s, { bSecret = true, });
+end
+function SystemMessageResource(sRes, ...)
+	ChatManager.SystemMessage(string.format(Interface.getString(sRes), ...));
+end
+
+--
+-- WHISPERS
+--
+
+local _sLastWhisperer = nil;
+function processWhisper(_, sParams)
+	-- Find the target user for the whisper
+	local sLowerParams = string.lower(sParams);
+	local sGMIdentity = "gm ";
+
+	local sRecipient = nil;
+	if string.sub(sLowerParams, 1, string.len(sGMIdentity)) == sGMIdentity then
+		sRecipient = "GM";
+	else
+		for _,vID in ipairs(User.getAllActiveIdentities()) do
+			local sIdentity = User.getIdentityLabel(vID);
+
+			local sIdentityMatch = string.lower(sIdentity) .. " ";
+			if string.sub(sLowerParams, 1, string.len(sIdentityMatch)) == sIdentityMatch then
+				if sRecipient then
+					if #sRecipient < #sIdentity then
+						sRecipient = sIdentity;
+					end
+				else
+					sRecipient = sIdentity;
+				end
+			end
+		end
+	end
+
+	local sMessage;
+	if sRecipient then
+		sMessage = string.sub(sParams, #sRecipient + 2)
+	else
+		sMessage = sParams;
+	end
+
+	ChatManager.processWhisperHelper(sRecipient, sMessage);
+end
+function processReply(_, sParams)
+	if not _sLastWhisperer then
+		ChatManager.SystemMessage(Interface.getString("error_slashreplytargetmissing"));
+		return;
+	end
+	ChatManager.processWhisperHelper(_sLastWhisperer, sParams);
+end
+function processWhisperHelper(sRecipient, sMessage)
+	-- Make sure we have a valid identity and valid user owning the identity
+	local sUser = nil;
+	local sRecipientID = nil;
+	if sRecipient then
+		if sRecipient == "GM" then
+			sRecipientID = "";
+			sUser = "";
+		else
+			for _,vID in ipairs(User.getAllActiveIdentities()) do
+				local sIdentity = User.getIdentityLabel(vID);
+				if sIdentity == sRecipient then
+					sRecipientID = vID;
+					sUser = User.getIdentityOwner(vID);
+					break;
+				end
+			end
+			if not sRecipientID or not sUser then
+				sRecipientID = User.getActiveUsers()[1];
+				sUser = sRecipientID;
+			end
+		end
+	end
+	if not sRecipientID or not sUser then
+		ChatManager.SystemMessage(Interface.getString("error_slashwhispertargetmissing"));
+		ChatManager.SystemMessage("Usage: /w GM [message]\rUsage: /w [recipient] [message]");
+		return;
+	end
+
+	-- Check for empty message
+	if sMessage == "" then
+		ChatManager.SystemMessage(Interface.getString("error_slashwhispermsgmissing"));
+		ChatManager.SystemMessage("Usage: /w GM [message]\rUsage /w [recipient] [message]");
+		return;
+	end
+
+	-- Make sure we have a user identity
+	local sSender;
+	if Session.IsHost then
+		sSender = "";
+	else
+		sSender = User.getCurrentIdentity();
+		if not sSender then
+			ChatManager.SystemMessage(Interface.getString("error_slashwhispersourcemissing"));
+			return;
+		end
+	end
+
+	-- Send the whisper
+	local msgOOB = {
+		type = ChatManager.OOB_MSGTYPE_WHISPER,
+		sender = sSender,
+		receiver = sRecipientID,
+		text = sMessage,
+	};
+
+	if Session.IsHost then
+		Comm.deliverOOBMessage(msgOOB, { sUser, "" });
+	else
+		Comm.deliverOOBMessage(msgOOB);
+	end
+
+	-- Show what the user whispered
+	local msg = {
+		mode = "whisper",
+		font = "whisperfont",
+		sender = "",
+		assets = {
+			ChatIdentityManager.getDefaultAsset(),
+			{ type = "icon", name = "indicator_whisper", },
+		},
+		text = sMessage,
+	};
+
+	if not Session.IsHost and (#(User.getOwnedIdentities()) > 1) then
+		msg.sender = User.getIdentityLabel(sSender);
+	end
+	msg.sender = msg.sender .. " -> " .. sRecipient;
+
+	Comm.addChatMessage(msg);
+end
+function handleWhisper(msgOOB)
+	-- Validate
+	if not msgOOB.sender or not msgOOB.receiver or not msgOOB.text then
+		return;
+	end
+
+	local bRing = OptionsManager.isOption("CWHR", "on");
+
+	-- Check to see if GM has asked to see whispers
+	if Session.IsHost then
+		if msgOOB.sender == "" then
+			return;
+		end
+		if msgOOB.receiver ~= "" then
+			if OptionsManager.isOption("SHPW", "off") then
+				return;
+			end
+			bRing = false;
+		end
+
+	-- Ignore messages not targeted to this user
+	else
+		if msgOOB.receiver == "" then
+			return;
+		end
+		if not User.isOwnedIdentity(msgOOB.receiver) then
+			return;
+		end
+	end
+
+	-- Get the send and receiver labels
+	local sSender, sReceiver;
+	if msgOOB.sender == "" then
+		sSender = "GM";
+	else
+		sSender = User.getIdentityLabel(msgOOB.sender) or "<unknown>";
+	end
+	if msgOOB.receiver == "" then
+		sReceiver = "GM";
+	else
+		sReceiver = User.getIdentityLabel(msgOOB.receiver) or "<unknown>";
+	end
+
+	-- Remember last whisperer
+	if not Session.IsHost or msgOOB.receiver == "" then
+		_sLastWhisperer = sSender;
+	end
+
+	-- Build the message to display
+	local msg = {
+		mode = "whisper",
+		font = "whisperfont",
+		text = "",
+		assets = {
+			ChatIdentityManager.getIdentityAsset(msgOOB.sender),
+			{ type = "icon", name = "indicator_whisper", },
+		},
+	};
+
+	msg.sender = sSender;
+	if Session.IsHost then
+		if msgOOB.receiver ~= "" then
+			msg.sender = msg.sender .. " -> " .. sReceiver;
+		end
+	else
+		if #(User.getOwnedIdentities()) > 1 then
+			msg.sender = msg.sender .. " -> " .. sReceiver;
+		end
+	end
+
+	msg.text = msg.text .. msgOOB.text;
+
+	-- Show whisper message
+	Comm.addChatMessage(msg);
+	if bRing then
+		User.ringBell();
+	end
+end
+
+function sendWhisperToID(sIdentity)
+	local w = ChatManager.getChatWindow();
+	if not w then
+		return
+	end
+
+	local sCommand = "/w " .. User.getIdentityLabel(sIdentity) .. " ";
+	w.entry.setValue(sCommand);
+	w.entry.setFocus();
+	w.entry.setCursorPosition(#sCommand + 1);
+end
+function sendWhisperToGM()
+	local w = ChatManager.getChatWindow();
+	if not w then
+		return
+	end
+
+	local sCommand = "/w GM ";
+	w.entry.setValue(sCommand);
+	w.entry.setFocus();
+	w.entry.setCursorPosition(#sCommand + 1);
+end
+function sendWhisperToName(sName)
+	local w = ChatManager.getChatWindow();
+	if not w then
+		return
+	end
+
+	local sCommand = "/w " .. sName .. " ";
+	w.entry.setValue(sCommand);
+	w.entry.setFocus();
+	w.entry.setCursorPosition(#sCommand + 1);
+end

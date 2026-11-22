@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!--
+  Please see the license.html file included with this distribution for
+  attribution and copyright information.
+-->
+
+<root>
+	<template name="sub_notify_narrator_bottom">
+		<subwindow name="sub_narrator">
+			<anchored to="bottomanchor" height="200">
+				<left anchor="center" offset="-200" />
+				<right anchor="center" offset="200" />
+				<bottom />
+			</anchored>
+			<fastinit />
+			<activate />
+			<class>notify_narrator</class>
+		</subwindow>
+	</template>
+	<windowclass name="notify_narrator">
+		<frame>chatframe_story</frame>
+		<script>
+			local tQueue = {};
+			function addText(s)
+				if text.getValue() ~= "" then
+					table.insert(tQueue, s);
+				else
+					text.setValue(s);
+				end
+				self.updateNextButton();
+			end
+			function onNextPressed()
+				if #tQueue > 0 then
+					text.setValue(tQueue[1]);
+					table.remove(tQueue, 1);
+					self.updateNextButton();
+				else
+					parentcontrol.destroy();
+				end
+			end
+			function updateNextButton()
+				if #tQueue > 0 then
+					next.setIcons("button_toolbar_arrow_e");
+					next.setTooltipText(Interface.getString("tooltip_page_next"));
+				else
+					next.setIcons("button_toolbar_window_close");
+					next.setTooltipText(Interface.getString("button_toolbar_window_close"));
+				end
+			end
+		</script>
+		<sheetdata>
+			<anchor_content_groupbox_top />
+			<anchor_content_groupbox_bottom />
+
+			<stringc_content name="text">
+				<font>narratorfont</font>
+				<frame merge="delete" />
+				<stateframe merge="delete" />
+				<readonly />
+			</stringc_content>
+			<scrollbar_content_text />
+
+			<buttoncontrol name="next">
+				<anchored position="insidetopright" offset="2,2" width="20" height="20" />
+				<frame name="windowmenubar_button" offset="2,2,2,2" />
+				<stateframe>
+					<pressed name="windowmenubar_button_down" offset="2,2,2,2" nobaseframe="true" />
+				</stateframe>
+				<icon>button_toolbar_window_close</icon>
+				<tooltip textres="button_toolbar_window_close" />
+				<script>
+					function onInit()
+						setColor(ColorManager.getWindowMenuIconColor());
+					end
+					function onButtonPress()
+						window.onNextPressed();
+					end
+				</script>
+			</buttoncontrol>
+		</sheetdata>
+	</windowclass>
+</root>

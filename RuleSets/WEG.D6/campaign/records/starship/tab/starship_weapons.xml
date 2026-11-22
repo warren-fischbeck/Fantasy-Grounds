@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!--
+  Please see the license.html file included with this distribution for
+  attribution and copyright information.
+-->
+
+<root>
+	<windowclass name="starship_weapons">
+		<margins control="0,0,0,2" />
+		<sheetdata>
+			<anchor_column name="columnanchor" />
+			<label_column name="weapon_label">
+				<static textres="starship_label_weapons" />
+			</label_column>
+			<windowlist_starship_weapon name="weapon" />
+		</sheetdata>
+	</windowclass>
+
+	<template name="windowlist_starship_weapon">
+		<windowlist>
+			<anchored>
+				<top parent="columnanchor" anchor="bottom" relation="relative" offset="20" />
+				<left />
+				<right />
+				<bottom />
+			</anchored>
+			<child></child>
+			<child>
+				<backcolor>1A40301E</backcolor>
+			</child>
+			<class>starship_windowlist_weapon_item</class>
+			<columns>
+				<filldown>true</filldown>
+			</columns>
+			<datasource>.weapons</datasource>
+			<script>
+				function onDrop(x, y, draginfo)
+					local sDragType = draginfo.getType();
+					if sDragType == "number" then
+						local w = createWindow(nil, true);
+						if w then
+							w.label.setValue(draginfo.getDescription());
+							w.bonus.setValue(draginfo.getNumberData());
+						end
+						return true;
+					elseif sDragType == "dice" then
+						local aDropDice = draginfo.getDiceData();
+						local w = getWindowAt(x,y);
+						if w then
+							for _,vDie in ipairs(aDropDice) do
+								Debug.console("adding die to weapon",w);
+							end
+						end
+						return true;
+					end
+				end
+			</script>
+		</windowlist>
+	</template>
+</root>

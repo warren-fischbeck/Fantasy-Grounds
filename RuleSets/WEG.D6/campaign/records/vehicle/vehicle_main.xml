@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!--
+  Please see the license.html file included with this distribution for
+  attribution and copyright information.
+-->
+
+<root>
+	<windowclass name="vehicle_main">
+		<margins control="0,0,0,2" />
+		<script>
+			function onInit()
+				self.onLockModeChanged(WindowManager.getWindowReadOnlyState(self));
+				onDiceChanged();
+			end
+
+			function onLockModeChanged(bReadOnly)
+				local tFields = { "type", 
+					"scale", 
+					"crew", 
+					"skill", 
+					"skillspecialty", 
+					"weaponspecialization", 
+					"maneuverability", 
+					"body", 
+					"altitude", 
+					"cover", 
+					"cargo", 
+					"length", 
+					"space", 
+					"reach", 
+					"cost", 
+					"weight", 
+					"speed", 
+					"notes", };
+				WindowManager.callSafeControlsSetLockMode(self, tFields, bReadOnly);
+				divider2.setVisible(WindowManager.getAnyControlVisible(self, { "type", }));
+				divider3.setVisible(WindowManager.getAnyControlVisible(self, { "notes", }));
+			end
+			function onDiceChanged()
+				local bShow = not mdice.isEmpty();
+				mdice.setVisible(bShow);
+				mbutton_roll.setVisible(bShow);
+				
+				local bBShow = not bdice.isEmpty();
+				bdice.setVisible(bBShow);
+				bbutton_roll.setVisible(bBShow);
+			end
+
+			function action(draginfo)
+				local sLabel = maneuverability_label.getValue();
+				local aDice = mdice.getDice();
+				local nMod = mbonus.getValue();
+				
+				if mdice.isEmpty() then
+					if draginfo then
+						draginfo.setType("number");
+						draginfo.setDescription(sLabel);
+						draginfo.setStringData(sLabel);
+						draginfo.setNumberData(nMod);
+					else
+						ModifierStack.addSlot(sLabel, nMod);
+					end
+				else
+					local rRoll = { sType = "dice", sDesc = maneuverability_label.getValue(), aDice = mdice.getDice(), nMod = mbonus.getValue() };
+					ActionsManager.performAction(draginfo, nil, rRoll);
+				end
+				return true;
+			end
+			function onDrop(x, y, draginfo)
+				local sDragType = draginfo.getType();
+				if sDragType == "dice" then
+					local aDropDice = draginfo.getDiceData();
+					Debug.console("Dice Data : ",aDropDice);
+					for _,vDie in ipairs(aDropDice) do
+						if y > 300 then
+							Debug.console("adding body");
+							bdice.addDie(vDie.type);
+						else
+							Debug.console("adding manuv");
+							mdice.addDie(vDie.type);
+						end
+					end
+					return true;
+				end
+			end
+			
+			function baction(draginfo)
+				local sLabel = body_label.getValue();
+				local aDice = bdice.getDice();
+				local nMod = bbonus.getValue();
+				
+				if bdice.isEmpty() then
+					if draginfo then
+						draginfo.setType("number");
+						draginfo.setDescription(sLabel);
+						draginfo.setStringData(sLabel);
+						draginfo.setNumberData(nMod);
+					else
+						ModifierStack.addSlot(sLabel, nMod);
+					end
+				else
+					local rRoll = { sType = "dice", sDesc = body_label.getValue(), aDice = bdice.getDice(), nMod = bbonus.getValue() };
+					ActionsManager.performAction(draginfo, nil, rRoll);
+				end
+				return true;
+			end			
+		</script>
+		<sheetdata>
+			<anchor_column name="columnanchor" />
+
+			<label_column name="type_label">
+				<static textres="vehicle_label_type" />
+			</label_column>
+			<string_columnh name="type">
+				<delaykeyupdate />
+			</string_columnh>
+
+			<label_column name="scale_label">
+				<static textres="vehicle_label_scale" />
+			</label_column>
+			<string_columnh name="scale">
+				<delaykeyupdate />
+			</string_columnh>
+
+			<line_column name="divider2" />
+
+			<label_column name="length_label">
+				<static textres="vehicle_label_length" />
+			</label_column>
+			<number_column name="length">
+				<default>1</default>
+			</number_column>
+
+			<label_column_right name="crew_label">
+				<anchored to="length" />
+				<static textres="vehicle_label_crew" />
+			</label_column_right>
+			<number_column_right name="crew">
+				<anchored to="length" />
+				<default>1</default>
+			</number_column_right>
+
+			<label_column name="skill_label">
+				<static textres="vehicle_label_crew_skill" />
+			</label_column>
+			<string_columnh name="skill">
+				<delaykeyupdate />
+			</string_columnh>
+
+			<label_column name="specialty_label">
+				<static textres="vehicle_label_crew_skill_specialty" />
+			</label_column>
+			<string_columnh name="skillspecialty">
+				<delaykeyupdate />
+			</string_columnh>
+
+			<label_column name="cargo_label">
+				<static textres="vehicle_label_cargo" />
+			</label_column>
+			<number_column name="cargo">
+				<default>1</default>
+			</number_column>
+
+			<label_column name="cover_label">
+				<static textres="vehicle_label_cover" />
+			</label_column>
+			<string_columnh name="cover" />
+
+			<label_column name="altitude_label">
+				<static textres="vehicle_label_altitude" />
+			</label_column>
+			<string_columnh name="altitude" />
+
+			<label_column name="maneuverability_label">
+				<static textres="vehicle_label_maneuverability" />
+			</label_column>
+			<string_columnh name="maneuverability">
+				<anchored>
+					<left offset="200" />
+					<right />
+				</anchored>
+			</string_columnh>			
+			<number_listitem_right name="mbonus">
+				<anchored>
+					<top parent="maneuverability_label" />
+					<left parent="maneuverability_label" anchor="maneuverability_label" position="left" offset="-75" />
+					<right parent="maneuverability_label" anchor="maneuverability_label" position="left" offset="-55" />
+				</anchored>
+				<script>
+					function onDragStart(button, x, y, draginfo)
+						return window.action(draginfo);
+					end
+				</script>
+			</number_listitem_right>
+			<dice_listitem_right name="mdice">
+				<anchored>
+					<top parent="mbonus" />
+					<left parent="mbonus" anchor="mbonus" position="right" offset="-100" />
+					<right parent="mbonus" anchor="mbonus" position="right" offset="-80" />
+				</anchored>
+				<script>
+					function onValueChanged()
+						window.onDiceChanged();
+					end
+					function onDragStart(button, x, y, draginfo)
+						draginfo.setDescription("manuverability");
+						return window.action(draginfo);
+					end
+				</script>
+			</dice_listitem_right>
+			<button_listitem_roll_right name="mbutton_roll">
+				<anchored>
+					<top parent="mdice" />
+					<left parent="mdice" anchor="mdice" position="right" offset="-130" />
+					<right parent="mdice" anchor="mdice" position="right" offset="-110" />
+				</anchored>
+				<script>
+					function onDragStart(button, x, y, draginfo)
+						return window.action(draginfo);
+					end
+					function onButtonPress()
+						return window.action();
+					end
+				</script>
+			</button_listitem_roll_right>
+
+			<label_column name="cost_label">
+				<static textres="vehicle_label_cost" />
+			</label_column>
+			<string_columnh name="cost" />
+
+			<label_column name="weight_label">
+				<static textres="vehicle_label_weight" />
+			</label_column>
+			<number_columnh name="weight" />
+
+			<label_column name="speed_label">
+				<static textres="vehicle_label_speed" />
+			</label_column>
+			<string_columnh name="speed" />
+
+			<label_column name="body_label">
+				<static textres="vehicle_label_body_strength" />
+			</label_column>
+			<string_columnh name="body">
+				<anchored>
+					<left offset="200" />
+					<right />
+				</anchored>
+			</string_columnh>
+			<number_listitem_right name="bbonus">
+				<anchored>
+					<top parent="body_label" />
+					<left parent="body_label" anchor="body_label" position="left" offset="-183" />
+					<right parent="body_label" anchor="body_label" position="left" offset="-163" />
+				</anchored>
+				<script>
+					function onDragStart(button, x, y, draginfo)
+						return window.baction(draginfo);
+					end
+				</script>
+			</number_listitem_right>
+			<dice_listitem_right name="bdice">
+				<anchored>
+					<top parent="bbonus" />
+					<left parent="bbonus" anchor="bbonus" position="right" offset="-205" />
+					<right parent="bbonus" anchor="bbonus" position="right" offset="-188" />
+				</anchored>
+				<script>
+					function onValueChanged()
+						window.onDiceChanged();
+					end
+					function onDragStart(button, x, y, draginfo)
+						draginfo.setDescription("body");
+						return window.baction(draginfo);
+					end
+				</script>
+			</dice_listitem_right>
+			<button_listitem_roll_right name="bbutton_roll">
+				<anchored>
+					<top parent="bdice" />
+					<left parent="bdice" anchor="bdice" position="right" offset="-235" />
+					<right parent="bdice" anchor="bdice" position="right" offset="-215" />
+				</anchored>
+				<script>
+					function onDragStart(button, x, y, draginfo)
+						return window.baction(draginfo);
+					end
+					function onButtonPress()
+						return window.baction();
+					end
+				</script>
+			</button_listitem_roll_right>
+
+			<label_column name="weapon_label">
+				<static textres="vehicle_label_weapons" />
+			</label_column>
+			<windowlist_weapon name="weapon" />	
+			
+			<line_column name="divider3" />
+			<ft_columnh name="notes" />
+		</sheetdata>
+	</windowclass>
+	
+	<template name="windowlist_weapon">
+		<windowlist>
+			<anchored>
+				<top parent="columnanchor" anchor="bottom" relation="relative" offset="20" />
+				<left />
+				<right />
+				<bottom />
+			</anchored>
+			<child></child>
+			<child>
+				<backcolor>1A40301E</backcolor>
+			</child>
+			<class>vehicle_windowlist_weapon_item</class>
+			<columns>
+				<filldown>true</filldown>
+			</columns>
+			<datasource>.weapons</datasource>
+			<script>
+				function onDrop(x, y, draginfo)
+					local sDragType = draginfo.getType();
+					if sDragType == "number" then
+						local w = createWindow(nil, true);
+						if w then
+							w.label.setValue(draginfo.getDescription());
+							w.bonus.setValue(draginfo.getNumberData());
+						end
+						return true;
+					elseif sDragType == "dice" then
+						local aDropDice = draginfo.getDiceData();
+						local w = getWindowAt(x,y);
+						if w then
+							for _,vDie in ipairs(aDropDice) do
+								Debug.console("adding die to weapon",w);
+							end
+						end
+						return true;
+					end
+				end
+			</script>
+		</windowlist>
+	</template>
+</root>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!--
+  Please see the license.html file included with this distribution for
+  attribution and copyright information.
+-->
+<root>
+	<string name="library_recordtype_label_skill">skills</string>
+	<string name="library_recordtype_single_skill">skill</string>
+	<string name="library_recordtype_empty_skill">&#171; New skill &#187;</string>
+	<string name="library_recordtype_emty_noid_skill">Unidentified</string>
+	<string name="string_label_attribute">Attribute</string>
+</root>

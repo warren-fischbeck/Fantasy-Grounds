@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!--
+  Please see the license.html file included with this distribution for
+  attribution and copyright information.
+-->
+<root>
+	<!-- char_main_category -->
+	<windowclass name="force_core_abilities">
+		<margins control="0,0,0,5" />
+		<sheetdata>
+			<subwindow name="header">
+				<anchored position="insidetop" />
+				<class>force_core_abilities_header</class>
+				<fastinit />
+				<activate />
+			</subwindow>
+		
+			<button_iadd name="attributes_iadd">
+				<anchored position="insidetopright" offset="15,5" />
+				<target>attributes</target>
+			</button_iadd>
+
+			<list_core_force_skills name="attributes">
+				<anchored>
+					<top parent="header" anchor="bottom" offset="2" />
+					<left />
+					<right />
+				</anchored>
+				<datasource>.skills</datasource>
+			</list_core_force_skills>
+		</sheetdata>
+	</windowclass>
+	
+	<template name="list_core_force_skills">
+		<windowlist>
+			<child></child>
+			<child><backcolor>1A40301E</backcolor></child>
+			<datasource>.force.corepowers.skills</datasource>
+			<class>force_core_skill</class>
+			<noscroll />
+			<sortby><field>label</field></sortby>
+			<allowdelete />
+			<script>
+				function onDrop(x, y, draginfo)
+					local sDragType = draginfo.getType();
+					if sDragType == "number" then
+						local w = createWindow(nil, true);
+						if w then
+							w.label.setValue(draginfo.getDescription());
+							w.bonus.setValue(draginfo.getNumberData());
+						end
+						return true;
+					elseif sDragType == "dice" then
+						local aDropDice = draginfo.getDiceData();
+						local w = getWindowAt(x,y);
+						if w then
+							for _,vDie in ipairs(aDropDice) do
+								w.dice.addDie(vDie.type);
+							end
+						end
+						return true;
+					end
+				end
+			</script>
+		</windowlist>
+	</template>
+</root>

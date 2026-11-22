@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!--
+  Please see the license.html file included with this distribution for
+  attribution and copyright information.
+-->
+<root>
+	<windowclass name="charsheet_force" >
+		<sheetdata>
+			<anchor_content_top />
+			<anchor_content_bottom />
+
+			<sub_content_framed_groupbox name="content">
+				<class>charsheet_force_main</class>
+			</sub_content_framed_groupbox>
+			<scrollbar_content />
+		</sheetdata>
+	</windowclass>
+</root>

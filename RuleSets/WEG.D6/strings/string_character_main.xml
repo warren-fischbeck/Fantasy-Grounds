@@ -1,0 +1,40 @@
+<root>
+	<!-- character sheet tab controls -->
+	
+	<!-- character sheet main page -->
+	<string name="label_character_sheet_character_points">CP</string>
+	<string name="label_character_sheet_movement">Movement</string>
+
+	<string name="label_character_sheet_abilities_attributes">Attributes</string>
+	<string name="label_character_sheet_abilities_dexterity">Dexterity</string>
+	<string name="label_character_sheet_abilities_knowledge">Knowlege</string>
+	<string name="label_character_sheet_abilities_mechanical">Mechanical</string>
+	<string name="label_character_sheet_abilities_perception">Perception</string>
+	<string name="label_character_sheet_abilities_strength">Strength</string>
+	<string name="label_character_sheet_abilities_technical">Technical</string>
+	
+	<!-- character sheet tool tips -->
+	<string name="tooltip_character_sheet_abilities">Spend Character Points on Attributes</string>
+	<string name="tooltip_character_sheet_skills">Spend Character Points on skills</string>
+		
+	<!-- character sheet notes tab -->
+	<string name="char_label_race">Species</string>
+	<string name="char_label_attributes">Skills / Attributes</string>
+	
+	<!-- need to be retired -->
+	<string name="char_label_senses">senses</string>	
+	<string name="char_label_catagory_chartemplate">Character Details</string>	
+	<string name="char_label_charage">Age</string>
+	<string name="char_label_charheight">Height</string>
+	<string name="char_label_charweight">Weight</string>
+	<string name="char_label_chardescription">Physical Description</string>
+	<string name="char_label_chartemplate">Template Name</string>
+	<string name="char_label_charpoints">CP</string>
+	<string name="atrb_label_attributes">Attributes</string>
+	<string name="atrb_label_dexterity">Dexterity</string>
+	<string name="atrb_label_knowledge">Knowlege</string>
+	<string name="atrb_label_mechanical">Mechanical</string>
+	<string name="atrb_label_perception">Perception</string>
+	<string name="atrb_label_strength">Strength</string>
+	<string name="atrb_label_technical">Technical</string>
+</root>

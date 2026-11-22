@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!--
+  Please see the license.html file included with this distribution for
+  attribution and copyright information.
+-->
+<root>
+	<windowclass name="item_main_standard" copy="item_main_standard">
+		<script>
+			function onInit()
+			self.onLockModeChanged(WindowManager.getWindowReadOnlyState(self));
+			itemTypeSelection();
+			end
+
+			function onLockModeChanged(bReadOnly)
+			WindowManager.callSafeControlsSetLockMode(self, { "cost", "weight", "itemdifficulty", "itemfirerate", "itemammo", "itemtype", "itemdamagedie", "itemdescription", "itemskill", "itemskillspeciality", "itemarmorreduction", "itemarmorcoverage", "itemavailability", "itemscale", "itemrange", }, bReadOnly);
+			parentcontrol.setVisible(WindowManager.getAnyControlVisible(self, { "cost", "weight", "itemdifficulty", "itemfirerate", "itemammo", "itemtype", "itemdamagedie", "itemdescription", "itemskill", "itemskillspeciality", "itemarmorreduction", "itemarmorcoverage", "itemavailability", "itemscale", "itemrange", }));
+			itemTypeSelection();
+			end
+
+			function itemTypeSelection()
+			local node = self.getDatabaseNode();
+			if not node then return end
+
+			-- Read and normalize item type
+			local sType = DB.getValue(node, "itemtype", ""):lower();
+
+			-- Weapon category list
+			local tWeaponTypes = {
+			["melee weapon"] = true,
+			["meleeweapon"] = true,
+			["explosive"] = true,
+			["weapon"] = true,
+			["knife"] = true,
+			["vibroblade"] = true,
+			["lightsaber"] = true,
+			["slugthrower"] = true,
+			["blaster"] = true,
+			["bowcaster"] = true,
+			["blasterartillery"] = true,
+			};
+
+			-- Category checks
+			local bIsWeapon = tWeaponTypes[sType] == true;
+			local bIsArmor = (sType == "armor");
+			local bIsEquipment = (sType == "equipment");
+
+			-- Treat unknown types as equipment
+			if not bIsWeapon and not bIsArmor and not bIsEquipment then
+			bIsEquipment = true;
+			end
+
+			-- Visibility rules
+			local bShowDamage     = bIsWeapon;    -- Always show for weapons, even if empty
+			local bShowSkill      = bIsWeapon;    -- Weapons only
+			local bShowArmor      = bIsArmor;     -- Armor only
+			local bShowRange      = bIsWeapon;    -- Weapons only
+			local bShowAmmo       = bIsWeapon;    -- Weapons only
+			local bShowRate       = bIsWeapon;    -- Weapons only
+			local bShowDifficulty = bIsWeapon;    -- Weapons only
+
+			-- Apply visibility
+			self.item_label_damage.setVisible(bShowDamage);
+			self.itemdamagedie.setVisible(bShowDamage);
+
+			self.item_label_skill.setVisible(bShowSkill);
+			self.itemskill.setVisible(bShowSkill);
+
+			self.item_label_range.setVisible(bShowRange);
+			self.itemrange.setVisible(bShowRange);
+
+			self.item_label_ammo.setVisible(bShowAmmo);
+			self.itemammo.setVisible(bShowAmmo);
+
+			self.item_label_difficulty.setVisible(bShowDifficulty);
+			self.itemdifficulty.setVisible(bShowDifficulty);
+
+			self.item_label_fire_rate.setVisible(bShowRate);
+			self.itemfirerate.setVisible(bShowRate);
+
+			self.item_label_skill_speciality.setVisible(bShowSkill);
+			self.itemskillspeciality.setVisible(bShowSkill);
+
+			self.item_label_armor_coverage.setVisible(bShowArmor);
+			self.itemarmorcoverage.setVisible(bShowArmor);
+
+			self.item_label_armor_damage_reduction.setVisible(bShowArmor);
+			self.itemarmorreduction.setVisible(bShowArmor);
+			end
+		</script>
+		<sheetdata>
+			<label_content_column name="cost_label">
+				<static textres="item_label_cost" />
+			</label_content_column>
+			<string_content_columnh name="cost" />
+
+			<label_content_column name="weight_label">
+				<static textres="item_label_weight" />
+			</label_content_column>
+			<number_content_columnh name="weight" />
+
+			<label_content_column name="item_label_type" merge="add">
+				<static textres="item_label_type" />
+			</label_content_column>
+			<string_content_columnh name="itemtype">
+				<script>
+					function onValueChanged()
+					window.itemTypeSelection();
+					end
+				</script>
+			</string_content_columnh>
+
+			<label_content_column name="item_label_scale" >
+				<static textres="item_label_scale" />
+			</label_content_column>
+			<string_content_columnh name="itemscale" />
+
+			<label_content_column name="item_label_skill" merge="add">
+				<static textres="item_label_skill" />
+			</label_content_column>
+			<string_content_columnh name="itemskill" />
+
+			<label_content_column name="item_label_skill_speciality" merge="add">
+				<static textres="item_label_skill_speciality" />
+			</label_content_column>
+			<string_content_columnh name="itemskillspeciality" />
+
+			<label_content_column name="item_label_difficulty" merge="add" >
+				<static textres="item_label_difficulty" />
+			</label_content_column>
+			<string_content_columnh name="itemdifficulty" />
+
+			<label_content_column name="item_label_damage" merge="add">
+				<static textres="item_label_damage" />
+			</label_content_column>
+			<string_content_columnh name="itemdamagedie" />
+
+			<label_content_column name="item_label_ammo" >
+				<static textres="item_label_ammo" />
+			</label_content_column>
+			<number_content_columnh name="itemammo" />
+
+			<label_content_column name="item_label_fire_rate" >
+				<static textres="item_label_fire_rate" />
+			</label_content_column>
+			<number_content_columnh name="itemfirerate" />
+
+			<label_content_column name="item_label_range" >
+				<static textres="item_label_range" />
+			</label_content_column>
+			<string_content_columnh name="itemrange" />
+
+			<label_content_column name="item_label_armor_coverage">
+				<static textres="item_label_armor_coverage" />
+			</label_content_column>
+			<string_content_columnh name="itemarmorcoverage" />
+
+			<label_content_column name="item_label_armor_damage_reduction">
+				<static textres="item_label_armor_damage_reduction" />
+			</label_content_column>
+			<string_content_columnh name="itemarmorreduction" />
+
+			<label_content_column name="item_label_description" merge="add">
+				<static textres="item_label_description" />
+			</label_content_column>
+			<string_content_columnh name="itemdescription" />
+
+			<label_content_column name="item_label_availability" >
+				<static textres="item_label_availability" />
+			</label_content_column>
+			<string_content_columnh name="itemavailability" />
+
+			<line_content_top name="divider" />
+		</sheetdata>
+	</windowclass>
+</root>

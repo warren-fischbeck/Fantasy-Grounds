@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!--
+  Please see the license.html file included with this distribution for
+  attribution and copyright information.
+-->
+
+<root>
+	<windowclass name="tokenlightlist" copy="settings_list">
+		<sheetdata>
+			<windowtitlebar name="title">
+				<resource>tokenlight_window_title</resource>
+			</windowtitlebar>
+
+			<list_utility_setting name="list">
+				<class>tokenlightitem</class>
+				<datasource>.</datasource>
+			</list_utility_setting>
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="tokenlightitem">
+		<margins control="0,0,0,5" />
+		<sheetdata>
+			<anchor_listitem_left />
+			<anchor_listitem_right />
+
+			<button_listitem_idelete_left name="idelete">
+				<editmode>list_iedit</editmode>
+			</button_listitem_idelete_left>
+			<linkc_listitem_left name="link">
+				<class>tokenlight</class>
+			</linkc_listitem_left>
+
+			<string_listitem_center_noframe_static_linked name="name" />
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="tokenlight" copy="record_window">
+		<windowmenu>
+			<nolink />
+			<nolock />
+		</windowmenu>
+		<minimize>minimized_utility</minimize>
+	</windowclass>
+	<windowclass name="tokenlight_main">
+		<margins control="0,0,0,2" />
+		<sheetdata>
+			<anchor_content_top />
+
+			<label_content_column name="color_label">
+				<static textres="tokenlight_label_color" />
+			</label_content_column>
+			<genericcontrol name="color_swatch">
+				<anchored to="contentanchor" height="20" width="20">
+					<top relation="relative" offset="3" postoffset="3" />
+					<left offset="105" />
+				</anchored>
+				<frame name="border" />
+				<tooltip textres="color_edit" />
+				<script file="utility/scripts/tokenlight_color_swatch.lua" />
+			</genericcontrol>
+
+			<label_content_column name="bright_label">
+				<static textres="tokenlight_label_bright" />
+			</label_content_column>
+			<number_content_column name="bright">
+				<min>0</min>
+			</number_content_column>
+			<label_content_column_right name="falloff_label">
+				<anchored to="bright" />
+				<static textres="tokenlight_label_falloff" />
+			</label_content_column_right>
+			<number_content_column_right name="falloff">
+				<anchored to="bright" />
+				<min>0</min>
+				<max>100</max>
+			</number_content_column_right>
+			<label name="percent_label_bright">
+				<anchored to="falloff" position="righthigh" offset="5" />
+				<static text="%" />
+			</label>
+
+			<label_content_column name="dim_label">
+				<static textres="tokenlight_label_dim" />
+			</label_content_column>
+			<number_content_column name="dim">
+				<min>0</min>
+			</number_content_column>
+			<label_content_column_right name="dimfalloff_label">
+				<anchored to="dim" />
+				<static textres="tokenlight_label_falloff" />
+			</label_content_column_right>
+			<number_content_column_right name="dimfalloff">
+				<anchored to="dim" />
+				<min>0</min>
+				<max>100</max>
+			</number_content_column_right>
+			<label name="percent_label_dim">
+				<anchored to="dimfalloff" position="righthigh" offset="5" />
+				<static text="%" />
+			</label>
+
+			<label_content_column name="animtype_label">
+				<static textres="tokenlight_label_animtype" />
+			</label_content_column>
+			<button_stringcycler_content_column name="animtype">
+				<anchored width="50">
+					<right merge="delete" />
+				</anchored>
+				<parameters>
+					<defaultlabel>-</defaultlabel>
+					<labelsres>tokenlight_label_animtype_flash|tokenlight_label_animtype_flicker|tokenlight_label_animtype_pulse</labelsres>
+					<values>flash|flicker|pulse</values>
+				</parameters>
+			</button_stringcycler_content_column>
+			<label_content_column_right name="animspeed_label">
+				<anchored to="animtype" />
+				<static textres="tokenlight_label_animspeed" />
+			</label_content_column_right>
+			<number_content_column_right name="animspeed">
+				<anchored to="animtype" />
+				<min>0</min>
+				<max>100</max>
+			</number_content_column_right>
+			<label name="percent_label_animspeed">
+				<anchored to="animspeed" position="righthigh" offset="5" />
+				<static text="%" />
+			</label>
+
+			<label_content_column name="fov_label">
+				<static textres="tokenlight_label_fov" />
+			</label_content_column>
+			<number_content_column name="fov">
+				<min>0</min>
+				<max>360</max>
+			</number_content_column>
+
+			<header_content_framed_headersimple name="header">
+				<static textres="tokenlight_header_effect" />
+			</header_content_framed_headersimple>
+
+			<label_content_column name="tag_label">
+				<static textres="tokenlight_label_tag" />
+			</label_content_column>
+			<string_content_column name="tag" />
+
+			<label_content_column name="duration_label">
+				<static textres="tokenlight_label_duration" />
+			</label_content_column>
+			<number_content_column name="duration">
+				<min>0</min>
+			</number_content_column>
+		</sheetdata>
+	</windowclass>
+</root>

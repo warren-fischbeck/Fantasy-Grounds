@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!--
+  Please see the license.html file included with this distribution for
+  attribution and copyright information.
+-->
+<root>
+
+	<template name="d6_primitive_button">
+		<buttoncontrol>
+			<frame name="fieldlight" offset="5,5,5,5" />
+			<frame name="fielddark" offset="5,5,5,5" />
+			<stateframe>
+				<hover name="fielddark" offset="5,5,5,5" />
+				<pressed name="fieldfocus" offset="5,5,5,5" />
+			</stateframe>
+			<icon>
+				<normal>button_menu</normal>
+				<pressed>button_menu_down</pressed>
+			</icon>
+		</buttoncontrol>
+	</template>
+
+	<template name="d6_primitive_framed_button">
+		<d6_primitive_button>
+
+		</d6_primitive_button>
+	</template>
+
+	<template name="button_level_up">
+		<d6_primitive_framed_button>
+			<anchored width="20" height="20" />
+			<tooltip text="Spend Character Points" />
+		</d6_primitive_framed_button>
+	</template>
+
+	<template name="button_weaponfirecontrol">
+		<d6_primitive_button>
+			<anchored height="20">
+				<top relation="relative" />
+				<left relation="relative" offset="2" postoffset="2" />
+			</anchored>
+			<icon>
+				<normal>button_weapon</normal>
+				<pressed>button_weapon_down</pressed>
+			</icon>
+			<script>
+				function onValueChanged()
+					if window.weapons then
+						WindowManager.onEditModeChange(window.weapons);
+					end
+				end
+			</script>
+			<tooltip>
+				<text>Fire Control</text>
+			</tooltip>
+		</d6_primitive_button>
+	</template>
+
+	<template name="button_weapondamage">
+		<d6_primitive_button>
+			<anchored height="20">
+				<top relation="relative"/>
+				<left relation="relative" offset="2" postoffset="2" />
+			</anchored>
+			<icon>
+				<normal>button_action_damage</normal>
+				<pressed>button_action_damage_down</pressed>
+			</icon>
+			<script>
+				function onValueChanged()
+					WindowManager.onEditModeChange(window.weapons);
+				end
+			</script>
+			<tooltip>
+				<text>Damage</text>
+			</tooltip>
+		</d6_primitive_button>
+	</template>
+
+	<template name="button_listitem_roll_right">
+		<button_roll>
+			<anchored to="rightanchor" height="20">
+				<top />
+				<right relation="relative" offset="-2" postoffset="-2" />
+			</anchored>
+		</button_roll>
+	</template>
+
+	<template name="button_roll">
+		<buttoncontrol>
+			<anchored height="20" />
+			<icon normal="button_roll" pressed="button_roll_down" />
+		</buttoncontrol>
+	</template>
+
+	<template name="button_starship_type">
+		<button_masterindex_option_view>
+			<recordtype>starship</recordtype>
+			<recordview>bytype</recordview>
+		</button_masterindex_option_view>
+	</template>
+	
+</root>

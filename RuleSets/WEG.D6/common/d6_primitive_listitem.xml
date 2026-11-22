@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!--
+  Please see the license.html file included with this distribution for
+  attribution and copyright information.
+-->
+<root>
+	<template name="number_listitem_base">
+		<simplenumber>
+			<anchored height="20" />
+			<frame mergerule="replace" name="fielddark" offset="5,5,5,5" />
+			<stateframe>
+				<keyedit name="fieldfocus" offset="5,5,5,5" />
+				<hover name="fieldfocus" offset="5,5,5,5" hidereadonly="true" />
+				<drophilight name="fieldfocus" offset="5,5,5,5" hidereadonly="true" />
+			</stateframe>
+			<hideonvalue>0</hideonvalue>
+			<delaykeyupdate/>
+		</simplenumber>
+	</template>
+</root>

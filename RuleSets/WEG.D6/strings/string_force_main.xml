@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!--
+  Please see the license.html file included with this distribution for
+  attribution and copyright information.
+-->
+<root>
+	<!-- character sheet tab controls -->
+	<string name="tab_force">Force</string>
+	
+	<!-- character sheet header -->
+	<string name="label_force_sensitive">Force Sensitive</string>
+	<string name="label_character_sheet_force_points">FP</string>
+	<string name="label_character_sheet_dark_side_points">DSP</string>
+	
+	<!-- character sheet force tab -->
+	<string name="label_forcemaster">Has force master?</string>
+	<string name="label_ability_force">Force Powers</string>
+	<string name="label_ability_advancedforce">Advanced Force Powers</string>
+	<string name="label_ability_force_sense">Sense</string>
+	<string name="label_ability_force_control">Control</string>
+	<string name="label_ability_force_alter">Alter</string>
+	<string name="label_ability_force_control_sense">Control &amp; Sense</string>
+	<string name="label_ability_force_control_alter">Control &amp; Alter</string>
+	<string name="label_ability_force_control_sense_alter">Control, Sense &amp; Alter</string>
+	
+	<!-- character sheet force tab tool tips -->
+	<string name="tooltip_character_sheet_force_core">Spend Character Points on force abilities</string>	
+	<!-- Need to be retired -->
+	<string name="atrb_label_force_sensitive">Force Sensitive</string>
+	<string name="char_label_force_points">FP</string>
+	<string name="char_label_dark_side_points">DSP</string>
+	<string name="atrb_label_force_sense">Sense</string>
+	<string name="atrb_label_force_control">Control</string>
+	<string name="atrb_label_force_alter">Alter</string>
+</root>

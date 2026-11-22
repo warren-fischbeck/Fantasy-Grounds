@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!--
+  Please see the license.html file included with this distribution for
+  attribution and copyright information.
+-->
+<root>
+
+	<basicdice name="dice">
+		<anchored to="leftanchor" height="20">
+			<top />
+			<left anchor="right" relation="relative" offset="15" />
+		</anchored>
+		<script>
+			function onDragStart(button, x, y, draginfo)
+				return window.actionRoll(draginfo);
+			end
+			function onDoubleClick()
+				return window.actionRoll();
+			end
+		</script>
+	</basicdice>
+	
+	<template name="dice_listitem_base">
+		<basicdice>
+			<anchored height="20" />
+		</basicdice>
+	</template>
+
+</root>

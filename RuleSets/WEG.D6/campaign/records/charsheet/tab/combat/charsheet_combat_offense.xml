@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!--
+  Please see the license.html file included with this distribution for
+  attribution and copyright information.
+-->
+<root>
+	<windowclass name="charsheet_combat_offense">
+		<sheetdata>
+			<subwindow name="weapons_window">
+				<anchored>
+					<top offset="0"/>
+					<left offset="100" />
+				</anchored>
+				<windowlist_charsheet_weapon name="charsheet_weaponlist" />
+				<fastinit />
+				<activate />
+			</subwindow>
+		</sheetdata>
+	</windowclass>
+</root>

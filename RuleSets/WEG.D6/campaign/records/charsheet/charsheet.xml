@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!--
+  Please see the license.html file included with this distribution for
+  attribution and copyright information.
+-->
+<root>
+	<windowclass name="charsheet" merge="resetandjoin" copy="charsheet_base">
+		<tab>
+			<name>main</name>
+			<resource>tab_main</resource>
+			<class>charsheet_main</class>
+			<embed />
+		</tab>
+		<tab merge="add">
+			<name>force</name>
+			<resource>tab_force</resource>
+			<class>charsheet_force</class>
+		</tab>
+		<tab merge="add">
+			<name>combat</name>
+			<resource>tab_combat</resource>
+			<class>charsheet_combat</class>
+		</tab>
+		<tab merge="add">
+			<name>inventory</name>
+			<resource>tab_inventory</resource>
+			<class>charsheet_inventory</class>
+		</tab>
+		<tab merge="add">
+			<name>notes</name>
+			<resource>tab_notes</resource>
+			<class>charsheet_notes</class>
+		</tab>
+	</windowclass>
+</root>

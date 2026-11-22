@@ -1,0 +1,70 @@
+<root>
+	<windowclass name="force_advanced_skill">
+		<margins control="0,0,0,2" />
+		<script>
+			function onInit()
+
+			end
+			function onDiceChanged()
+				local bShow = not dice.isEmpty();
+				dice.setVisible(bShow);
+				button_roll.setVisible(bShow);
+			end
+			function action(draginfo)
+				local sLabel = name.getValue();
+				local aDice = dice.getDice();
+				local nMod = bonus.getValue();
+
+				if dice.isEmpty() then
+					if draginfo then
+						draginfo.setType("number");
+						draginfo.setDescription(sLabel);
+						draginfo.setStringData(sLabel);
+						draginfo.setNumberData(nMod);
+					else
+						ModifierStack.addSlot(sLabel, nMod);
+					end
+				else
+					ActionsManager.performAction(sLabel, aDice, nMod, draginfo);
+				end
+
+				return true;
+			end
+			function onDrop(x, y, draginfo)
+				local sDragType = draginfo.getType();
+				if sDragType == "dice" then
+					local aDropDice = draginfo.getDiceData();
+					for _,vDie in ipairs(aDropDice) do
+						dice.addDie(vDie.type);
+					end
+					return true;
+				end
+			end
+		</script>
+		<sheetdata>
+			<anchor_listitem_left_sm />
+			<anchor_listitem_right_sm />
+			
+			<button_listitem_idelete_left name="idelete">
+				<editmode>advancedabilities_iedit</editmode>
+			</button_listitem_idelete_left>
+			<string_listitem_center_underline name="name">
+				<anchored>
+					<left offset="30" />
+				</anchored>
+				<script>
+					function onDragStart(button, x, y, draginfo)
+						return window.action(draginfo);
+					end
+				</script>
+			</string_listitem_center_underline>
+			<button_checkbox name="trained">
+				<anchored height="20" width="20" >
+					<top parent="name" offset="0" />
+					<left parent="name" offset="-30" />
+				</anchored>
+				<textres>trained</textres>
+			</button_checkbox>
+		</sheetdata>
+	</windowclass>
+</root>

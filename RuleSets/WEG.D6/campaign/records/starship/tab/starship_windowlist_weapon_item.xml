@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!--
+  Please see the license.html file included with this distribution for
+  attribution and copyright information.
+-->
+
+<root>
+	<windowclass name="starship_windowlist_weapon_item">
+		<script>
+			function onInit()
+				self.onLockModeChanged(WindowManager.getWindowReadOnlyState(self));
+			end
+
+			function onLockModeChanged(bReadOnly)
+				local tFields = { "weaponname",
+				"weaponfirearc",
+				"weaponskill",
+				"weaponspecialization",
+				"sfirecontrol",
+				"weaponspacerange",
+				"weaponatmosphererange",
+				"weaponcrew",
+				"weaponscale",
+				"sweapondamage", };
+				WindowManager.callSafeControlsSetLockMode(self, tFields, bReadOnly);
+			end
+
+			function firecontrol()
+				local nodeFireControl = getDatabaseNode();
+				Debug.console("firecontrol node: ",nodeFireControl);
+				local sLabel = label_weaponfirecontrol.getValue();
+				local aDice = DB.getValue(nodeFireControl, "dfirecontrol", 0);
+				local nMod = DB.getValue(nodeFireControl, "nfirecontrol", 0);
+				
+				local rRoll = { sType = "dice", sDesc = sLabel, aDice = aDice, nMod = nMod };
+				ActionsManager.performAction(draginfo, nil, rRoll);
+				return true;
+			end
+
+			function weapondamage()
+				local nodeWeaponDamage = getDatabaseNode();
+				local sLabel = label_weapondamage.getValue();
+				local aDice = DB.getValue(nodeWeaponDamage, "dweapondamage", 0);
+				local nMod = DB.getValue(nodeWeaponDamage, "nweapondamage", 0);
+
+				local rRoll = { sType = "dice", sDesc = sLabel, aDice = aDice, nMod = nMod };
+				ActionsManager.performAction(draginfo, nil, rRoll);
+				return true;
+			end
+
+			function updateDamage()
+				local nodeWeaponDamage = getDatabaseNode();
+				if not nodeWeaponDamage then
+					return;
+				end
+
+				local sLabel = self.sweapondamage.getValue();
+				local dDice, sMod = string.match(sLabel, "([^+]+)%+?(.*)");
+				sMod = tonumber(sMod) or 0;
+				dDice = string.lower(dDice);
+
+				DB.setValue(nodeWeaponDamage, "dweapondamage", "dice", dDice);
+				DB.setValue(nodeWeaponDamage, "nweapondamage", "number", sMod);
+			end
+			
+			function updateFirecontrol()
+				local nodeFireControl = getDatabaseNode();
+				if not nodeFireControl then
+					return;
+				end
+
+				local sLabel = self.sfirecontrol.getValue();
+				local dDice, sMod = string.match(sLabel, "([^+]+)%+?(.*)");
+				sMod = tonumber(sMod) or 0;
+				dDice = string.lower(dDice);
+
+				DB.setValue(nodeFireControl, "dfirecontrol", "dice", dDice);
+				DB.setValue(nodeFireControl, "nfirecontrol", "number", sMod);
+			end			
+		</script>
+		<sheetdata>
+			<stringcontrol name="label_weaponname">
+				<anchored>
+					<top offset="5" />
+					<left offset="25" />
+				</anchored>
+				<font>sheetlabel</font>
+				<static textres="starship_label_weaponname" />
+			</stringcontrol>
+			<stringfield name="weaponname">
+				<anchored>
+					<top offset="5" />
+					<left parent="label_weaponname" anchor="left" offset="110" />
+					<right offset="-90" />
+				</anchored>
+				<stateframe>
+					<keyedit name="fieldfocus" offset="7,5,7,5" />
+					<hover name="fieldfocus" offset="7,5,7,5" hidereadonly="true" />
+					<drophilight name="fieldfocus" offset="7,5,7,5" hidereadonly="true" />
+				</stateframe>
+				<multilinespacing>20</multilinespacing>
+				<left />
+			</stringfield>
+
+			<stringcontrol name="label_weaponfirearc">
+				<anchored>
+					<top parent="weaponname" anchor="below" position="relative" />
+					<left offset="35" />
+				</anchored>
+				<font>sheetlabel</font>
+				<static textres="starship_label_weaponfirearc" />
+			</stringcontrol>
+			<stringfield name="weaponfirearc">
+				<anchored>
+					<top parent="weaponname" anchor="below" />
+					<left parent="label_weaponfirearc" anchor="left" offset="100" />
+					<right offset="-90" />
+				</anchored>
+				<stateframe>
+					<keyedit name="fieldfocus" offset="7,5,7,5" />
+					<hover name="fieldfocus" offset="7,5,7,5" hidereadonly="true" />
+					<drophilight name="fieldfocus" offset="7,5,7,5" hidereadonly="true" />
+				</stateframe>
+				<multilinespacing>20</multilinespacing>
+				<left />
+			</stringfield>
+
+			<stringcontrol name="label_weaponcrew">
+				<anchored>
+					<top parent="weaponfirearc" anchor="below" position="relative" />
+					<left offset="35" />
+				</anchored>
+				<font>sheetlabel</font>
+				<static textres="starship_label_weaponcrew" />
+			</stringcontrol>
+			<stringfield name="weaponcrew">
+				<anchored>
+					<top parent="weaponfirearc" anchor="below" position="relative" />
+					<left parent="label_weaponcrew" anchor="left" offset="100" />
+					<right offset="-90" />
+				</anchored>
+				<stateframe>
+					<keyedit name="fieldfocus" offset="7,5,7,5" />
+					<hover name="fieldfocus" offset="7,5,7,5" hidereadonly="true" />
+					<drophilight name="fieldfocus" offset="7,5,7,5" hidereadonly="true" />
+				</stateframe>
+				<multilinespacing>20</multilinespacing>
+				<left />
+			</stringfield>
+
+			<stringcontrol name="label_weaponscale">
+				<anchored>
+					<top parent="weaponcrew" anchor="below" position="relative" />
+					<left offset="35" />
+				</anchored>
+				<font>sheetlabel</font>
+				<static textres="starship_label_weaponscale" />
+			</stringcontrol>
+			<stringfield name="weaponscale">
+				<anchored>
+					<top parent="weaponcrew" anchor="below" position="relative" />
+					<left parent="label_weaponscale" anchor="left" offset="100" />
+					<right offset="-90" />
+				</anchored>
+				<stateframe>
+					<keyedit name="fieldfocus" offset="7,5,7,5" />
+					<hover name="fieldfocus" offset="7,5,7,5" hidereadonly="true" />
+					<drophilight name="fieldfocus" offset="7,5,7,5" hidereadonly="true" />
+				</stateframe>
+				<multilinespacing>20</multilinespacing>
+				<left />
+			</stringfield>
+
+			<stringcontrol name="label_weaponskill">
+				<anchored>
+					<top parent="weaponscale" anchor="below" position="relative" />
+					<left offset="35" />
+				</anchored>
+				<font>sheetlabel</font>
+				<static textres="starship_label_weaponskill" />
+			</stringcontrol>
+			<stringfield name="weaponskill">
+				<anchored>
+					<top parent="weaponscale" anchor="below" position="relative" />
+					<left parent="label_weaponskill" anchor="left" offset="100" />
+					<right offset="-90" />
+				</anchored>
+				<stateframe>
+					<keyedit name="fieldfocus" offset="7,5,7,5" />
+					<hover name="fieldfocus" offset="7,5,7,5" hidereadonly="true" />
+					<drophilight name="fieldfocus" offset="7,5,7,5" hidereadonly="true" />
+				</stateframe>
+				<multilinespacing>20</multilinespacing>
+				<left />
+			</stringfield>
+
+			<stringcontrol name="label_weaponspecialization">
+				<anchored>
+					<top parent="weaponskill" anchor="below" position="relative" />
+					<left offset="35" />
+				</anchored>
+				<font>sheetlabel</font>
+				<static textres="starship_label_weaponspecialization" />
+			</stringcontrol>
+			<stringfield name="weaponspecialization">
+				<anchored>
+					<top parent="weaponskill" anchor="below" position="relative" />
+					<left parent="label_weaponspecialization" anchor="left" offset="100" />
+					<right offset="-90" />
+				</anchored>
+				<stateframe>
+					<keyedit name="fieldfocus" offset="7,5,7,5" />
+					<hover name="fieldfocus" offset="7,5,7,5" hidereadonly="true" />
+					<drophilight name="fieldfocus" offset="7,5,7,5" hidereadonly="true" />
+				</stateframe>
+				<multilinespacing>20</multilinespacing>
+				<left />
+			</stringfield>			
+
+			<stringcontrol name="label_weaponfirecontrol">
+				<anchored>
+					<top parent="weaponspecialization" anchor="below" position="relative"/>
+					<left offset="35" />
+				</anchored>
+				<font>sheetlabel</font>
+				<static textres="starship_label_weaponfirecontrol" />
+			</stringcontrol>
+			<stringfield name="sfirecontrol">
+				<anchored>
+					<top parent="weaponspecialization" anchor="below" position="relative" />
+					<left parent="label_weaponfirecontrol" anchor="left" offset="100" />
+					<right offset="-90" />
+				</anchored>
+				<stateframe>
+					<keyedit name="fieldfocus" offset="7,5,7,5" />
+					<hover name="fieldfocus" offset="7,5,7,5" hidereadonly="true" />
+					<drophilight name="fieldfocus" offset="7,5,7,5" hidereadonly="true" />
+				</stateframe>
+				<multilinespacing>20</multilinespacing>
+				<script>
+					function onValueChanged()
+						return window.updateFirecontrol();
+					end
+				</script>
+				<delaykeyupdate />
+				<left />
+			</stringfield>
+			<button_weaponfirecontrol name="button_firecontrol">
+				<anchored to="label_weaponfirecontrol">
+					<top parent="label_weaponfirecontrol" offset="-20" />
+					<left parent="label_weaponfirecontrol" anchor="left" offset="-25" />
+					<right parent="label_weaponfirecontrol" anchor="left" offset="-5" />
+				</anchored>
+				<icon normal="button_roll" pressed="button_roll_down" />
+				<script>
+					function onDragStart(button, x, y, draginfo)
+						return window.action(draginfo);
+					end
+					function onButtonPress()
+						return window.firecontrol();
+					end
+				</script>
+			</button_weaponfirecontrol>
+
+			<stringcontrol name="label_weaponspacerange">
+				<anchored>
+					<top parent="sfirecontrol" anchor="below" position="relative"/>
+					<left offset="35" />
+				</anchored>
+				<font>sheetlabel</font>
+				<static textres="starship_label_weaponspacerange" />
+			</stringcontrol>
+			<stringfield name="weaponspacerange">
+				<anchored>
+					<top parent="sfirecontrol" anchor="below" position="relative" />
+					<left parent="label_weaponspacerange" anchor="left" offset="100" />
+					<right offset="-30" />
+				</anchored>
+				<stateframe>
+					<keyedit name="fieldfocus" offset="7,5,7,5" />
+					<hover name="fieldfocus" offset="7,5,7,5" hidereadonly="true" />
+					<drophilight name="fieldfocus" offset="7,5,7,5" hidereadonly="true" />
+				</stateframe>
+				<multilinespacing>20</multilinespacing>
+				<left />
+			</stringfield>
+
+			<stringcontrol name="label_weaponatmosphererange">
+				<anchored>
+					<top parent="weaponspacerange" anchor="below" position="relative"/>
+					<left offset="35" />
+				</anchored>
+				<font>sheetlabel</font>
+				<static textres="starship_label_weaponatmosphererange" />
+			</stringcontrol>
+			<stringfield name="weaponatmosphererange">
+				<anchored>
+					<top parent="weaponspacerange" anchor="below" position="relative" />
+					<left parent="label_weaponatmosphererange" anchor="left" offset="100" />
+					<right offset="-30" />
+				</anchored>
+				<stateframe>
+					<keyedit name="fieldfocus" offset="7,5,7,5" />
+					<hover name="fieldfocus" offset="7,5,7,5" hidereadonly="true" />
+					<drophilight name="fieldfocus" offset="7,5,7,5" hidereadonly="true" />
+				</stateframe>
+				<multilinespacing>20</multilinespacing>
+				<left />
+			</stringfield>
+			
+			<stringcontrol name="label_weapondamage">
+				<anchored>
+					<top parent="weaponatmosphererange" anchor="below" position="relative"/>
+					<left offset="35" />
+				</anchored>
+				<font>sheetlabel</font>
+				<static textres="starship_label_weapondamage" />
+			</stringcontrol>
+			<stringfield name="sweapondamage">
+				<anchored>
+					<top parent="weaponatmosphererange" anchor="below" position="relative" />
+					<left parent="label_weapondamage" anchor="left" offset="100" />
+					<right offset="-90" />
+				</anchored>
+				<stateframe>
+					<keyedit name="fieldfocus" offset="7,5,7,5" />
+					<hover name="fieldfocus" offset="7,5,7,5" hidereadonly="true" />
+					<drophilight name="fieldfocus" offset="7,5,7,5" hidereadonly="true" />
+				</stateframe>
+				<multilinespacing>20</multilinespacing>
+				<delaykeyupdate />
+				<script>
+					function onValueChanged()
+						return window.updateDamage();
+					end
+				</script>
+				<left />
+			</stringfield>
+			<button_weapondamage name="button_damage">
+				<anchored to="label_weapondamage">
+					<top parent="label_weapondamage" offset="-20" />
+					<left parent="label_weapondamage" anchor="left" offset="-25" />
+					<right parent="label_weapondamage" anchor="left" offset="-5" />
+				</anchored>
+				<icon normal="button_weapon" pressed="button_weapon_down" />
+				<script>
+					function onDragStart(button, x, y, draginfo)
+						return window.action(draginfo);
+					end
+					function onButtonPress()
+						return window.weapondamage();
+					end
+				</script>
+			</button_weapondamage>
+		</sheetdata>
+	</windowclass>
+</root>
